@@ -78,6 +78,20 @@ app.get("/adminregister", function(req, res) {
   res.render("adminregister");
 });
 
+
+app.get("/orphanagedetails", function(req, res) {
+  if (req.isAuthenticated()) {
+      if(req.user.typeOfUser=="admin"){
+      res.render("orphanagedetails")
+      }
+      else{
+        console.log("problem");
+      }
+  } else {
+    res.redirect("/adminlogin");
+  }
+});
+
 ////////////////////////post////////////////////////////////
 app.post("/login", function(req, res) {
   const user = new User({
@@ -172,10 +186,10 @@ app.post("/adminregister", function(req, res) {
       res.render("error",{
         error:"username or mail already exist please try with other credentials"
       });
-      res.redirect("/");
+      res.redirect("/orphanagedetails");
     } else {
       passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
+        res.redirect("/orphanagedetails");
       });
     }
   });

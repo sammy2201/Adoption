@@ -1,0 +1,29 @@
+
+body{
+  background-color: #F6F5EE;
+  background-image: -webkit-linear-gradient(95deg, #FFE6BC 50%, #F6F5EE 50%);
+}
+
+.navbar {
+  background-color: #EAD8B6;
+  color: black
+}
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+.box {
+  width: 80%;
+  padding: 1.5%;
+  background-color: #F7F7F7;
+  margin-left: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
