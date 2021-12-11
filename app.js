@@ -39,35 +39,22 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   password: String,
+  typeOfUser : String
 });
 
-const adminSchema = new mongoose.Schema({
-  email: String,
-  name: {
-    type: String,
-    unique: true,
-  },
-  password: String,
-  orphanage:String,
-});
 
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
-adminSchema.plugin(passportLocalMongoose);
+
 //////////////////////////model//////////////////////////////////
 const User = new mongoose.model("User", userSchema);
-const Admin = new mongoose.model("Admin", adminSchema);
+
 /////////////////////////passport//////////////////////////////
+
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-passport.use(Admin.createStrategy());
-
-passport.serializeUser(Admin.serializeUser());
-passport.deserializeUser(Admin.deserializeUser());
-
 
 ///////////////////////////get////////////////////////////////////
 
@@ -95,7 +82,39 @@ app.get("/adminregister", function(req, res) {
 app.post("/login", function(req, res) {
   const user = new User({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    typeOfUser: "user"
+  });
+
+  req.login(user, function(err) {
+    if (err) {
+      res.render("error",{
+        error:"unauthorized"
+      });
+    } else {
+      passport.authenticate("local")(req, res, function() {
+        User.find({typeOfUser:"user",username: req.body.username}, function (err, docs) {
+           if (err){
+               console.log(err);
+           }
+           else{
+              if(docs!=""){
+                  res.redirect("/");
+              }else{
+                console.log("you are a admin")
+              }
+           }
+       });
+      });
+    }
+  });
+});
+
+app.post("/adminlogin", function(req, res) {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    typeOfUser:"admin"
   });
   req.login(user, function(err) {
     if (err) {
@@ -104,25 +123,18 @@ app.post("/login", function(req, res) {
       });
     } else {
       passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
-      });
-    }
-  });
-});
-
-app.post("/adminlogin", function(req, res) {
-  const admin = new Admin({
-    username: req.body.username,
-    password: req.body.password
-  });
-  req.login(admin, function(err) {
-    if (err) {
-      res.render("error",{
-        error:"unauthorized"
-      });
-    } else {
-      passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
+        User.find({typeOfUser:"admin",username: req.body.username}, function (err, docs) {
+           if (err){
+               console.log(err);
+           }
+           else{
+              if(docs!=""){
+                  res.redirect("/");
+              }else{
+                console.log("you are a user")
+              }
+           }
+       });
       });
     }
   });
@@ -130,10 +142,10 @@ app.post("/adminlogin", function(req, res) {
 
 app.post("/register", function(req, res) {
   const nameOfUser = req.body.name;
-if(validator.validate(req.body.username)===true){
   User.register({
     username: req.body.username,
-    name: nameOfUser
+    name: nameOfUser,
+    typeOfUser:"user"
   }, req.body.password, function(err, user) {
     if (err) {
       res.render("error",{
@@ -146,21 +158,16 @@ if(validator.validate(req.body.username)===true){
       });
     }
   });
-}else{
-  res.render("error",{
-    error:"verify your mail"
-  });
-}
 });
 
 app.post("/adminregister", function(req, res) {
   const nameOfUser = req.body.name;
 
-  Admin.register({
+  User.register({
     username: req.body.username,
     name: nameOfUser,
-    orphanage:req.body.orphanage
-  }, req.body.password, function(err, admin) {
+    typeOfUser:"admin"
+  }, req.body.password, function(err, user) {
     if (err) {
       res.render("error",{
         error:"username or mail already exist please try with other credentials"

@@ -5,33 +5,26 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
-    <a class="navbar-brand" href="#">Orphanage</a>
+    <a class="navbar-brand" href="/">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="/adminlogin">Login As Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Posts</a>
+          <a class="nav-link" href="/register">Register As User</a>
         </li>
       </ul>
     </div>
   </nav>
   <!-- /////////////////////////////////////////////////////////// -->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <h1>Register</h1>
-      </div>
-      <div class="col-sm">
-        <a href="/adminregister"><button type="button" class="btn btn-dark">Register as admin</button></a>
-      </div>
-    </div>
-  </div>
+
+  <h1>Register as a Admin</h1>
+
   <hr class="line">
   <!-- /////////////////////////////////////////////////////////// -->
   <div class="container">
@@ -51,11 +44,6 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password">
             </div>
-            <div class="form-group">
-              <label for="password">Orphanage</label>
-              <input type="text" class="form-control" name="orphanage">
-            </div>
-
             <button type="submit" class="btn btnbox btn-light">Register</button>
           </form>
         </div>
