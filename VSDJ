@@ -1,0 +1,48 @@
+[33mcommit 89b9897412294cdad325e0b48562ca3ae67e7fc3[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: aish <aishk2201@gmail.com>
+Date:   Sun Dec 12 11:11:05 2021 +0530
+
+    version 5 orphanage details
+
+[33mcommit 29766fb752d407ed03852886d44487b46700f663[m
+Author: aish <aishk2201@gmail.com>
+Date:   Sat Dec 11 21:54:53 2021 +0530
+
+    check3
+
+[33mcommit cadce37121aeb8fb2f015d7f7491cae4238de142[m
+Merge: b704741 dd5fa9a
+Author: aish <aishk2201@gmail.com>
+Date:   Sat Dec 11 21:51:11 2021 +0530
+
+    Merge branch 'master' of https://github.com/sammy2201/Adoption
+
+[33mcommit dd5fa9a002ff3018344fab4c04cb528e9e9ab433[m
+Author: Sanmay <bhavanish2000@gmail.com>
+Date:   Sat Dec 11 21:42:31 2021 +0530
+
+    version 3
+
+[33mcommit 625e17846b926ac69ce7863b068904ed1a183956[m
+Author: Sanmay <bhavanish2000@gmail.com>
+Date:   Sat Dec 11 17:32:08 2021 +0530
+
+    check2
+
+[33mcommit b704741e30faa0d9cf4e2298f723cdd6f50ded5a[m
+Author: aish <aishk2201@gmail.com>
+Date:   Sat Dec 11 17:14:35 2021 +0530
+
+    check
+
+[33mcommit 508e9d512829cde21a24f56f5c712010af219a51[m
+Author: Sanmay <bhavanish2000@gmail.com>
+Date:   Sat Dec 11 15:26:16 2021 +0530
+
+    version 2 auth complete
+
+[33mcommit e6b0e5eab9d8d47e8c99437996bcbcdc6d78a9cd[m
+Author: Sanmay <bhavanish2000@gmail.com>
+Date:   Fri Dec 10 22:29:33 2021 +0530
+
+    version 1
