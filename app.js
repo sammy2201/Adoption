@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect("mongodb://localhost:27017/userDB", {
+mongoose.connect("mongodb://localhost:27017/adoptDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -33,7 +33,7 @@ mongoose.connect("mongodb://localhost:27017/userDB", {
 //////////////////Schema//////////////
 
 const userSchema = new mongoose.Schema({
-  email: String,
+  username: String,
   name: {
     type: String,
     unique: true,
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   typeOfUser: String
 });
 
-const orphanagedetails = new mongoose.Schema({
+const orphanageSchema = new mongoose.Schema({
   name: String,
   adoptid: {
     type: String,
@@ -62,7 +62,7 @@ userSchema.plugin(passportLocalMongoose);
 
 //////////////////////////model//////////////////////////////////
 const User = new mongoose.model("User", userSchema);
-
+const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -224,6 +224,23 @@ app.post("/adminregister", function(req, res) {
     }
   });
 
+});
+
+
+app.post("/orphanagedetails", function(req, res) {
+  const someconstant = new Orphanage({
+    name: req.body.Orphanagename,
+    adoptid:req.body.AdoptID,
+    address: req.body.Address,
+    phonenum: req.body.phonenumber,
+    state: req.body.state,
+    city:req.body.city,
+    pincode: req.body.pincode,
+    mail: req.body.email,
+    adminname:req.user.name
+});
+someconstant.save();
+  res.redirect("/");
 });
 
 /////////////////////////////listen///////////////////////////////
