@@ -108,7 +108,12 @@ app.get("/orphanagedetails", function(req, res) {
 app.get("/studentdetails", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "admin") {
-      res.render("studentdetails")
+      Orphanage.find(function(err, founditems) {
+          res.render("studentdetails", {
+            items:founditems,
+            check:req.user.name,
+        });
+      });
     } else {
       console.log("problem");
     }
@@ -117,7 +122,6 @@ app.get("/studentdetails", function(req, res) {
   }
 });
 
-
 ////////////////////////post////////////////////////////////
 app.post("/login", function(req, res) {
   const user = new User({
@@ -125,7 +129,6 @@ app.post("/login", function(req, res) {
     password: req.body.password,
     typeOfUser: "user"
   });
-
   req.login(user, function(err) {
     if (err) {
       res.render("error", {
@@ -173,7 +176,7 @@ app.post("/adminlogin", function(req, res) {
             console.log(err);
           } else {
             if (docs != "") {
-              res.redirect("/");
+              res.redirect("/studentdetails");
             } else {
               console.log("you are a user")
             }

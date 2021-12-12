@@ -15,3 +15,15 @@
     </div>
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
+
+  <%items.forEach(function(item){ %>
+  <%if(check===item.adminname){%>
+  <h1>orphan name : <%=item.name%></h1>
+  <h1>orpan add : <%=item.address%></h1>
+  <h1>phone num : <%=item.phonenum%></h1>
+  <h1>state : <%=item.state%></h1>
+  <h1>city : <%=item.city%></h1>
+  <h1>pincode : <%=item.pincode%></h1>
+  <h1>mail : <%=item.mail%></h1> %>
+  <%}%>
+  <%}) %>
