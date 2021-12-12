@@ -39,9 +39,23 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   password: String,
-  typeOfUser : String
+  typeOfUser: String
 });
 
+const orphanagedetails = new mongoose.Schema({
+  name: String,
+  adoptid: {
+    type: String,
+    unique: true,
+  },
+  address: String,
+  phonenum: Number,
+  state: String,
+  city:String,
+  pincode: Number,
+  mail: String,
+  adminname:String
+});
 
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
@@ -81,16 +95,28 @@ app.get("/adminregister", function(req, res) {
 
 app.get("/orphanagedetails", function(req, res) {
   if (req.isAuthenticated()) {
-      if(req.user.typeOfUser=="admin"){
+    if (req.user.typeOfUser == "admin") {
       res.render("orphanagedetails")
-      }
-      else{
-        console.log("problem");
-      }
+    } else {
+      console.log("problem");
+    }
   } else {
     res.redirect("/adminlogin");
   }
 });
+
+app.get("/studentdetails", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "admin") {
+      res.render("studentdetails")
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/adminlogin");
+  }
+});
+
 
 ////////////////////////post////////////////////////////////
 app.post("/login", function(req, res) {
@@ -102,23 +128,25 @@ app.post("/login", function(req, res) {
 
   req.login(user, function(err) {
     if (err) {
-      res.render("error",{
-        error:"unauthorized"
+      res.render("error", {
+        error: "unauthorized"
       });
     } else {
       passport.authenticate("local")(req, res, function() {
-        User.find({typeOfUser:"user",username: req.body.username}, function (err, docs) {
-           if (err){
-               console.log(err);
-           }
-           else{
-              if(docs!=""){
-                  res.redirect("/");
-              }else{
-                console.log("you are a admin")
-              }
-           }
-       });
+        User.find({
+          typeOfUser: "user",
+          username: req.body.username
+        }, function(err, docs) {
+          if (err) {
+            console.log(err);
+          } else {
+            if (docs != "") {
+              res.redirect("/");
+            } else {
+              console.log("you are a admin")
+            }
+          }
+        });
       });
     }
   });
@@ -128,27 +156,29 @@ app.post("/adminlogin", function(req, res) {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
-    typeOfUser:"admin"
+    typeOfUser: "admin"
   });
   req.login(user, function(err) {
     if (err) {
-      res.render("error",{
-        error:"unauthorized"
+      res.render("error", {
+        error: "unauthorized"
       });
     } else {
       passport.authenticate("local")(req, res, function() {
-        User.find({typeOfUser:"admin",username: req.body.username}, function (err, docs) {
-           if (err){
-               console.log(err);
-           }
-           else{
-              if(docs!=""){
-                  res.redirect("/");
-              }else{
-                console.log("you are a user")
-              }
-           }
-       });
+        User.find({
+          typeOfUser: "admin",
+          username: req.body.username
+        }, function(err, docs) {
+          if (err) {
+            console.log(err);
+          } else {
+            if (docs != "") {
+              res.redirect("/");
+            } else {
+              console.log("you are a user")
+            }
+          }
+        });
       });
     }
   });
@@ -159,11 +189,11 @@ app.post("/register", function(req, res) {
   User.register({
     username: req.body.username,
     name: nameOfUser,
-    typeOfUser:"user"
+    typeOfUser: "user"
   }, req.body.password, function(err, user) {
     if (err) {
-      res.render("error",{
-        error:"username or mail already exist please try with other credentials"
+      res.render("error", {
+        error: "username or mail already exist please try with other credentials"
       });
       res.redirect("/");
     } else {
@@ -180,11 +210,11 @@ app.post("/adminregister", function(req, res) {
   User.register({
     username: req.body.username,
     name: nameOfUser,
-    typeOfUser:"admin"
+    typeOfUser: "admin"
   }, req.body.password, function(err, user) {
     if (err) {
-      res.render("error",{
-        error:"username or mail already exist please try with other credentials"
+      res.render("error", {
+        error: "username or mail already exist please try with other credentials"
       });
       res.redirect("/orphanagedetails");
     } else {
