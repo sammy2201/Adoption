@@ -15,15 +15,26 @@
     </div>
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
-
   <%items.forEach(function(item){ %>
   <%if(check===item.adminname){%>
-  <h1>orphan name : <%=item.name%></h1>
-  <h1>orpan add : <%=item.address%></h1>
-  <h1>phone num : <%=item.phonenum%></h1>
-  <h1>state : <%=item.state%></h1>
-  <h1>city : <%=item.city%></h1>
-  <h1>pincode : <%=item.pincode%></h1>
-  <h1>mail : <%=item.mail%></h1> %>
+  <h3 class="name"> <%=item.name%></h3>
+
   <%}%>
   <%}) %>
+<hr style="height:1px;border-width:0;color:#897134;background-color:#897134;">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6">image</div>
+    <div class="col-md-6 box">
+      <%items.forEach(function(item){ %>
+    <%if(check===item.adminname){%>
+
+    <p>Orphanage address : <%=item.address%></p>
+    <p>Phone number : <%=item.phonenum%></p>
+    <p>State : <%=item.state%></p>
+    <p>City : <%=item.city%></p>
+    <p>Pincode : <%=item.pincode%></p>
+    <p>Mail : <%=item.mail%></p> %>
+    <%}%>
+    <%}) %></div>
+  </div>
