@@ -32,11 +32,12 @@ color: #483434
 }
 .image{
   width: 400px;
-  height: 400px;
+  height: 300px;
   margin-left: 25%;
 }
 
 .box {
+  margin-top: 15px;
   width: 80%;
   padding: 5%;
   background-color: #ECECEC;
@@ -55,6 +56,18 @@ color: #483434
   color: white
 }
 .btnbox:hover{
+  background-color: #EAD8B6;
+  color: black
+}
+.adminbtn{
+  padding: 7% 5%;
+  margin-right: 70px;
+}
+.botton{
+  background-color: #483434;
+  color: white
+}
+.botton:hover{
   background-color: #EAD8B6;
   color: black
 }
