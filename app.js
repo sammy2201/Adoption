@@ -44,17 +44,25 @@ const userSchema = new mongoose.Schema({
 
 const orphanageSchema = new mongoose.Schema({
   name: String,
-  adoptid: {
-    type: String,
-    unique: true,
-  },
+  adoptid: String,
   address: String,
   phonenum: Number,
   state: String,
-  city:String,
+  city: String,
   pincode: Number,
   mail: String,
-  adminname:String
+  adminname: String
+});
+
+const childSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  gender: String,
+  hobies: String,
+  intrestedin: String,
+  studies: String,
+  guardian: String,
+  orphanage: String
 });
 
 //////////////////////////////////////////////////////////////////
@@ -63,6 +71,8 @@ userSchema.plugin(passportLocalMongoose);
 //////////////////////////model//////////////////////////////////
 const User = new mongoose.model("User", userSchema);
 const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
+const Child = new mongoose.model("Child", childSchema);
+
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -109,9 +119,12 @@ app.get("/studentdetails", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "admin") {
       Orphanage.find(function(err, founditems) {
+        Child.find(function(err, foundchilditems) {
           res.render("studentdetails", {
-            items:founditems,
-            check:req.user.name,
+            items: founditems,
+            check: req.user.name,
+            childitems: foundchilditems,
+          });
         });
       });
     } else {
@@ -233,18 +246,35 @@ app.post("/adminregister", function(req, res) {
 app.post("/orphanagedetails", function(req, res) {
   const someconstant = new Orphanage({
     name: req.body.Orphanagename,
-    adoptid:req.body.AdoptID,
+    adoptid: req.body.AdoptID,
     address: req.body.Address,
     phonenum: req.body.phonenumber,
     state: req.body.state,
-    city:req.body.city,
+    city: req.body.city,
     pincode: req.body.pincode,
     mail: req.body.email,
-    adminname:req.user.name
-});
-someconstant.save();
+    adminname: req.user.name
+  });
+  someconstant.save();
   res.redirect("/");
 });
+
+
+app.post("/studentdetails", function(req, res) {
+  const someconstant = new Child({
+    name: req.body.name,
+    age: req.body.age,
+    gender: req.body.gender,
+    hobies: req.body.hobies,
+    intrestedin: req.body.intrestedin,
+    studies: req.body.studies,
+    guardian: req.body.guardian,
+    orphanage: req.body.button
+  });
+  someconstant.save();
+  res.redirect("/studentdetails");
+});
+
 
 /////////////////////////////listen///////////////////////////////
 

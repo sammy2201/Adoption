@@ -1,7 +1,7 @@
 body{
   background-color: #F6F5EE
 }
-hr{
+.titlebelow{
   width: 50%;
   margin-left: 8%;
   size:2px;
@@ -39,4 +39,19 @@ hr{
   -webkit-box-shadow: 0 8px 6px -6px #999;
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0 8px 6px -6px #999;
+}
+.studentbox {
+  font-family: 'Noto Serif', serif;
+  font-weight: lighter;
+  width: 30%;
+  background-color:white;
+  display:inline-grid;
+  margin: 5% 1% 5% 0%
+}
+.adddetailsbox{
+  width: 80%;
+  padding: 1.5%;
+  font-weight: lighter;
+  background-color:white;
+  margin-left: 10%
 }
