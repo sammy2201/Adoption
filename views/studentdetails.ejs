@@ -22,90 +22,92 @@
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">image</div>
-      <div class="col-md-6 box">
-        <%items.forEach(function(item){ %>
-        <%if(check===item.adminname){%>
-        <p>Orphanage address : <%=item.address%></p>
-        <p>Phone number : <%=item.phonenum%></p>
-        <p>State : <%=item.state%></p>
-        <p>City : <%=item.city%></p>
-        <p>Pincode : <%=item.pincode%></p>
-        <p>Mail : <%=item.mail%></p>
-        <%}%>
+
+  <div class="row">
+    <div class="col-md-6">image</div>
+    <div class="col-md-6 box">
+      <%items.forEach(function(item){ %>
+      <%if(check===item.adminname){%>
+      <p>Orphanage address : <%=item.address%></p>
+      <p>Phone number : <%=item.phonenum%></p>
+      <p>State : <%=item.state%></p>
+      <p>City : <%=item.city%></p>
+      <p>Pincode : <%=item.pincode%></p>
+      <p>Mail : <%=item.mail%></p>
+      <%}%>
         <%}) %>
-      </div>
     </div>
+  </div>
 
 
 
 
-    <%childitems.forEach(function(item){ %>
-    <%items.forEach(function(mainitem){ %>
-    <%if(check===mainitem.adminname){%>
-    <%if(mainitem.name===item.orphanage){%>
-    <div class="studentbox">
-      <h3><%=item.name%></h3>
-      <p>Age : <%=item.age%></p>
-      <p>Gender : <%=item.gender%></p>
-      <p>Hobies : <%=item.hobies%></p>
-      <p>Studies : <%=item.studies%></p>
-      <p>Guardian : <%=item.guardian%></p>
-      <p>Intrested In : <%=item.intrestedin%></p>
-    </div>
+  <%childitems.forEach(function(item){ %>
+  <%items.forEach(function(mainitem){ %>
+  <%if(check===mainitem.adminname){%>
+  <%if(mainitem.name===item.orphanage){%>
+  <div class="studentbox">
+    <h3><%=item.name%></h3>
+    <p>Age : <%=item.age%></p>
+    <p>Gender : <%=item.gender%></p>
+    <p>Hobies : <%=item.hobies%></p>
+    <p>Studies : <%=item.studies%></p>
+    <p>Guardian : <%=item.guardian%></p>
+    <p>Intrested In : <%=item.intrestedin%></p>
+  </div>
+  <%}%>
     <%}%>
-    <%}%>
-    <%}) %>
-    <%})%>
+  <%}) %>
+  <%})%>
 
 
 
 
 
 
-    <%items.forEach(function(item){ %>
-    <%if(check===item.adminname){%>
-    <div class="card adddetailsbox">
-      <h1>add student details</h1>
-      <form action="/studentdetails" method="POST">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Age</label>
-            <input type="text" class="form-control" name="age" placeholder="ID">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Gender</label>
-            <input type="text" class="form-control" name="gender" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Hobies</label>
-            <input type="text" class="form-control" name="hobies" placeholder="ID">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Intrested In</label>
-            <input type="text" class="form-control" name="intrestedin" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">studies</label>
-            <input type="text" class="form-control" name="studies" placeholder="ID">
-          </div>
+  <%items.forEach(function(item){ %>
+  <%if(check===item.adminname){%>
+  <div class="card adddetailsbox">
+    <h1>add student details</h1>
+    <form action="/studentdetails" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> Name</label>
+          <input type="text" class="form-control" name="name" placeholder="Name">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">guardian</label>
-          <input type="text" class="form-control" name="guardian" placeholder="ID">
+          <label for="inputPassword4">Age</label>
+          <input type="text" class="form-control" name="age" placeholder="ID">
         </div>
-        <button type="submit" class="btn btn-primary" value="<%=item.name%>" name="button">Submit</button>
-      </form>
-    </div>
-    <%}%>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> Gender</label>
+          <input type="text" class="form-control" name="gender" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Hobies</label>
+          <input type="text" class="form-control" name="hobies" placeholder="ID">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> Intrested In</label>
+          <input type="text" class="form-control" name="intrestedin" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">studies</label>
+          <input type="text" class="form-control" name="studies" placeholder="ID">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">guardian</label>
+        <input type="text" class="form-control" name="guardian" placeholder="ID">
+      </div>
+      <button type="submit" class="btn btn-primary" value="<%=item.name%>" name="button">Submit</button>
+    </form>
+  </div>
+  <%}%>
     <%}) %>
+
+  <%- include("footer") -%>

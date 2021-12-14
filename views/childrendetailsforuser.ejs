@@ -22,40 +22,41 @@
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">image</div>
-      <div class="col-md-6 box">
-        <%items.forEach(function(item){ %>
-        <%if(check===item.name){%>
-        <p>Orphanage address : <%=item.address%></p>
-        <p>Phone number : <%=item.phonenum%></p>
-        <p>State : <%=item.state%></p>
-        <p>City : <%=item.city%></p>
-        <p>Pincode : <%=item.pincode%></p>
-        <p>Mail : <%=item.mail%></p>
-        <%}%>
+
+  <div class="row">
+    <div class="col-md-6">image</div>
+    <div class="col-md-6 box">
+      <%items.forEach(function(item){ %>
+      <%if(check===item.name){%>
+      <p>Orphanage address : <%=item.address%></p>
+      <p>Phone number : <%=item.phonenum%></p>
+      <p>State : <%=item.state%></p>
+      <p>City : <%=item.city%></p>
+      <p>Pincode : <%=item.pincode%></p>
+      <p>Mail : <%=item.mail%></p>
+      <%}%>
         <%}) %>
-      </div>
     </div>
+  </div>
 
 
 
 
-    <%childitems.forEach(function(item){ %>
-    <%items.forEach(function(mainitem){ %>
-    <%if(check===mainitem.name){%>
-    <%if(mainitem.name===item.orphanage){%>
-    <div class="studentbox">
-      <h3><%=item.name%></h3>
-      <p>Age : <%=item.age%></p>
-      <p>Gender : <%=item.gender%></p>
-      <p>Hobies : <%=item.hobies%></p>
-      <p>Studies : <%=item.studies%></p>
-      <p>Guardian : <%=item.guardian%></p>
-      <p>Intrested In : <%=item.intrestedin%></p>
-    </div>
+  <%childitems.forEach(function(item){ %>
+  <%items.forEach(function(mainitem){ %>
+  <%if(check===mainitem.name){%>
+  <%if(mainitem.name===item.orphanage){%>
+  <div class="studentbox">
+    <h3><%=item.name%></h3>
+    <p>Age : <%=item.age%></p>
+    <p>Gender : <%=item.gender%></p>
+    <p>Hobies : <%=item.hobies%></p>
+    <p>Studies : <%=item.studies%></p>
+    <p>Guardian : <%=item.guardian%></p>
+    <p>Intrested In : <%=item.intrestedin%></p>
+  </div>
+  <%}%>
     <%}%>
-    <%}%>
-    <%}) %>
-    <%})%>
+  <%}) %>
+  <%})%>
+  <%- include("footer") -%>
