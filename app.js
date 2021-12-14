@@ -102,6 +102,12 @@ app.get("/adminregister", function(req, res) {
   res.render("adminregister");
 });
 
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+
 
 app.get("/orphanagedetails", function(req, res) {
   if (req.isAuthenticated()) {
@@ -256,7 +262,7 @@ app.post("/orphanagedetails", function(req, res) {
     adminname: req.user.name
   });
   someconstant.save();
-  res.redirect("/");
+  res.redirect("/studentdetails");
 });
 
 
