@@ -141,6 +141,46 @@ app.get("/studentdetails", function(req, res) {
   }
 });
 
+
+app.get("/adopt", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+      Orphanage.find(function(err, founditems) {
+          res.render("adopt", {
+            items: founditems,
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+
+
+app.get("/:costumName", function(req, res) {
+    const costumName = req.params.customName;
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+      Orphanage.find(function(err, founditems) {
+        Child.find(function(err, foundchilditems) {
+          res.render("childrendetailsforuser", {
+            items: founditems,
+            check: req._parsedOriginalUrl.pathname.slice(1),
+            childitems: foundchilditems,
+          });
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
 ////////////////////////post////////////////////////////////
 app.post("/login", function(req, res) {
   const user = new User({

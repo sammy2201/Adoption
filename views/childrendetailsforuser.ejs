@@ -27,7 +27,7 @@
       <div class="col-md-6">image</div>
       <div class="col-md-6 box">
         <%items.forEach(function(item){ %>
-        <%if(check===item.adminname){%>
+        <%if(check===item.name){%>
         <p>Orphanage address : <%=item.address%></p>
         <p>Phone number : <%=item.phonenum%></p>
         <p>State : <%=item.state%></p>
@@ -44,7 +44,7 @@
 
     <%childitems.forEach(function(item){ %>
     <%items.forEach(function(mainitem){ %>
-    <%if(check===mainitem.adminname){%>
+    <%if(check===mainitem.name){%>
     <%if(mainitem.name===item.orphanage){%>
     <div class="studentbox">
       <h3><%=item.name%></h3>
@@ -59,53 +59,3 @@
     <%}%>
     <%}) %>
     <%})%>
-
-
-
-
-
-
-    <%items.forEach(function(item){ %>
-    <%if(check===item.adminname){%>
-    <div class="card adddetailsbox">
-      <h1>add student details</h1>
-      <form action="/studentdetails" method="POST">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Age</label>
-            <input type="text" class="form-control" name="age" placeholder="ID">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Gender</label>
-            <input type="text" class="form-control" name="gender" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Hobies</label>
-            <input type="text" class="form-control" name="hobies" placeholder="ID">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label> Intrested In</label>
-            <input type="text" class="form-control" name="intrestedin" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">studies</label>
-            <input type="text" class="form-control" name="studies" placeholder="ID">
-          </div>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">guardian</label>
-          <input type="text" class="form-control" name="guardian" placeholder="ID">
-        </div>
-        <button type="submit" class="btn btn-primary" value="<%=item.name%>" name="button">Submit</button>
-      </form>
-    </div>
-    <%}%>
-    <%}) %>
