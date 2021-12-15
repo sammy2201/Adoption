@@ -102,6 +102,16 @@ app.get("/adminregister", function(req, res) {
   res.render("adminregister");
 });
 
+app.get("/recentlostlogin", function(req, res) {
+  res.render("recentlostlogin");
+});
+
+app.get("/recentlostregister", function(req, res) {
+  res.render("recentlostregister");
+});
+
+
+
 app.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
@@ -214,6 +224,38 @@ app.post("/login", function(req, res) {
   });
 });
 
+app.post("/recentlostlogin", function(req, res) {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    typeOfUser: "recentlost"
+  });
+  req.login(user, function(err) {
+    if (err) {
+      res.render("error", {
+        error: "unauthorized"
+      });
+    } else {
+      passport.authenticate("local")(req, res, function() {
+        User.find({
+          typeOfUser: "recentlost",
+          username: req.body.username
+        }, function(err, docs) {
+          if (err) {
+            console.log(err);
+          } else {
+            if (docs != "") {
+              res.redirect("/");
+            } else {
+              console.log("you are a admin")
+            }
+          }
+        });
+      });
+    }
+  });
+});
+
 app.post("/adminlogin", function(req, res) {
   const user = new User({
     username: req.body.username,
@@ -252,6 +294,26 @@ app.post("/register", function(req, res) {
     username: req.body.username,
     name: nameOfUser,
     typeOfUser: "user"
+  }, req.body.password, function(err, user) {
+    if (err) {
+      res.render("error", {
+        error: "username or mail already exist please try with other credentials"
+      });
+      res.redirect("/");
+    } else {
+      passport.authenticate("local")(req, res, function() {
+        res.redirect("/");
+      });
+    }
+  });
+});
+
+app.post("/recentlostregister", function(req, res) {
+  const nameOfUser = req.body.name;
+  User.register({
+    username: req.body.username,
+    name: nameOfUser,
+    typeOfUser: "recentlost"
   }, req.body.password, function(err, user) {
     if (err) {
       res.render("error", {

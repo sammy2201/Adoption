@@ -1,0 +1,61 @@
+<%- include("header") -%>
+<link rel="stylesheet" href="css/login.css">
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
+    <a class="navbar-brand" href="/">Orphanage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<!-- /////////////////////////////////////////////////////////// -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h1>Login As Individual</h1>
+      </div>
+      <div class=" adminbtn col-sm">
+        <a href="/adminlogin"><button type="button" class="btn botton">Login as admin</button></a>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- //////////////////////////////////////////////////////////////////////// -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="card-body box">
+          <form action="/login" method="POST">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="username" autofocus>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btnbox btn-light">Login</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="col-md">
+          <img class="image" src="images/login.svg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
