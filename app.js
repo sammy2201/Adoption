@@ -65,6 +65,22 @@ const childSchema = new mongoose.Schema({
   orphanage: String
 });
 
+const individualSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  gender: String,
+  hobies: String,
+  intrestedin: String,
+  studies: String,
+  dob: String,
+  address: String,
+  phonenum: Number,
+  state: String,
+  city: String,
+  pincode: Number,
+  mail: String,
+});
+
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
 
@@ -72,6 +88,7 @@ userSchema.plugin(passportLocalMongoose);
 const User = new mongoose.model("User", userSchema);
 const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
 const Child = new mongoose.model("Child", childSchema);
+const Individual = new mongoose.model("Individual", individualSchema);
 
 /////////////////////////passport//////////////////////////////
 
@@ -156,8 +173,8 @@ app.get("/adopt", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
-          res.render("adopt", {
-            items: founditems,
+        res.render("adopt", {
+          items: founditems,
         });
       });
     } else {
@@ -171,7 +188,7 @@ app.get("/adopt", function(req, res) {
 
 
 app.get("/:costumName", function(req, res) {
-    const costumName = req.params.customName;
+  const costumName = req.params.customName;
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {

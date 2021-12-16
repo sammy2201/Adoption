@@ -1,7 +1,6 @@
 <%- include("header") -%>
 <link rel="stylesheet" href="css/login.css">
 
-
 </head>
 
 <body>
@@ -14,46 +13,49 @@
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
+          <a class="nav-link" href="/login">Login</a>
         </li>
       </ul>
     </div>
   </nav>
-<!-- /////////////////////////////////////////////////////////// -->
+  <!-- /////////////////////////////////////////////////////////// -->
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        <h1>Login As Individual</h1>
+        <h1>Register As  Individual</h1>
       </div>
-      <div class=" adminbtn col-sm">
-        <a href="/adminlogin"><button type="button" class="btn botton">Login as admin</button></a>
+      <div class="col-sm">
+        <a href="/adminregister"><button type="button" class="btn btn-dark">Register as admin</button></a>
       </div>
     </div>
   </div>
-
-
-
-<!-- //////////////////////////////////////////////////////////////////////// -->
+  <hr class="line">
+  <!-- /////////////////////////////////////////////////////////// -->
   <div class="container">
     <div class="row">
       <div class="col-md">
         <div class="card-body box">
-          <form action="/recentlostlogin" method="POST">
+          <form action="/recentlostregister" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="username" autofocus>
+              <input type="email" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+              <label for="email">User Name</label>
+              <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btnbox btn-light">Login</button>
+            <button type="submit" class="btn btnbox btn-light">Register</button>
           </form>
         </div>
       </div>
       <div class="col-md">
+
         <div class="col-md">
-          <img class="image" src="images/login.svg" alt="">
+          <img class="image" src="images/register.svg" alt="">
         </div>
       </div>
 
