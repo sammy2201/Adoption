@@ -1,4 +1,4 @@
-body{
+ body{
   background-color: #F6F5EE
 }
 .titlebelow{
@@ -46,18 +46,35 @@ body{
   text-align: center;
 }
 .studentbox {
-  font-family: 'Noto Serif', serif;
-  font-weight: lighter;
-  width: 30%;
+  width: 25%;
   background-color:white;
   display:inline-grid;
-  margin: 5% 1% 5% 0%;
+  margin: 5% 1% 5% 5%;
   text-align: center;
+  border: 1px solid black;
+  opacity: 0.6;
 }
+div.studentbox p{
+  font-family: 'Noto Serif', serif;
+  font-weight: bold;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+}
+
 .adddetailsbox{
   width: 80%;
   padding: 1.5%;
   font-weight: lighter;
   background-color:white;
   margin-left: 10%
+}
+.botton{
+  background-color: #483434;
+  color: white;
+  margin-left: 45%;
+}
+.botton:hover{
+  background-color: #EAD8B6;
+  color: black
 }
