@@ -17,7 +17,7 @@
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
   <div class="card box">
-    <form action="/orphanagedetails" method="POST">
+    <form action="/orphanagedetails" method="POST" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>  Orphanage Name</label>
@@ -86,6 +86,7 @@
           <input type="text"name="pincode" class="form-control">
         </div>
       </div>
+      <input type="file"  name="image" required>
 
     <button type="submit" class="btn ">Submit</button>
   </form>

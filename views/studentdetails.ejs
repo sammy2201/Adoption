@@ -24,9 +24,15 @@
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
-
   <div class="row">
-    <div class="col-md-6">image</div>
+    <div class="col-md-6 orphanageimagebox">
+      <%items.forEach(function(item){ %>
+      <%if(check===item.adminname){%>
+      <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
+                                     <%=item.img.data.toString('base64')%>">
+      <%}%>
+    <%})%>
+    </div>
     <div class="col-md-6 box">
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
@@ -37,7 +43,7 @@
       <p>Pincode : <%=item.pincode%></p>
       <p>Mail : <%=item.mail%></p>
       <%}%>
-        <%}) %>
+      <%})%>
     </div>
   </div>
 
@@ -45,9 +51,12 @@
   <%items.forEach(function(mainitem){ %>
   <%if(check===mainitem.adminname){%>
   <%if(mainitem.name===item.orphanage){%>
-
   <div class="studentbox">
     <h3><%=item.name%></h3>
+    <hr>
+    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+                                     <%=item.img.data.toString('base64')%>">
+    <hr>
     <p>Age : <%=item.age%></p>
     <p>Gender : <%=item.gender%></p>
     <p>Hobies : <%=item.hobies%></p>
@@ -62,18 +71,17 @@
 
 
 
-    <button class="btn botton " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Add student details
-    </button>
+  <button class="btn botton " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add student details
+  </button>
 
   <div class="collapse" id="collapseExample">
-    <div class="card card-body">
+    <div class="">
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
-
       <div class="card adddetailsbox">
         <h1>add student details</h1>
-        <form action="/studentdetails" method="POST">
+        <form action="/studentdetails" method="POST" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label> Name</label>
@@ -110,12 +118,12 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Date of Birth</label>
-            <input type="date" class="form-control" name="guardian" placeholder="DOB" required>
+            <input type="date" class="form-control" name="dob" placeholder="DOB" required>
           </div>
           <button type="submit" class="btn btn-primary" value="<%=item.name%>" name="button">Submit</button>
+          <input type="file" name="image" required>
         </form>
       </div>
-
       <%}%>
         <%}) %>
 

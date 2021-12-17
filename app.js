@@ -6,6 +6,10 @@ const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 var validator = require("email-validator");
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+
 
 const app = express();
 app.use(express.static(__dirname + "/public"));
@@ -30,6 +34,21 @@ mongoose.connect("mongodb://localhost:27017/adoptDB", {
   useUnifiedTopology: true,
 });
 
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now());
+  }
+});
+
+var upload = multer({
+  storage: storage
+});
+
 //////////////////Schema//////////////
 
 const userSchema = new mongoose.Schema({
@@ -51,7 +70,11 @@ const orphanageSchema = new mongoose.Schema({
   city: String,
   pincode: Number,
   mail: String,
-  adminname: String
+  adminname: String,
+  img: {
+    data: Buffer,
+    contentType: String
+  },
 });
 
 const childSchema = new mongoose.Schema({
@@ -64,6 +87,10 @@ const childSchema = new mongoose.Schema({
   guardian: String,
   orphanage: String,
   dob: String,
+  img: {
+    data: Buffer,
+    contentType: String
+  },
 });
 
 const individualSchema = new mongoose.Schema({
@@ -80,6 +107,10 @@ const individualSchema = new mongoose.Schema({
   intrestedin: String,
   studies: String,
   dob: String,
+  img: {
+    data: Buffer,
+    contentType: String
+  },
 });
 
 //////////////////////////////////////////////////////////////////
@@ -384,7 +415,7 @@ app.post("/adminregister", function(req, res) {
 });
 
 
-app.post("/orphanagedetails", function(req, res) {
+app.post("/orphanagedetails", upload.single('image'), function(req, res) {
   const someconstant = new Orphanage({
     name: req.body.Orphanagename,
     adoptid: req.body.AdoptID,
@@ -394,13 +425,17 @@ app.post("/orphanagedetails", function(req, res) {
     city: req.body.city,
     pincode: req.body.pincode,
     mail: req.body.email,
-    adminname: req.user.name
+    adminname: req.user.name,
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
   });
   someconstant.save();
   res.redirect("/studentdetails");
 });
 
-app.post("/recentlostdetails", function(req, res) {
+app.post("/recentlostdetails",upload.single('image'), function(req, res) {
   const someconstant = new Individual({
     name: req.body.name,
     age: req.body.Age,
@@ -415,13 +450,17 @@ app.post("/recentlostdetails", function(req, res) {
     intrestedin: req.body.intrestedin,
     studies: req.body.studies,
     dob: req.body.dob,
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
   });
   someconstant.save();
   res.redirect("/recentlost");
 });
 
 
-app.post("/studentdetails", function(req, res) {
+app.post("/studentdetails",upload.single('image'), function(req, res) {
   const someconstant = new Child({
     name: req.body.name,
     age: req.body.age,
@@ -430,7 +469,11 @@ app.post("/studentdetails", function(req, res) {
     intrestedin: req.body.intrestedin,
     studies: req.body.studies,
     guardian: req.body.guardian,
-    orphanage: req.body.button
+    orphanage: req.body.button,
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
   });
   someconstant.save();
   res.redirect("/studentdetails");

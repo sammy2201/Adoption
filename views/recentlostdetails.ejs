@@ -18,7 +18,7 @@
 
   <h1>Fill your details</h1>
   <div class="card box">
-    <form action="/recentlostdetails" method="POST">
+    <form action="/recentlostdetails" method="POST" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label> Name</label>
@@ -113,10 +113,9 @@
         <label for="inputPassword4">Date Of Birth</label>
         <input type="date" class="form-control" name="dob" placeholder="ID">
       </div>
-
+      <input type="file"  name="image" required>
       <input type="checkbox" id="18plus" required>
       <label for="18plus"> Im 18 plus and I take full responsibilities</label><br>
-
       <button type="submit" class="btn ">Submit</button>
     </form>
   </div>

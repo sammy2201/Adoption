@@ -51,8 +51,6 @@
   display:inline-grid;
   margin: 5% 1% 5% 5%;
   text-align: center;
-  border: 1px solid black;
-  opacity: 0.6;
 }
 div.studentbox p{
   font-family: 'Noto Serif', serif;
@@ -67,7 +65,8 @@ div.studentbox p{
   padding: 1.5%;
   font-weight: lighter;
   background-color:white;
-  margin-left: 10%
+  margin-left: 10%;
+  margin-top: 5%
 }
 .botton{
   background-color: #483434;
@@ -77,4 +76,20 @@ div.studentbox p{
 .botton:hover{
   background-color: #EAD8B6;
   color: black
+}
+.childimage{
+  margin-left: 30%;
+  height: 180px;
+  width: 130px
+}
+
+.orphanageimage{
+  height: 90%;
+  width: 90%;
+  padding: 2%
+}
+
+.orphanageimagebox{
+padding: 2%
+
 }
