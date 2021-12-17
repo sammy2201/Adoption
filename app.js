@@ -62,7 +62,8 @@ const childSchema = new mongoose.Schema({
   intrestedin: String,
   studies: String,
   guardian: String,
-  orphanage: String
+  orphanage: String,
+  dob: String,
 });
 
 const individualSchema = new mongoose.Schema({
