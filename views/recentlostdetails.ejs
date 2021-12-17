@@ -9,32 +9,35 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-      <a class="btn btn-light btn-dark logout" href="/logout" role="button">Log Out</a>
+    <a class="btn btn-light btn-dark logout" href="/logout" role="button">Log Out</a>
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
+
     </div>
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
+
+  <h1>Fill your details</h1>
   <div class="card box">
-    <form action="/orphanagedetails" method="POST">
+    <form action="/recentlostdetails" method="POST">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label>  Orphanage Name</label>
-          <input type="text" class="form-control" name="Orphanagename" placeholder="Name">
+          <label> Name</label>
+          <input type="text" class="form-control" name="name" placeholder="Name">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">AdoptID</label>
-          <input type="text" class="form-control" name="AdoptID" placeholder="ID">
+          <label for="inputPassword4">Age</label>
+          <input type="text" class="form-control" name="Age" placeholder="ID">
         </div>
       </div>
       <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputAddress2">Phone number</label>
-        <input type="text" class="form-control" name="phonenumber"  placeholder="phone number">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputZip">Email</label>
-        <input type="email" name="email" class="form-control">
-      </div>
+        <div class="form-group col-md-6">
+          <label for="inputAddress2">Phone number</label>
+          <input type="text" class="form-control" name="phonenumber" placeholder="phone number">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputZip">Email</label>
+          <input type="email" name="email" class="form-control">
+        </div>
       </div>
       <div class="form-group">
         <label for="inputAddress">Address</label>
@@ -81,11 +84,40 @@
         </div>
         <div class="form-group col-md-2">
           <label for="inputZip">pincode</label>
-          <input type="text"name="pincode" class="form-control">
+          <input type="text" name="pincode" class="form-control">
         </div>
       </div>
 
-    <button type="submit" class="btn ">Submit</button>
-  </form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> gender</label>
+          <input type="text" class="form-control" name="gender" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">hobies</label>
+          <input type="text" class="form-control" name="hobies" placeholder="ID">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>intrestedin</label>
+          <input type="text" class="form-control" name="intrestedin" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">studies</label>
+          <input type="text" class="form-control" name="studies" placeholder="ID">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Date Of Birth</label>
+        <input type="date" class="form-control" name="dob" placeholder="ID">
+      </div>
+
+      <input type="checkbox" id="18plus" required>
+      <label for="18plus"> Im 18 plus and I take full responsibilities</label><br>
+
+      <button type="submit" class="btn ">Submit</button>
+    </form>
   </div>
   <%- include("footer") -%>

@@ -68,17 +68,17 @@ const childSchema = new mongoose.Schema({
 const individualSchema = new mongoose.Schema({
   name: String,
   age: Number,
+  phonenum: Number,
+  mail: String,
+  address: String,
+  state: String,
+  city: String,
+  pincode: Number,
   gender: String,
   hobies: String,
   intrestedin: String,
   studies: String,
   dob: String,
-  address: String,
-  phonenum: Number,
-  state: String,
-  city: String,
-  pincode: Number,
-  mail: String,
 });
 
 //////////////////////////////////////////////////////////////////
@@ -127,6 +127,11 @@ app.get("/recentlostregister", function(req, res) {
   res.render("recentlostregister");
 });
 
+app.get("/recentlost", function(req, res) {
+  res.render("recentlost");
+});
+
+
 
 
 app.get("/logout", function(req, res) {
@@ -134,7 +139,17 @@ app.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
-
+app.get("/recentlostdetails", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "recentlost") {
+      res.render("recentlostdetails")
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/recentlostlogin");
+  }
+});
 
 app.get("/orphanagedetails", function(req, res) {
   if (req.isAuthenticated()) {
@@ -262,7 +277,7 @@ app.post("/recentlostlogin", function(req, res) {
             console.log(err);
           } else {
             if (docs != "") {
-              res.redirect("/");
+              res.redirect("/recentlost");
             } else {
               console.log("you are a admin")
             }
@@ -336,10 +351,10 @@ app.post("/recentlostregister", function(req, res) {
       res.render("error", {
         error: "username or mail already exist please try with other credentials"
       });
-      res.redirect("/");
+      res.redirect("/recentlostdetails");
     } else {
       passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
+        res.redirect("/recentlostdetails");
       });
     }
   });
@@ -382,6 +397,26 @@ app.post("/orphanagedetails", function(req, res) {
   });
   someconstant.save();
   res.redirect("/studentdetails");
+});
+
+app.post("/recentlostdetails", function(req, res) {
+  const someconstant = new Individual({
+    name: req.body.name,
+    age: req.body.Age,
+    address: req.body.Address,
+    phonenum: req.body.phonenumber,
+    state: req.body.state,
+    city: req.body.city,
+    pincode: req.body.pincode,
+    mail: req.body.email,
+    gender: req.body.gender,
+    hobies: req.body.hobies,
+    intrestedin: req.body.intrestedin,
+    studies: req.body.studies,
+    dob: req.body.dob,
+  });
+  someconstant.save();
+  res.redirect("/recentlost");
 });
 
 
