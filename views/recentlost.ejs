@@ -1,1 +1,38 @@
+<%- include("header") -%>
+<link rel="stylesheet" href="css/recentlost.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/">Orphanage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="btn btn-light btn-dark logout" href="/logout" role="button">Log Out</a>
+    <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
+    </div>
+  </nav>
+
+
+  <%items.forEach(function(item){ %>
+  <%if(check===item.name){%>
+  <img class="image" src="data:image/<%=item.img.contentType%>;base64,
+                                     <%=item.img.data.toString('base64')%>">
+  <h3 class="name"> <%=item.name%></h3>
+  <p class="name"> <%=item.age%></p>
+  <p class="name"> <%=item.phonenum%></p>
+  <p class="name"> <%=item.address%></p>
+  <p class="name"> <%=item.state%></p>
+  <p class="name"> <%=item.city%></p>
+  <p class="name"> <%=item.pincode%></p>
+  <p class="name"> <%=item.gender%></p>
+  <p class="name"> <%=item.hobies%></p>
+  <p class="name"> <%=item.intrestedin%></p>
+  <p class="name"> <%=item.studies%></p>
+  <p class="name"> <%=item.dob%></p>
+
+  <%}%>
+  <%}) %>

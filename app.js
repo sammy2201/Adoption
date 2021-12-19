@@ -159,16 +159,27 @@ app.get("/recentlostregister", function(req, res) {
   res.render("recentlostregister");
 });
 
-app.get("/recentlost", function(req, res) {
-  res.render("recentlost");
-});
-
-
-
-
 app.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
+});
+
+
+app.get("/recentlost", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "recentlost") {
+      Individual.find(function(err, founditems) {
+        res.render("recentlost", {
+          items: founditems,
+          check: req.user.name,
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/recentlostlogin");
+  }
 });
 
 app.get("/recentlostdetails", function(req, res) {
