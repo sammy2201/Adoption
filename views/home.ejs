@@ -8,11 +8,25 @@
   </button>
   <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          login
+        </a>
+        <div class="dropdown-menu drop" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login">login as user</a>
+          <a class="dropdown-item " href="/adminlogin">login as admin</a>
+          <a class="dropdown-item" href="/recentlostlogin">login as Individual</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          register
+        </a>
+        <div class="dropdown-menu drop" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/register">Register as user</a>
+          <a class="dropdown-item" href="/adminregister">Register as admin</a>
+          <a class="dropdown-item" href="/recentlostregister">Register as Individual</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#posts">Posts</a>
@@ -49,13 +63,6 @@
 </div>
 
 <a href="/adopt"><button type="submit" class="btn  btnadopt" name="button">ADOPT</button></a>
-
-
-
-
-
-
-
 
 
 <%- include("footer") -%>

@@ -13,7 +13,10 @@ body{
   box-shadow: 0 8px 6px -6px #999;
 }
 
-
+.drop{
+  background-color: #EDEDED;
+  border-radius: 20px;
+}
 .d-block{
   height: 400px;
   width: 10px
