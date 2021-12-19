@@ -9,6 +9,7 @@ var validator = require("email-validator");
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const animate='animate.css';
 
 
 const app = express();
@@ -226,25 +227,6 @@ app.get("/studentdetails", function(req, res) {
   }
 });
 
-
-app.get("/adopt", function(req, res) {
-  if (req.isAuthenticated()) {
-    if (req.user.typeOfUser == "user") {
-      Orphanage.find(function(err, founditems) {
-        res.render("adopt", {
-          items: founditems,
-        });
-      });
-    } else {
-      console.log("problem");
-    }
-  } else {
-    res.redirect("/login");
-  }
-});
-
-
-
 app.get("/:costumName", function(req, res) {
   const costumName = req.params.customName;
   if (req.isAuthenticated()) {
@@ -265,6 +247,25 @@ app.get("/:costumName", function(req, res) {
     res.redirect("/login");
   }
 });
+
+app.get("/adopt", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+      Orphanage.find(function(err, founditems) {
+        res.render("adopt", {
+          items: founditems,
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+
+
 
 ////////////////////////post////////////////////////////////
 app.post("/login", function(req, res) {

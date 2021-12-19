@@ -1,31 +1,61 @@
 <%- include("header") -%>
 <link rel="stylesheet" href="css/studentdetails.css">
 
+
+<script type="text/javascript">
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", reveal);
+
+
+</script>
+
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/">Orphanage</a>
+  <nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="btn-2">
+      <a href="/"><span>Orphanage</span></a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="btn btn-light btn-dark logout" href="/logout" role="button">Log Out</a>
+    <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
-
     </div>
-
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
   <%items.forEach(function(item){ %>
-  <%if(check===item.adminname){%>
-  <h3 class="name"> <%=item.name%></h3>
+  <%if(check===item.name){%>
+  <h3 class="name animate__animated animate__zoomInDown"> <%=item.name%></h3>
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
 
   <div class="row">
-    <div class="col-md-6">image</div>
-    <div class="col-md-6 box">
+    <div class="col-md-6 orphanageimagebox ">
+      <%items.forEach(function(item){ %>
+      <%if(check===item.name){%>
+      <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
+                                     <%=item.img.data.toString('base64')%>">
+      <%}%>
+    <%})%>
+    </div>
+    <div class="col-md-6 box animate__animated animate__slideInRight">
       <%items.forEach(function(item){ %>
       <%if(check===item.name){%>
       <p>Orphanage address : <%=item.address%></p>
@@ -48,6 +78,10 @@
   <%if(mainitem.name===item.orphanage){%>
   <div class="studentbox">
     <h3><%=item.name%></h3>
+    <hr>
+    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+                                   <%=item.img.data.toString('base64')%>">
+    <hr>
     <p>Age : <%=item.age%></p>
     <p>Gender : <%=item.gender%></p>
     <p>Hobies : <%=item.hobies%></p>

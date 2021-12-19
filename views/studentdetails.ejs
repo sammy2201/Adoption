@@ -1,31 +1,63 @@
 <%- include("header") -%>
 <link rel="stylesheet" href="css/studentdetails.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<script type="text/javascript">
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", reveal);
+
+
+  $(function() {
+    $('.repeat').click(function() {
+      var classes = $(this).parent().attr('class');
+      $(this).parent().attr('class', 'animate');
+      var indicator = $(this);
+      setTimeout(function() {
+        $(indicator).parent().addClass(classes);
+      }, 20);
+    });
+  });
+</script>
 
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/">Orphanage</a>
+  <nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="btn-2">
+      <a href="/"><span>Orphanage</span></a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="btn btn-light btn-dark logout" href="/logout" role="button">Log Out</a>
+    <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
-
     </div>
-
   </nav>
   <!-- ////////////////////////////////////////////////////////////////////// -->
   <%items.forEach(function(item){ %>
   <%if(check===item.adminname){%>
-  <h3 class="name"> <%=item.name%></h3>
+  <h3 class="name animate__animated animate__zoomInDown"> <%=item.name%></h3>
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
   <div class="row">
-    <div class="col-md-6 orphanageimagebox">
+    <div class="col-md-6 orphanageimagebox ">
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
       <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
@@ -33,7 +65,7 @@
       <%}%>
     <%})%>
     </div>
-    <div class="col-md-6 box">
+    <div class="col-md-6 box animate__animated animate__slideInRight">
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
       <p>Orphanage address : <%=item.address%></p>
@@ -46,34 +78,38 @@
       <%})%>
     </div>
   </div>
+  <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
+  <hr>
 
-  <%childitems.forEach(function(item){ %>
-  <%items.forEach(function(mainitem){ %>
-  <%if(check===mainitem.adminname){%>
-  <%if(mainitem.name===item.orphanage){%>
-  <div class="studentbox">
-    <h3><%=item.name%></h3>
-    <hr>
-    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+
+  <div class="container reveal fade-left">
+    <%childitems.forEach(function(item){ %>
+    <%items.forEach(function(mainitem){ %>
+    <%if(check===mainitem.adminname){%>
+    <%if(mainitem.name===item.orphanage){%>
+    <div class="studentbox">
+      <h3><%=item.name%></h3>
+      <hr>
+      <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
                                      <%=item.img.data.toString('base64')%>">
-    <hr>
-    <p>Age : <%=item.age%></p>
-    <p>Gender : <%=item.gender%></p>
-    <p>Hobies : <%=item.hobies%></p>
-    <p>Studies : <%=item.studies%></p>
-    <p>Guardian : <%=item.guardian%></p>
-    <p>Intrested In : <%=item.intrestedin%></p>
-  </div>
-  <%}%>
+      <hr>
+      <p>Age : <%=item.age%></p>
+      <p>Gender : <%=item.gender%></p>
+      <p>Hobies : <%=item.hobies%></p>
+      <p>Studies : <%=item.studies%></p>
+      <p>Guardian : <%=item.guardian%></p>
+      <p>Intrested In : <%=item.intrestedin%></p>
+    </div>
     <%}%>
-  <%}) %>
-  <%})%>
+    <%}%>
+    <%}) %>
+    <%})%>
+  </div>
 
-
-
-  <button class="btn botton " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Add student details
-  </button>
+  <div class="btn11 botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <span>Add student details</span>
+    <div class="transition"></div>
+  </div>
 
   <div class="collapse" id="collapseExample">
     <div class="">
@@ -120,8 +156,10 @@
             <label for="inputPassword4">Date of Birth</label>
             <input type="date" class="form-control" name="dob" placeholder="DOB" required>
           </div>
-          <button type="submit" class="btn btn-primary" value="<%=item.name%>" name="button">Submit</button>
-          <input type="file" name="image" required>
+          <input type="file" name="image" class="file" required>
+          <button type="submit" class="btnfos btnfos-1" value="<%=item.name%>" name="button"> <svg>
+              <rect x="0" y="0" fill="none" width="100%" height="100%" />
+            </svg>Submit</button>
         </form>
       </div>
       <%}%>
