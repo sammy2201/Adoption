@@ -9,7 +9,7 @@ var validator = require("email-validator");
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const animate='animate.css';
+const animate = 'animate.css';
 
 
 const app = express();
@@ -114,6 +114,16 @@ const individualSchema = new mongoose.Schema({
   },
 });
 
+const postSchema = new mongoose.Schema({
+  img: {
+    data: Buffer,
+    contentType: String
+  },
+  discription:String,
+  username:String,
+  likes:Number
+});
+
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
 
@@ -122,6 +132,7 @@ const User = new mongoose.model("User", userSchema);
 const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
 const Child = new mongoose.model("Child", childSchema);
 const Individual = new mongoose.model("Individual", individualSchema);
+const Post = new mongoose.model("Post", postSchema);
 
 /////////////////////////passport//////////////////////////////
 
@@ -133,7 +144,11 @@ passport.deserializeUser(User.deserializeUser());
 ///////////////////////////get////////////////////////////////////
 
 app.get("/", function(req, res) {
-  res.render("home");
+  Post.find(function(err, founditems) {
+    res.render("home", {
+      items: founditems,
+    });
+  });
 });
 
 app.get("/login", function(req, res) {
@@ -226,6 +241,29 @@ app.get("/studentdetails", function(req, res) {
     res.redirect("/adminlogin");
   }
 });
+app.get("/adoption", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+      Orphanage.find(function(err, founditems) {
+        res.render("adopt", {
+          items: founditems,
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.get("/posts", function(req, res) {
+  if (req.isAuthenticated()) {
+      res.render("posts")
+  } else {
+    res.redirect("/login");
+  }
+});
 
 app.get("/:costumName", function(req, res) {
   const costumName = req.params.customName;
@@ -247,23 +285,6 @@ app.get("/:costumName", function(req, res) {
     res.redirect("/login");
   }
 });
-
-app.get("/adopt", function(req, res) {
-  if (req.isAuthenticated()) {
-    if (req.user.typeOfUser == "user") {
-      Orphanage.find(function(err, founditems) {
-        res.render("adopt", {
-          items: founditems,
-        });
-      });
-    } else {
-      console.log("problem");
-    }
-  } else {
-    res.redirect("/login");
-  }
-});
-
 
 
 
@@ -447,7 +468,7 @@ app.post("/orphanagedetails", upload.single('image'), function(req, res) {
   res.redirect("/studentdetails");
 });
 
-app.post("/recentlostdetails",upload.single('image'), function(req, res) {
+app.post("/recentlostdetails", upload.single('image'), function(req, res) {
   const someconstant = new Individual({
     name: req.body.name,
     age: req.body.Age,
@@ -472,7 +493,7 @@ app.post("/recentlostdetails",upload.single('image'), function(req, res) {
 });
 
 
-app.post("/studentdetails",upload.single('image'), function(req, res) {
+app.post("/studentdetails", upload.single('image'), function(req, res) {
   const someconstant = new Child({
     name: req.body.name,
     age: req.body.age,
@@ -491,6 +512,19 @@ app.post("/studentdetails",upload.single('image'), function(req, res) {
   res.redirect("/studentdetails");
 });
 
+
+app.post("/posts", upload.single('image'), function(req, res) {
+  const someconstant = new Post({
+    username: req.user.name,
+    discription: req.body.discription,
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
+  });
+  someconstant.save();
+  res.redirect("/");
+});
 
 /////////////////////////////listen///////////////////////////////
 

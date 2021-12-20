@@ -1,0 +1,38 @@
+<%- include("header") -%>
+<link rel="stylesheet" href="css/posts.css">
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
+    <a class="navbar-brand" href="/">Orphanage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <h1>Post</h1>
+  <div class="formdiv">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" class="file" required>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" name="discription" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btnfos btnfos-1" name="button"> <svg>
+          <rect x="0" y="0" fill="none" width="100%" height="100%" />
+        </svg>Submit</button>
+    </form>
+  </div>
+
+
+  <%- include("footer") -%>

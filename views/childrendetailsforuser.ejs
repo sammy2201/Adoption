@@ -20,8 +20,6 @@
   }
 
   window.addEventListener("scroll", reveal);
-
-
 </script>
 
 </head>
@@ -69,28 +67,57 @@
     </div>
   </div>
 
+  <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
+  <hr>
 
+  <div class="container reveal fade-left">
+    <%childitems.forEach(function(item){ %>
+    <%items.forEach(function(mainitem){ %>
+    <%if(check===mainitem.name){%>
+    <%if(mainitem.name===item.orphanage){%>
+    <!-- flip-card-container -->
+    <div class="flip-card-container" style="--hue: 170">
+      <div class="flip-card">
+        <div class="card-front">
+          <figure>
+            <div class="img-bg"></div>
+            <img src="https://images.unsplash.com/photo-1545436864-cd9bdd1ddebc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Image 2">
+            <figcaption><%=item.name%></figcaption>
+          </figure>
 
+          <ul>
+            <p>Age : <%=item.age%></p>
+            <p>Gender : <%=item.gender%></p>
+            <p>Hobies : <%=item.hobies%></p>
+            <p>Studies : <%=item.studies%></p>
+            <p>Guardian : <%=item.guardian%></p>
+            <p>Intrested In : <%=item.intrestedin%></p>
+          </ul>
+        </div>
 
-  <%childitems.forEach(function(item){ %>
-  <%items.forEach(function(mainitem){ %>
-  <%if(check===mainitem.name){%>
-  <%if(mainitem.name===item.orphanage){%>
-  <div class="studentbox">
-    <h3><%=item.name%></h3>
-    <hr>
-    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
-                                   <%=item.img.data.toString('base64')%>">
-    <hr>
-    <p>Age : <%=item.age%></p>
-    <p>Gender : <%=item.gender%></p>
-    <p>Hobies : <%=item.hobies%></p>
-    <p>Studies : <%=item.studies%></p>
-    <p>Guardian : <%=item.guardian%></p>
-    <p>Intrested In : <%=item.intrestedin%></p>
-  </div>
-  <%}%>
+        <div class="card-back">
+          <figure>
+            <div class="img-bg"></div>
+            <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+                                           <%=item.img.data.toString('base64')%>">
+          </figure>
+
+          <div class="design-container">
+            <span class="design design--1"></span>
+            <span class="design design--2"></span>
+            <span class="design design--3"></span>
+            <span class="design design--4"></span>
+            <span class="design design--5"></span>
+            <span class="design design--6"></span>
+            <span class="design design--7"></span>
+            <span class="design design--8"></span>
+          </div>
+        </div>
+      </div>
+    </div>
     <%}%>
-  <%}) %>
-  <%})%>
+    <%}%>
+    <%}) %>
+    <%})%>
+  </div>
   <%- include("footer") -%>

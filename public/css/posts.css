@@ -1,0 +1,106 @@
+body{
+  background-color: #F6F5EE;
+}
+h1{
+  text-align: center;
+  margin-top: 5%
+}
+.navbar {
+  background-color: #EAD8B6;
+  color: black
+}
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+.formdiv{
+  width: 80%;
+  height: 50%;
+  background-color: white;
+  margin-left: 10%;
+  margin-top: 7%;
+  padding: 2%
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+.btnfos {
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 160px;
+  margin: 0 auto 2em;
+  position: relative;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@media (min-width: 400px) {
+  .btnfos {
+    display: inline-block;
+    margin-right: 2.5em;
+  }
+
+  .btnfos:nth-of-type(even) {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 600px) {
+  .btnfos:nth-of-type(even) {
+    margin-right: 2.5em;
+  }
+
+  .btnfos:nth-of-type(5) {
+    margin-right: 0;
+  }
+}
+
+.btnfos-1 {
+  background: #483434;
+  font-weight: 100;
+  text-align: center;
+  margin-left: 40%;
+  margin-top: 2%
+}
+
+.btnfos-1 svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 45px;
+}
+
+.btnfos-1 rect {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+  stroke-dasharray: 422, 0;
+}
+
+.btnfos-1:hover {
+  background: rgba(225, 51, 45, 0);
+  letter-spacing: 1px;
+  font-weight: 900;
+  color: black
+}
+
+.btnfos-1:hover rect {
+  stroke-width: 5;
+  stroke-dasharray: 15, 310;
+  stroke-dashoffset: 48;
+  -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+button {
+  border: 0
+}
+/* //////////////////////////////////////////////////////////////// */

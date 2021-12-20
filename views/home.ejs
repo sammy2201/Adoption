@@ -62,7 +62,19 @@
   </div>
 </div>
 
-<a href="/adopt"><button type="submit" class="btn  btnadopt" name="button">ADOPT</button></a>
+<a href="/adoption"><button type="submit" class="btn  btnadopt" name="button">ADOPT</button></a>
+<a href="/posts"><button type="submit" class="btn  btnadopt" name="button">POST</button></a>
+
+<div class="">
+  <%items.forEach(function(item){ %>
+    <div class="postbox">
+      <h3><%=item.username%></h3>
+      <img class="postimage" src="data:image/<%=item.img.contentType%>;base64,
+                                         <%=item.img.data.toString('base64')%>">
+      <h5 class="name"> <%=item.discription%></h5>
+    </div>
+  <%}) %>
+</div>
 
 
 <%- include("footer") -%>
