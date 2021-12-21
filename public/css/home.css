@@ -19,15 +19,12 @@ body{
 }
 .d-block{
   height: 400px;
-  width: 10px
-}
-.cardcarousel{
-  width: 55%;
-  margin-left: 20%
+  width: 100px;
 }
 
+
 .btnadopt{
-  margin-left: 45%;
+
   margin-top: 10px;
   background-color: #EAD8B6;
 }
@@ -46,11 +43,76 @@ body{
   padding: 2%
 }
 
-footer{
-  background-color: black;
-  color: white;
-  height: 150px;
-  text-align: center;
-  margin-top: 5%;
-  padding: 1%
+ body {
+   margin: 0;
+   font-family: sans-serif;
+ }
+ .container {
+   position: relative;
+   width: 320px;
+   margin: 100px auto 0 auto;
+   perspective: 1000px;
+   display: block;
+ }
+
+ .carousel {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   transform-style: preserve-3d;
+   animation: rotate360 60s infinite forwards linear;
+
+ }
+ .carousel__face {
+   position: absolute;
+   width: 300px;
+   height: 187px;
+   top: 20px;
+   left: 10px;
+   right: 10px;
+   background-size: cover;
+   box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.2);
+   display: flex;
+ }
+
+
+ .carousel__face:nth-child(1) {
+   background-image: url("https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?cs=srgb&dl=pexels-artem-beliaikin-1153976.jpg&fm=jpg");
+   transform: rotateY(  0deg) translateZ(430px); }
+ .carousel__face:nth-child(2) {
+   background-image: url("https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?cs=srgb&dl=pexels-hitesh-choudhary-1739842.jpg&fm=jpg");
+     transform: rotateY( 40deg) translateZ(430px); }
+ .carousel__face:nth-child(3) {
+   background-image: url("https://images.pexels.com/photos/1344275/pexels-photo-1344275.jpeg?cs=srgb&dl=pexels-denniz-futalan-1344275.jpg&fm=jpg");
+   transform: rotateY( 80deg) translateZ(430px); }
+ .carousel__face:nth-child(4) {
+   background-image: url("https://images.pexels.com/photos/6083918/pexels-photo-6083918.jpeg?cs=srgb&dl=pexels-tehmasip-khan-6083918.jpg&fm=jpg");
+   transform: rotateY(120deg) translateZ(430px); }
+ .carousel__face:nth-child(5) {
+   background-image: url("https://images.pexels.com/photos/7979798/pexels-photo-7979798.jpeg?cs=srgb&dl=pexels-kindel-media-7979798.jpg&fm=jpg");
+  transform: rotateY(160deg) translateZ(430px); }
+ .carousel__face:nth-child(6) {
+   background-image: url("https://images.pexels.com/photos/5391282/pexels-photo-5391282.jpeg?cs=srgb&dl=pexels-mumtahina-tanni-5391282.jpg&fm=jpg");
+  transform: rotateY(200deg) translateZ(430px); }
+ .carousel__face:nth-child(7) {
+   background-image: url("https://images.pexels.com/photos/7978523/pexels-photo-7978523.jpeg?cs=srgb&dl=pexels-kindel-media-7978523.jpg&fm=jpg");
+  transform: rotateY(240deg) translateZ(430px); }
+ .carousel__face:nth-child(8) {
+   background-image: url("https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?cs=srgb&dl=pexels-naomi-shi-1001914.jpg&fm=jpg");
+   transform: rotateY(280deg) translateZ(430px); }
+ .carousel__face:nth-child(9) {
+   background-image: url("https://images.pexels.com/photos/4473318/pexels-photo-4473318.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4473318.jpg&fm=jpg");
+   transform: rotateY(320deg) translateZ(430px); }
+
+ @keyframes rotate360 {
+   from {
+     transform: rotateY(0deg);
+   }
+   to {
+     transform: rotateY(-360deg);
+   }
+ }
+
+.buttonbox{
+  margin-top: 45%
 }
