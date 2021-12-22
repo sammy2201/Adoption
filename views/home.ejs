@@ -1,5 +1,18 @@
 <%- include("header") -%>
 <link rel="stylesheet" href="css/home.css">
+<script>
+  $(document).ready(function() {
+    $('html,.postsoverflow').animate({
+      scrollTop: 100000000000000000000000000000000000
+    }, 0.000000000000000000001);
+    return false;
+  });
+  function yourFunction() {
+    var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
+    var your_form = document.getElementById('your_form');
+    your_form.action = action_src;
+  }
+</script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
   <a class="navbar-brand" href="/">Orphanage</a>
@@ -37,7 +50,7 @@
 <h1>Adoption</h1>
 
 
-<div class="container">
+<div class="containerr">
   <div class="carousel ">
     <div class="carousel__face"></div>
     <div class="carousel__face"></div>
@@ -52,21 +65,41 @@
 </div>
 
 <div class=" buttonbox">
-  <a href="/adoption"><button type="submit" class="btn  btnadopt" name="button">ADOPT</button></a>
   <a href="/posts"><button type="submit" class="btn  btnadopt" name="button">POST</button></a>
 </div>
 
-
-<div class="post">
-  <%items.forEach(function(item){ %>
-  <div class="postbox">
-    <h3><%=item.username%></h3>
-    <img class="postimage" src="data:image/<%=item.img.contentType%>;base64,
-                                         <%=item.img.data.toString('base64')%>">
-    <h5 class="name"> <%=item.discription%></h5>
+<a href="/adoption">
+  <div class="btn11 botton" type="button">
+    <span>
+      <h3>ADOPT</h3>
+    </span>
+    <div class="transition"></div>
   </div>
-  <%}) %>
+</a>
+
+
+<div class="postsoverflow">
+  <div class="post" id="posts" class="md-lg-3 md-sm-12">
+    <%items.forEach(function(item){ %>
+    <div class="postbox">
+      <h3><%=item.username%></h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-md">
+            <img class="postimage" src="data:image/<%=item.img.contentType%>;base64,
+                                               <%=item.img.data.toString('base64')%>">
+          </div>
+          <div class="col-md-7">
+            <h5 class="name"> <%=item.discription%></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%}) %>
+  </div>
 </div>
+
+
 
 
 <%- include("footer") -%>
