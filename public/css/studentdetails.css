@@ -566,7 +566,6 @@ height: inherit;
 .flip-card {
   width: inherit;
   height: inherit;
-
   position: relative;
   transform-style: preserve-3d;
   transition: .5s .1s;
