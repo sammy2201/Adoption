@@ -268,6 +268,7 @@ app.get("/posts", function(req, res) {
 app.get("/:costumName", function(req, res) {
   const costumName = req.params.customName;
   if (req.isAuthenticated()) {
+    console.log(req._parsedOriginalUrl.pathname.slice(1))
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {

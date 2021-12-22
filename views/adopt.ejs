@@ -1,5 +1,5 @@
 <%- include("header") -%>
-<link rel="stylesheet" href="css/studentdetails.css">
+<link rel="stylesheet" href="css/adopt.css">
 
 </head>
 
@@ -15,6 +15,26 @@
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
     </div>
   </nav>
-  <%items.forEach(function(item){ %>
-    <a href="/<%=item.name%>"><h3 class="name"> <%=item.name%></h3></a>
+
+  <!-- //////////////////////////////////// -->
+
+
+        <%items.forEach(function(item){ %>
+  <div class="blog-card spring-fever">
+  <div class="title-content">
+      <a href="/<%=item.name%>"><h3> <%=item.name%></h3></a>
+  </div>
+  <div class="card-info">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...
+    <a href="#">Read Article<span class="licon icon-arr icon-black"></span></a>
+  </div>
+  <div class="utility-info">
+    <ul class="utility-list">
+      <li><span class="licon icon-like"></span><a href="#">2</a></li>
+      <li><span class="licon icon-tag"></span><a href="#">Photos</a>
+    </ul>
+  </div>
+  <div class="gradient-overlay"></div>
+  <div class="color-overlay"></div>
+</div><!-- /.blog-card -->
   <%}) %>
