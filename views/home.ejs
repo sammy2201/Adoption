@@ -79,6 +79,7 @@
           </div>
           <div class="col-md-7">
             <h5 class="name"> <%=item.discription%></h5>
+            <h5 class="name">Likes : <%=item.likes.num%></h5>
           </div>
         </div>
       </div>
@@ -94,6 +95,7 @@
     }, 0.000000000000000000001);
     return false;
   });
+
   function yourFunction() {
     var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
     var your_form = document.getElementById('your_form');

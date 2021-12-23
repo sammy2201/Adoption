@@ -121,7 +121,15 @@ const postSchema = new mongoose.Schema({
   },
   discription: String,
   username: String,
-  likes: Number
+  likes: {
+    num:{
+      type:Number,
+      default:0
+    },
+    name: [Array]
+
+  }
+
 });
 
 //////////////////////////////////////////////////////////////////
@@ -152,11 +160,22 @@ function replaceAll(str, match, replacement) {
 ///////////////////////////get////////////////////////////////////
 
 app.get("/", function(req, res) {
-  Post.find(function(err, founditems) {
-    res.render("home", {
-      items: founditems,
+  if (req.isAuthenticated()) {
+    User.find(function(err, founduser) {
+      Post.find(function(err, founditems) {
+        res.render("homelogin", {
+          items: founditems,
+          user: req.user.name
+        });
+      });
     });
-  });
+  } else {
+    Post.find(function(err, founditems) {
+      res.render("home", {
+        items: founditems,
+      });
+    });
+  }
 });
 
 app.get("/login", function(req, res) {
@@ -277,7 +296,7 @@ app.get("/posts", function(req, res) {
 app.get("/:costumName", function(req, res) {
   if (req.isAuthenticated()) {
     const pathname = req._parsedOriginalUrl.pathname.slice(1)
-    const pathnamwithspace = replaceAll(pathname,'%20',' ')
+    const pathnamwithspace = replaceAll(pathname, '%20', ' ')
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
@@ -299,6 +318,7 @@ app.get("/:costumName", function(req, res) {
 
 
 ////////////////////////post////////////////////////////////
+
 app.post("/login", function(req, res) {
   const user = new User({
     username: req.body.username,
@@ -521,6 +541,28 @@ app.post("/studentdetails", upload.single('image'), function(req, res) {
   someconstant.save();
   res.redirect("/studentdetails");
 });
+
+app.post("/", function(req, res) {
+  console.log(req.body)
+  const id= req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofliker=req.body.button.split('+').pop();
+  Post.findById(id, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      const liked = docs.likes.num + 1;
+      Post.findByIdAndUpdate(id, {$set: {'likes.num': liked}, $push: { "likes.name": nameofliker } }, function(err, docs) {
+        if (err) {
+          console.log(err)
+        } else {}
+      });
+    }
+  });
+
+  res.redirect("/");
+});
+
+
 
 
 app.post("/posts", upload.single('image'), function(req, res) {
