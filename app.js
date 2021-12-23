@@ -119,9 +119,9 @@ const postSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-  discription:String,
-  username:String,
-  likes:Number
+  discription: String,
+  username: String,
+  likes: Number
 });
 
 //////////////////////////////////////////////////////////////////
@@ -140,6 +140,14 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+////////////////////////////replaceaLl fun/////////////////////
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function replaceAll(str, match, replacement) {
+  return str.replace(new RegExp(escapeRegExp(match), 'g'), () => replacement);
+}
 
 ///////////////////////////get////////////////////////////////////
 
@@ -259,21 +267,23 @@ app.get("/adoption", function(req, res) {
 
 app.get("/posts", function(req, res) {
   if (req.isAuthenticated()) {
-      res.render("posts")
+    res.render("posts")
   } else {
     res.redirect("/login");
   }
 });
 
+
 app.get("/:costumName", function(req, res) {
-  const costumName = req.params.customName;
   if (req.isAuthenticated()) {
+    const pathname = req._parsedOriginalUrl.pathname.slice(1)
+    const pathnamwithspace = replaceAll(pathname,'%20',' ')
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
           res.render("childrendetailsforuser", {
             items: founditems,
-            check: req._parsedOriginalUrl.pathname.slice(1),
+            check: pathnamwithspace,
             childitems: foundchilditems,
           });
         });

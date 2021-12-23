@@ -11,7 +11,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-        <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
+    <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
     </div>
   </nav>
@@ -19,22 +19,24 @@
   <!-- //////////////////////////////////// -->
 
 
-        <%items.forEach(function(item){ %>
+  <%items.forEach(function(item){ %>
   <div class="blog-card spring-fever">
-  <div class="title-content">
-      <a href="/<%=item.name%>"><h3> <%=item.name%></h3></a>
-  </div>
-  <div class="card-info">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...
-    <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
-  </div>
-  <div class="utility-info">
-    <ul class="utility-list">
-      <li><span class="licon icon-like"></span><a href="#">2</a></li>
-      <li><span class="licon icon-tag"></span><a href="#">Photos</a>
-    </ul>
-  </div>
-  <div class="gradient-overlay"></div>
-  <div class="color-overlay"></div>
-</div><!-- /.blog-card -->
+    <div class="title-content">
+      <a href="/<%=item.name%>">
+        <h3> <%=item.name%></h3>
+      </a>
+    </div>
+    <div class="card-info">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...
+      <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
+    </div>
+    <div class="utility-info">
+      <ul class="utility-list">
+        <li><span class="licon icon-like"></span><a href="#">2</a></li>
+        <li><span class="licon icon-tag"></span><a href="#">Photos</a>
+      </ul>
+    </div>
+    <div class="gradient-overlay"></div>
+    <div class="color-overlay"></div>
+  </div><!-- /.blog-card -->
   <%}) %>
