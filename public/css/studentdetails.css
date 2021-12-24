@@ -45,6 +45,10 @@
    margin-top: 3.5%;
    background-color: #F6F5EE;
  }
+ .starform{
+   display: inline-grid;
+ }
+
  .descriptionbox{
    padding: 2% 5% 5% 5%
  }

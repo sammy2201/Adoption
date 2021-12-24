@@ -77,17 +77,18 @@ const orphanageSchema = new mongoose.Schema({
     contentType: String
   },
   stars: {
-    num:{
-      type:Number,
-      default:0
+    num: [Array],
+    name: [Array],
+    final: {
+      type: Number,
+      default: 0
     },
-    name: [Array]
   },
-  description:String,
+  description: String,
   reviews: {
-    num:{
-      type:Number,
-      default:0
+    num: {
+      type: Number,
+      default: 0
     },
     name: [Array]
   },
@@ -137,9 +138,9 @@ const postSchema = new mongoose.Schema({
   discription: String,
   username: String,
   likes: {
-    num:{
-      type:Number,
-      default:0
+    num: {
+      type: Number,
+      default: 0
     },
     name: [Array]
   }
@@ -334,14 +335,21 @@ app.get("/:costumName", function(req, res) {
 
 ////////////////////////post////////////////////////////////
 app.post("/", function(req, res) {
-  const id= req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofliker=req.body.button.split('+').pop();
+  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofliker = req.body.button.split('+').pop();
   Post.findById(id, function(err, docs) {
     if (err) {
       console.log(err);
     } else {
       const liked = docs.likes.num + 1;
-      Post.findByIdAndUpdate(id, {$set: {'likes.num': liked}, $push: { "likes.name": nameofliker } }, function(err, docs) {
+      Post.findByIdAndUpdate(id, {
+        $set: {
+          'likes.num': liked
+        },
+        $push: {
+          "likes.name": nameofliker
+        }
+      }, function(err, docs) {
         if (err) {
           console.log(err)
         } else {}
@@ -578,26 +586,35 @@ app.post("/studentdetails", upload.single('image'), function(req, res) {
 
 
 app.post("/studentdetailsstars", function(req, res) {
-  console.log(req.body.button);
-  const id= req.body.button.substr(0, req.body.button.indexOf('+'));
-  console.log(id);
-  const nameofliker= req.body.button.substring(req.body.button.indexOf('+')+1, req.body.button.indexOf('*'));
-  console.log(nameofliker);
-  const route=req.body.button.split('*').pop();
-  console.log(route);
+  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofliker = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const route = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('&'));
+  const value = req.body.button.split('&').pop();
   Orphanage.findById(id, function(err, docs) {
     if (err) {
       console.log(err);
     } else {
-      const liked = docs.stars.num + 1;
-      Orphanage.findByIdAndUpdate(id, {$set: {'stars.num': liked}, $push: { "stars.name": nameofliker } }, function(err, docs) {
+      const numberofuserliked = docs.stars.name.length + 1;
+      var count = 0;
+      docs.stars.num.forEach(function(item) {
+        count = parseInt(item) + count
+      });
+      Orphanage.findByIdAndUpdate(id, {
+        $set: {
+          'stars.final': (count + parseInt(value)) / numberofuserliked
+        },
+        $push: {
+          'stars.num': value,
+          "stars.name": nameofliker
+        }
+      }, function(err, docs) {
         if (err) {
           console.log(err)
         } else {}
       });
     }
   });
-  res.redirect("/"+route);
+  res.redirect("/" + route);
 });
 
 
