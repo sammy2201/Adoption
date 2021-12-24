@@ -127,7 +127,6 @@ const postSchema = new mongoose.Schema({
       default:0
     },
     name: [Array]
-
   }
 
 });
@@ -543,7 +542,6 @@ app.post("/studentdetails", upload.single('image'), function(req, res) {
 });
 
 app.post("/", function(req, res) {
-  console.log(req.body)
   const id= req.body.button.substr(0, req.body.button.indexOf('+'));
   const nameofliker=req.body.button.split('+').pop();
   Post.findById(id, function(err, docs) {

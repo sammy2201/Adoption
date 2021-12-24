@@ -74,17 +74,27 @@
       <div class="container">
         <div class="row">
           <div class="col-md">
-            <h5 class="name"> <%=user%></h5>
             <img class="postimage" src="data:image/<%=item.img.contentType%>;base64,
                                                <%=item.img.data.toString('base64')%>">
           </div>
           <div class="col-md-7">
             <h5 class="name"> <%=item.discription%></h5>
+            <%var likedornot = 0%>
+            <%loop1 : for (var liker in item.likes.name) { %>
+            <%if(user==item.likes.name[liker]){%>
+                <h5><i class="fas fa-heart"></i></h5>
+                <%likedornot = 1%>
+                <% break loop1 %>
+            <%}else{%>
+              <%}%>
+            <%}%>
+            <%if(likedornot == 0){%>
             <form action="/" method="POST">
               <button type="submit" value="<%=item._id%>+<%=user%>" name="button">
-                LIKE
+                <i class="far fa-heart"></i>
               </button>
             </form>
+              <%}%>
             <h5 class="name">Likes : <%=item.likes.num%></h5>
           </div>
         </div>
