@@ -55,7 +55,17 @@ h1{
    border-radius: 0;
    margin-left: 10%
  }
- /* /////////////////////////////////////////////////////// */
+
+.like{
+  background-color: white;
+  border: 0
+}
+.like:hover{
+  background-color: white;
+  border: 0
+}
+
+/* /////////////////////////////////////////////////////// */
  .containerr {
    position: relative;
    width: 320px;

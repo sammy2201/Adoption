@@ -65,7 +65,7 @@
       <%}%>
     <%})%>
     </div>
-    <div class="col-md-6 box animate__animated animate__slideInRight">
+    <div class="col-md-6 box">
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
       <p>Orphanage address : <%=item.address%></p>
@@ -78,10 +78,18 @@
       <%})%>
     </div>
   </div>
+
+  <h4 class="Childrenhed animate__animated animate__zoomInDown">Description</h4>
+  <div class="descriptionbox">
+    <%items.forEach(function(item){ %>
+    <%if(check===item.adminname){%>
+    <p><%=item.description%></p>
+    <%}%>
+    <%})%>
+  </div>
+
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
   <hr>
-
-
   <div class="container reveal fade-left">
     <%childitems.forEach(function(item){ %>
     <%items.forEach(function(mainitem){ %>

@@ -82,20 +82,20 @@
             <%var likedornot = 0%>
             <%loop1 : for (var liker in item.likes.name) { %>
             <%if(user==item.likes.name[liker]){%>
-                <h5><i class="fas fa-heart"></i></h5>
-                <%likedornot = 1%>
-                <% break loop1 %>
+            <span class="iconify" data-icon="flat-color-icons:like" style="color: black; font-size: 35px;"></span>
+            <%likedornot = 1%>
+            <% break loop1 %>
             <%}else{%>
-              <%}%>
+            <%}%>
             <%}%>
             <%if(likedornot == 0){%>
             <form action="/" method="POST">
-              <button type="submit" value="<%=item._id%>+<%=user%>" name="button">
-                <i class="far fa-heart"></i>
+              <button class="like" type="submit" value="<%=item._id%>+<%=user%>" name="button">
+                <span class="iconify" data-icon="icon-park-outline:like" style="color: black; font-size: 35px;"></span>
               </button>
             </form>
-              <%}%>
-            <h5 class="name">Likes : <%=item.likes.num%></h5>
+            <%}%>
+            <h6 class="name">Likes  <%=item.likes.num%></h6>
           </div>
         </div>
       </div>

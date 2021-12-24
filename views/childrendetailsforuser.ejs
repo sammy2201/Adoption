@@ -53,7 +53,7 @@
       <%}%>
     <%})%>
     </div>
-    <div class="col-md-6 box animate__animated animate__slideInRight">
+    <div class="col-md-6 box">
       <%items.forEach(function(item){ %>
       <%if(check===item.name){%>
       <p>Orphanage address : <%=item.address%></p>
@@ -65,6 +65,57 @@
       <%}%>
       <%}) %>
     </div>
+  </div>
+
+
+  <%items.forEach(function(item){ %>
+  <%if(check===item.name){%>
+
+  <%var likedornot = 0%>
+  <%loop1 : for (var liker in item.stars.name) { %>
+  <%if(user==item.stars.name[liker]){%>
+  <span class="iconify" data-icon="flat-color-icons:like" style="color: black; font-size: 35px;"></span>
+  <%likedornot = 1%>
+  <% break loop1 %>
+  <%}else{%>
+  <%}%>
+  <%}%>
+  <%if(likedornot == 0){%>
+  <form action="/studentdetailsstars" method="POST">
+    <button class="like" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>" name="button">
+      <span class="iconify" data-icon="icon-park-outline:like" style="color: black; font-size: 35px;"></span>
+    </button>
+  </form
+  <%}%>
+  <h6 class="name">Likes  <%=item.stars.num%></h6>
+
+  <%}%>
+  <%}) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h4 class="Childrenhed animate__animated animate__zoomInDown">Description</h4>
+  <div class="descriptionbox">
+    <%items.forEach(function(item){ %>
+    <%if(check===item.name){%>
+    <p><%=item.description%></p>
+    <%}%>
+    <%})%>
   </div>
 
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>

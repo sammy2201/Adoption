@@ -37,14 +37,16 @@
  }
 
  .box {
-   color: #533535;
+   color: #483434;
    font-family: 'Noto Serif', serif;
-   font-weight: lighter;
    width: 70%;
    padding: 1.5%;
    height: 70%;
    margin-top: 3.5%;
    background-color: #F6F5EE;
+ }
+ .descriptionbox{
+   padding: 2% 5% 5% 5%
  }
 
  .Childrenhed {
