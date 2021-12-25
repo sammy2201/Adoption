@@ -172,15 +172,6 @@
   <%}%>
   <%}) %>
 
-
-
-
-
-
-
-
-
-
   <h4 class="Childrenhed animate__animated animate__zoomInDown">Description</h4>
   <div class="descriptionbox">
     <%items.forEach(function(item){ %>
@@ -243,4 +234,31 @@
     <%}) %>
     <%})%>
   </div>
+
+  <div class="btn11 botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <span>Add Review</span>
+    <div class="transition"></div>
+  </div>
+
+  <div class="collapse" id="collapseExample">
+    <div class="">
+      <%items.forEach(function(item){ %>
+      <%if(check===item.name){%>
+      <div class="card adddetailsbox">
+        <h1>Add Review</h1>
+        <form action="/review" method="POST" >
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Review</label>
+            <textarea class="form-control" name="discription" rows="3" autocomplete="off"></textarea>
+          </div>
+          <button type="submit" class="btnfos btnfos-1" value="<%=item._id%>+<%=user%>*<%=check%>" name="button"> <svg>
+              <rect x="0" y="0" fill="none" width="100%" height="100%" />
+            </svg>Submit</button>
+        </form>
+      </div>
+      <%}%>
+        <%}) %>
+    </div>
+  </div>
+
   <%- include("footer") -%>

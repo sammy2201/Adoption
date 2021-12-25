@@ -85,13 +85,10 @@ const orphanageSchema = new mongoose.Schema({
     },
   },
   description: String,
-  reviews: {
-    num: {
-      type: Number,
-      default: 0
-    },
-    name: [Array]
-  },
+  reviews: [{
+    content: String,
+    name: String
+  }],
 });
 
 const childSchema = new mongoose.Schema({
@@ -614,6 +611,17 @@ app.post("/studentdetailsstars", function(req, res) {
       });
     }
   });
+  res.redirect("/" + route);
+});
+
+app.post("/review", function(req, res) {
+  console.log(req.body.button)
+  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofliker = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const route = req.body.button.split('*').pop();
+  // console.log(id)
+  // console.log(nameofliker)
+  // console.log(route)
   res.redirect("/" + route);
 });
 
