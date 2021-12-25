@@ -48,6 +48,12 @@
  .starform{
    display: inline-grid;
  }
+ .star{
+   background-color:#F6F5EE
+ }
+.stardiv{
+  margin-left: 100px
+}
 
  .descriptionbox{
    padding: 2% 5% 5% 5%
@@ -110,6 +116,19 @@ height: inherit;
    padding-top: 2%
  }
 
+.reviews{
+  padding: 5%;
+  margin-left: 100px;
+  margin-right:  100px;
+  background-color: white;
+  height: 500px;
+  overflow: auto;
+}
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////// */
  @media (max-width: 900px) {
    section h1 {
      font-size: 2rem;
@@ -795,4 +814,8 @@ ul {
 
 .design--8 {
   top: 56%;
+}
+/* ////////////////////////////////////////////////// */
+.btn11c{
+  margin-left: 38%
 }
