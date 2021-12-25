@@ -111,7 +111,7 @@ const individualSchema = new mongoose.Schema({
   name:{
     type: String,
     unique: true,
-  },,
+  },
   age: Number,
   phonenum: Number,
   mail: String,
