@@ -50,7 +50,7 @@ h1{
  }
  .postsoverflow {
    width: 80%;
-   height: 500px;
+   height: 900px;
    overflow: auto;
    border-radius: 0;
    margin-left: 10%
