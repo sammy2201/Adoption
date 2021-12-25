@@ -108,7 +108,10 @@ const childSchema = new mongoose.Schema({
 });
 
 const individualSchema = new mongoose.Schema({
-  name: String,
+  name:{
+    type: String,
+    unique: true,
+  },,
   age: Number,
   phonenum: Number,
   mail: String,
