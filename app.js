@@ -153,11 +153,13 @@ const postSchema = new mongoose.Schema({
     },
     name: [Array]
   },
-  comments: {
-    content: [String],
-    name: [String]
-  },
+});
 
+const commentSchema = new mongoose.Schema({
+  name: String,
+  content: String,
+  nameofposter: String,
+  idofposter:String
 });
 
 //////////////////////////////////////////////////////////////////
@@ -171,6 +173,7 @@ const Individual = new mongoose.model("Individual", individualSchema);
 const Post = new mongoose.model("Post", postSchema);
 const Request = new mongoose.model("Request", requestSchema);
 const Review = new mongoose.model("Review", reviewSchema);
+const Comment = new mongoose.model("Comment", commentSchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -192,9 +195,12 @@ app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
     User.find(function(err, founduser) {
       Post.find(function(err, founditems) {
-        res.render("homelogin", {
-          items: founditems,
-          user: req.user.name
+        Comment.find(function(err, foundcomments) {
+          res.render("homelogin", {
+            items: founditems,
+            user: req.user.name,
+            comments: foundcomments
+          });
         });
       });
     });
@@ -338,7 +344,7 @@ app.get("/:costumName", function(req, res) {
               check: pathnamwithspace,
               childitems: foundchilditems,
               user: req.user.name,
-              recivedreviews:foundreviews,
+              recivedreviews: foundreviews,
             });
           });
         });
@@ -382,30 +388,18 @@ app.post("/", function(req, res) {
 
 
 app.post("/comments", function(req, res) {
-  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofcommenter = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
-  const poster = req.body.button.split('*').pop();
-
-  Post.findById(id, function(err, docs) {
-    if (err) {
-      console.log(err);
-    } else {
-      Post.findByIdAndUpdate(id, {
-        $push: {
-          'comments.content': req.body.content,
-          "comments.name": nameofcommenter
-        }
-      }, function(err, docs) {
-        if (err) {
-          console.log(err)
-        } else {}
-      });
-    }
+  const nameofcommenter = req.body.button.substring(0, req.body.button.indexOf('*'));
+  const id = req.body.button.substring(req.body.button.indexOf('*')+1, req.body.button.indexOf('+'));
+  const poster = req.body.button.split('+').pop();
+  const someconstant = new Comment({
+    name: nameofcommenter,
+    content: req.body.content,
+    nameofposter: poster,
+    idofposter:id
   });
-
+  someconstant.save();
   res.redirect("/");
 });
-
 
 
 app.post("/login", function(req, res) {
@@ -675,23 +669,6 @@ app.post("/review", function(req, res) {
     orphanagename: route,
   });
   someconstant.save();
-
-  // Orphanage.findById(id, function(err, docs) {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     Orphanage.findByIdAndUpdate(id, {
-  //       $push: {
-  //         'reviews.content': req.body.content,
-  //         "reviews.name": nameofliker
-  //       }
-  //     }, function(err, docs) {
-  //       if (err) {
-  //         console.log(err)
-  //       } else {}
-  //     });
-  //   }
-  // });
   res.redirect("/" + route);
 });
 
