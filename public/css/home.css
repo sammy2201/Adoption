@@ -27,12 +27,14 @@ h1{
 }
 
 .btnadopt{
-  margin-top: 10px;
-  background-color: #EAD8B6;
+  margin-left: 800px;
+  background-color: #533535;
+  color: white;
 }
 
 .btnadopt:hover{
   background-color: white;
+  color: black;
 }
 .postimage{
   width: 300px;

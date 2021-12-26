@@ -19,20 +19,26 @@
       </ul>
     </div>
   </nav>
-  <h1>Post</h1>
-  <div class="formdiv">
+  <h1>Add Post</h1>
+
+  <div class="form">
     <form action="/posts" method="POST" enctype="multipart/form-data">
+      <div class="title">Welcome</div>
+      <div class="subtitle">Add your post!</div>
       <input type="file" name="image" class="file" required>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" name="discription" rows="3" autocomplete="off"></textarea>
+      <div class="row">
+        <div class="col-md">
+          <div class="input-container ic2">
+              <textarea class="input form-control" name="discription" rows="3" placeholder=" " autocomplete="off"></textarea>
+            <div class="cut"></div>
+            <label for="exampleFormControlTextarea1" class="placeholder"> discription</label>
+          </div>
+        </div>
+
+        </div>
+        <button type="text" class="submit">submit</button>
       </div>
 
-      <button type="submit" class="btnfos btnfos-1" name="button"> <svg>
-          <rect x="0" y="0" fill="none" width="100%" height="100%" />
-        </svg>Submit</button>
-    </form>
-  </div>
 
 
   <%- include("footer") -%>
