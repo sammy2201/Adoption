@@ -89,6 +89,10 @@ const orphanageSchema = new mongoose.Schema({
     content: [String],
     name: [String]
   },
+  request: {
+    childname: [String],
+    requestername: [String]
+  },
 });
 
 const childSchema = new mongoose.Schema({
@@ -663,6 +667,31 @@ app.post("/review", function(req, res) {
         $push: {
           'reviews.content': req.body.content,
           "reviews.name": nameofliker
+        }
+      }, function(err, docs) {
+        if (err) {
+          console.log(err)
+        } else {}
+      });
+    }
+  });
+  res.redirect("/" + route);
+});
+
+app.post("/request", function(req, res) {
+  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofrequester = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const nameofchild = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('&'));
+  const route = req.body.button.split('&').pop();
+
+  Orphanage.findById(id, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      Orphanage.findByIdAndUpdate(id, {
+        $push: {
+          'request.childname': nameofchild,
+          "request.requestername": nameofrequester
         }
       }, function(err, docs) {
         if (err) {

@@ -717,6 +717,33 @@ ul {
   flex-direction: column;
 }
 
+/* button */
+.flipbtn{
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--white-1);
+  letter-spacing: 2px;
+  padding: 9px 20px;
+  border: 1px solid var(--grey);
+  border-radius: 1000px;
+  background: transparent;
+  transition: .3s;
+  margin-top: 430px;
+  cursor: pointer;
+  background: black
+}
+
+.flipbtn:hover,
+.flipbtn:focus {
+  color: var(--primary);
+  background: hsla(var(--hue), 25%, 10%, .2);
+  border-color: currentColor;
+}
+
+.flipbtn:active {
+  transform: translate(2px);
+}
+
 
 /* .design-container */
 .design-container {
@@ -816,6 +843,7 @@ ul {
 .design--8 {
   top: 56%;
 }
+
 /* ////////////////////////////////////////////////// */
 .btn11c{
   margin-left: 38%
