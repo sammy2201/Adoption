@@ -100,6 +100,13 @@ const requestSchema = new mongoose.Schema({
   individualname: String
 });
 
+const requestreplySchema = new mongoose.Schema({
+  childname: String,
+  requestername: String,
+  orphanagename: String,
+  individualname: String
+});
+
 const childSchema = new mongoose.Schema({
   name: String,
   age: Number,
@@ -159,7 +166,7 @@ const commentSchema = new mongoose.Schema({
   name: String,
   content: String,
   nameofposter: String,
-  idofposter:String
+  idofposter: String
 });
 
 //////////////////////////////////////////////////////////////////
@@ -174,6 +181,7 @@ const Post = new mongoose.model("Post", postSchema);
 const Request = new mongoose.model("Request", requestSchema);
 const Review = new mongoose.model("Review", reviewSchema);
 const Comment = new mongoose.model("Comment", commentSchema);
+const Requestreply = new mongoose.model("Requestreply", requestreplySchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -389,13 +397,13 @@ app.post("/", function(req, res) {
 
 app.post("/comments", function(req, res) {
   const nameofcommenter = req.body.button.substring(0, req.body.button.indexOf('*'));
-  const id = req.body.button.substring(req.body.button.indexOf('*')+1, req.body.button.indexOf('+'));
+  const id = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('+'));
   const poster = req.body.button.split('+').pop();
   const someconstant = new Comment({
     name: nameofcommenter,
     content: req.body.content,
     nameofposter: poster,
-    idofposter:id
+    idofposter: id
   });
   someconstant.save();
   res.redirect("/");
@@ -672,35 +680,24 @@ app.post("/review", function(req, res) {
   res.redirect("/" + route);
 });
 
-// app.post("/acceptorreject", function(req, res) {
-//   console.log(req.body.button)
-//   const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-//   const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
-//   const requestername = req.body.button.split('*').pop();
-//
-//   Orphanage.findById(id, function(err, docs) {
-//      if (err) {
-//        console.log(err);
-//      } else {
-//        for(i=0;i<docs.request.childname.length;i++){
-//          if(docs.request.childname[i]==childname){
-//            console.log("hi");
-//          }
-//        }
-//       Orphanage.findByIdAndUpdate(id, {
-//         $pull: {
-//           'request.childname': childname,
-//           "request.requestername": requestername
-//         }
-//       }, function(err, docs) {
-//         if (err) {
-//           console.log(err)
-//         } else {}
-//       });
-//     }
-//   });
-//   res.redirect("/studentdetails");
-// });
+app.post("/acceptorreject", function(req, res) {
+  console.log(req.body.button)
+  const id = req.body.button.substr(0, req.body.button.indexOf('&'));
+  const requestername = req.body.button.substring(req.body.button.indexOf('&') + 1, req.body.button.indexOf('+'));
+  const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const status = req.body.button.split('*').pop();
+  console.log(id);
+  console.log(requestername);
+  console.log(childname);
+  console.log(status);
+
+  if(status=="notok"){
+    console.log("hi")
+  }
+
+
+  res.redirect("/studentdetails");
+});
 
 
 

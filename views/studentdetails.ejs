@@ -104,8 +104,8 @@
       <p>requested for :<%=request.childname%></p>
     </div>
     <form class="" action="/acceptorreject" method="post">
-      <button type="submit" class="btn btn-success" name="button" value=""><i class="fas fa-user-check"></i></button>
-      <button type="submit" class="btn btn-danger" name="button" value=""><i class="fas fa-times"></i></button>
+      <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+      <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
     </form>
     <%}%>
     <%}%>
