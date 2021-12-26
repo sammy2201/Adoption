@@ -60,6 +60,12 @@ h1{
    height: 200px;
    overflow: auto;
  }
+.commentsheading{
+  text-align: center;
+}
+ .commentcontent{
+   display:inline;
+ }
 
 .like{
   background-color: white;

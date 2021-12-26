@@ -37,7 +37,7 @@
 </nav <hr>
 <h1>Adoption</h1>
 
-
+<!-- ////////////////////////////////////carousel///////////////////////// -->
 <div class="containerr">
   <div class="carousel ">
     <div class="carousel__face"></div>
@@ -65,7 +65,7 @@
   </div>
 </a>
 
-
+<!-- ////////////////////////////////////posts///////////////////////// -->
 <div class="postsoverflow">
   <div class="post" id="posts" class="md-lg-3 md-sm-12">
     <%items.forEach(function(item){ %>
@@ -77,6 +77,7 @@
             <img class="postimage" src="data:image/<%=item.img.contentType%>;base64,
                                                <%=item.img.data.toString('base64')%>">
           </div>
+          <!-- ////////////////////////////////////likes and description///////////////////////// -->
           <div class="col-md-7">
             <h5 class="name"> <%=item.discription%></h5>
             <%var likedornot = 0%>
@@ -96,44 +97,43 @@
             </form>
             <%}%>
             <h6 class="name">Likes  <%=item.likes.num%></h6>
+            <!-- ////////////////////////////////////coments///////////////////////// -->
             <div class="comments">
-              <h4>Reviews</h4>
-              <%for(i=0;i<item.comments.name.length;i++){ %>
-                <h5 class="name"><%=item.comments.name[i]%> :</h5>
-                <p class="name"><%=item.comments.content[i]%></p>
-              <%}%>
-
+              <h4 class="commentsheading">Comments</h4>
               <form class="" action="/comments" method="post">
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Add comment</label>
-                  <textarea class="form-control" name="content" rows="2" autocomplete="off"></textarea>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="content" placeholder="Add comment"" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>+<%=user%>*<%=item.username%>" name="button">Submit</button>
+                  </div>
                 </div>
-                <button type="submit" class="btnfos btnfos-1" value="<%=item._id%>+<%=user%>*<%=item.username%>" name="button">
-                  Submit
-                </button>
               </form>
+              <%for(i=0;i<item.comments.name.length;i++){ %>
+              <h5 class="commentcontent"><%=item.comments.name[i]%> : <%=item.comments.content[i]%></h5>
+              <p class=""></p>
+              <%}%>
             </div>
           </div>
         </div>
       </div>
     </div>
     <%}) %>
-  </div>
-</div>
+            </div>
+          </div>
 
-<script>
-  $(document).ready(function() {
-    $('.postsoverflow,.postsoverflow').animate({
-      scrollTop: 100000000000000000000000000000000000
-    }, 0.000000000000000000001);
-    return false;
-  });
+          <script>
+            $(document).ready(function() {
+              $('.postsoverflow,.postsoverflow').animate({
+                scrollTop: 100000000000000000000000000000000000
+              }, 0.000000000000000000001);
+              return false;
+            });
 
-  function yourFunction() {
-    var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
-    var your_form = document.getElementById('your_form');
-    your_form.action = action_src;
-  }
-</script>
+            function yourFunction() {
+              var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
+              var your_form = document.getElementById('your_form');
+              your_form.action = action_src;
+            }
+          </script>
 
-<%- include("footer") -%>
+          <%- include("footer") -%>
