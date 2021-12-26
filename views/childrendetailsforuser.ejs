@@ -198,8 +198,9 @@
             <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
                                            <%=item.img.data.toString('base64')%>">
           </figure>
+
           <form  action="/request" method="post">
-          <button class="flipbtn" type="submit" value="<%=mainitem._id%>+<%=user%>*<%=item.name%>&<%=check%>" name="button">Request to View</button>
+          <button class="flipbtn" type="submit" value="<%=user%>*<%=item.name%>&<%=check%>" name="button">Request to View</button>
           </form>
 
 

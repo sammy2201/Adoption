@@ -94,7 +94,7 @@
    margin-top: 5%
  }
 
- .btn:hover {
+ .logout:hover {
    background-color: black;
    color: white
  }
@@ -116,6 +116,36 @@ height: inherit;
    padding-top: 2%
  }
 
+.requests{
+  text-align: center;
+  background-color: white;
+  margin-left: 100px;
+  margin-right:  100px;
+  height:400px;
+  overflow: auto;
+}
+.requestlist{
+  background-color:  #EED6C4;
+}
+
+.more{
+  cursor:pointer;
+}
+
+.btn-success{
+margin-bottom: 5px
+}
+.btn-danger{
+margin-bottom: 5px
+}
+
+.btn-success:hover{
+background-color:#146356
+}
+.btn-danger:hover{
+background-color: #9B0000
+}
+
 .reviews{
   padding: 5%;
   margin-left: 100px;
@@ -124,6 +154,7 @@ height: inherit;
   height: 300px;
   overflow: auto;
 }
+
 
 
 

@@ -89,10 +89,13 @@ const orphanageSchema = new mongoose.Schema({
     content: [String],
     name: [String]
   },
-  request: {
-    childname: [String],
-    requestername: [String]
-  },
+});
+
+const requestSchema = new mongoose.Schema({
+  childname: String,
+  requestername: String,
+  orphanagename: String,
+  individualname: String
 });
 
 const childSchema = new mongoose.Schema({
@@ -112,7 +115,7 @@ const childSchema = new mongoose.Schema({
 });
 
 const individualSchema = new mongoose.Schema({
-  name:{
+  name: {
     type: String,
     unique: true,
   },
@@ -164,6 +167,7 @@ const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
 const Child = new mongoose.model("Child", childSchema);
 const Individual = new mongoose.model("Individual", individualSchema);
 const Post = new mongoose.model("Post", postSchema);
+const Request = new mongoose.model("Request", requestSchema);
 
 /////////////////////////passport//////////////////////////////
 
@@ -277,10 +281,13 @@ app.get("/studentdetails", function(req, res) {
     if (req.user.typeOfUser == "admin") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
-          res.render("studentdetails", {
-            items: founditems,
-            check: req.user.name,
-            childitems: foundchilditems,
+          Request.find(function(err, foundrequests) {
+            res.render("studentdetails", {
+              items: founditems,
+              check: req.user.name,
+              childitems: foundchilditems,
+              requestsgot:foundrequests
+            });
           });
         });
       });
@@ -374,15 +381,15 @@ app.post("/comments", function(req, res) {
   const nameofcommenter = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
   const poster = req.body.button.split('*').pop();
 
-   Post.findById(id, function(err, docs) {
-     if (err) {
-       console.log(err);
-     } else {
-       Post.findByIdAndUpdate(id, {
-         $push: {
-           'comments.content': req.body.content,
-           "comments.name": nameofcommenter
-         }
+  Post.findById(id, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      Post.findByIdAndUpdate(id, {
+        $push: {
+          'comments.content': req.body.content,
+          "comments.name": nameofcommenter
+        }
       }, function(err, docs) {
         if (err) {
           console.log(err)
@@ -654,7 +661,6 @@ app.post("/studentdetailsstars", function(req, res) {
 });
 
 app.post("/review", function(req, res) {
-  console.log(req.body.button)
   const id = req.body.button.substr(0, req.body.button.indexOf('+'));
   const nameofliker = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
   const route = req.body.button.split('*').pop();
@@ -678,28 +684,48 @@ app.post("/review", function(req, res) {
   res.redirect("/" + route);
 });
 
+// app.post("/acceptorreject", function(req, res) {
+//   console.log(req.body.button)
+//   const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+//   const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+//   const requestername = req.body.button.split('*').pop();
+//
+//   Orphanage.findById(id, function(err, docs) {
+//      if (err) {
+//        console.log(err);
+//      } else {
+//        for(i=0;i<docs.request.childname.length;i++){
+//          if(docs.request.childname[i]==childname){
+//            console.log("hi");
+//          }
+//        }
+//       Orphanage.findByIdAndUpdate(id, {
+//         $pull: {
+//           'request.childname': childname,
+//           "request.requestername": requestername
+//         }
+//       }, function(err, docs) {
+//         if (err) {
+//           console.log(err)
+//         } else {}
+//       });
+//     }
+//   });
+//   res.redirect("/studentdetails");
+// });
+
+
+
 app.post("/request", function(req, res) {
-  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofrequester = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const nameofrequester = req.body.button.substring(0, req.body.button.indexOf('*'));
   const nameofchild = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('&'));
   const route = req.body.button.split('&').pop();
-
-  Orphanage.findById(id, function(err, docs) {
-    if (err) {
-      console.log(err);
-    } else {
-      Orphanage.findByIdAndUpdate(id, {
-        $push: {
-          'request.childname': nameofchild,
-          "request.requestername": nameofrequester
-        }
-      }, function(err, docs) {
-        if (err) {
-          console.log(err)
-        } else {}
-      });
-    }
+  const someconstant = new Request({
+    childname: nameofchild,
+    requestername: nameofrequester,
+    orphanagename: route,
   });
+  someconstant.save();
   res.redirect("/" + route);
 });
 
