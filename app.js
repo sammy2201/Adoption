@@ -85,10 +85,12 @@ const orphanageSchema = new mongoose.Schema({
     },
   },
   description: String,
-  reviews: {
-    content: [String],
-    name: [String]
-  },
+});
+
+const reviewSchema = new mongoose.Schema({
+  name: String,
+  content: String,
+  orphanagename: String,
 });
 
 const requestSchema = new mongoose.Schema({
@@ -168,7 +170,7 @@ const Child = new mongoose.model("Child", childSchema);
 const Individual = new mongoose.model("Individual", individualSchema);
 const Post = new mongoose.model("Post", postSchema);
 const Request = new mongoose.model("Request", requestSchema);
-
+const Review = new mongoose.model("Review", reviewSchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -286,7 +288,7 @@ app.get("/studentdetails", function(req, res) {
               items: founditems,
               check: req.user.name,
               childitems: foundchilditems,
-              requestsgot:foundrequests
+              requestsgot: foundrequests
             });
           });
         });
@@ -330,11 +332,14 @@ app.get("/:costumName", function(req, res) {
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
-          res.render("childrendetailsforuser", {
-            items: founditems,
-            check: pathnamwithspace,
-            childitems: foundchilditems,
-            user: req.user.name
+          Review.find(function(err, foundreviews) {
+            res.render("childrendetailsforuser", {
+              items: founditems,
+              check: pathnamwithspace,
+              childitems: foundchilditems,
+              user: req.user.name,
+              recivedreviews:foundreviews,
+            });
           });
         });
       });
@@ -661,26 +666,32 @@ app.post("/studentdetailsstars", function(req, res) {
 });
 
 app.post("/review", function(req, res) {
-  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofliker = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const nameofreviewwriter = req.body.button.substring(0, req.body.button.indexOf('*'));
   const route = req.body.button.split('*').pop();
 
-  Orphanage.findById(id, function(err, docs) {
-    if (err) {
-      console.log(err);
-    } else {
-      Orphanage.findByIdAndUpdate(id, {
-        $push: {
-          'reviews.content': req.body.content,
-          "reviews.name": nameofliker
-        }
-      }, function(err, docs) {
-        if (err) {
-          console.log(err)
-        } else {}
-      });
-    }
+  const someconstant = new Review({
+    name: nameofreviewwriter,
+    content: req.body.content,
+    orphanagename: route,
   });
+  someconstant.save();
+
+  // Orphanage.findById(id, function(err, docs) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     Orphanage.findByIdAndUpdate(id, {
+  //       $push: {
+  //         'reviews.content': req.body.content,
+  //         "reviews.name": nameofliker
+  //       }
+  //     }, function(err, docs) {
+  //       if (err) {
+  //         console.log(err)
+  //       } else {}
+  //     });
+  //   }
+  // });
   res.redirect("/" + route);
 });
 
