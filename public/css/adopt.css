@@ -23,113 +23,16 @@ body {
   margin-left: 65%
 }
 
-.name {
-  margin-top: 30px;
-  margin-left: 8%;
-  font-family: "Trirong", serif;
-  font-weight: bolder;
-  font-size: 2.2rem;
-  text-transform: uppercase;
-}
 
-.row {
-  width: 100%;
-}
-
-.box {
-  color: #533535;
-  font-family: 'Noto Serif', serif;
-  font-weight: lighter;
-  width: 70%;
-  padding: 1.5%;
-  height: 70%;
-  margin-top: 3.5%;
-  background-color: #F6F5EE;
-}
-
-.Childrenhed {
-  text-align: center;
-}
-
-.btn:hover {
-  background-color: black;
-  color: white
-}
-
-.childimage {
-  width: inherit;
-  height: inherit;
-}
-
-.btn-primary {
-  display: block;
-  margin-left: 45%
-}
-
-.file {
-  display: block;
-}
-
-.botton {
-  margin-left: 35%;
-}
-
-/ button {
-  border: 0
-}
 
 /* /////////////////////////////////////////////////////////// */
-.container {
-  width: 100%;
-  margin: auto;
-  font-weight: 900;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 0 0 200px;
-}
+
 
 a, a:link, a:visited {
   text-decoration: none;
   padding: 9px 15px;
   border-radius: 5px;
   color: gray;
-}
-
-.animate {
-  font-size: 50px;
-  margin: 100px 0 0;
-  border-bottom: 2px solid #ccc;
-}
-
-.animate span {
-  display: inline-block;
-}
-
-a.repeat {
-  display: inline-block;
-  font-size: 12px;
-  text-transform: none;
-  text-decoration: none;
-  color: orange;
-  padding: 5px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  font-weight: normal;
-  margin: 0 0 0 50px;
-  border-radius: 3px;
-  position: relative;
-  bottom: 15px;
-}
-
-a.repeat:hover {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-}
-
-.six span {
-  color: #ddb40f;
-  opacity: 0;
-  transform: rotate(-180deg) translate(150px, 0);
-  animation: twister .5s forwards;
 }
 
 /* /////////////////////////////////////////////////////// */
@@ -223,7 +126,7 @@ body {
   background-size: 100%;
   margin-top: 50px;
   margin-bottom: 50px;
-  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(https://unsplash.it/600/800?image=1061) center no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) center no-repeat;
 }
 
 .blog-card a {
@@ -252,7 +155,7 @@ body {
 }
 
 .blog-card:hover {
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(https://unsplash.it/600/800?image=1061) center no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) center no-repeat;
 }
 
 .blog-card:hover .card-info {
@@ -500,168 +403,4 @@ h3:after {
   .intro {
     font-size: 0.8em
   }
-}
-
-/*  ================  */
-/* ignore this bit :P */
-#profile-badges:after {
-  content: "BRO";
-  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 1px 4px 1px 4px;
-  color: black !important;
-  border-radius: 3px;
-  position: relative;
-  top: -2px;
-  text-shadow: none !important;
-  white-space: nowrap;
-  letter-spacing: 0;
-  background: #FFDD40;
-}
-
-.profile-header {
-  background: #333 url(https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fit=crop&w=1376&h=635&q=80&cs=tinysrgb&crop=&bg=) top center no-repeat;
-  background-size: cover;
-  font-size: 3em;
-  position: relative
-}
-
-.profile-header:after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(23, 23, 31, 0.42);
-  z-index: 0
-}
-
-#profile-links a {
-  font-family: 'Abril Fatface', serif;
-  font-size: 1.2em
-}
-
-.profile-links a[href*=nodws\.com]:before {
-  content: "\2616";
-  color: #0a45b5;
-  padding-right: 3px
-}
-
-.profile-links a[href*=twitter]:before {
-  content: "\1f426";
-  color: #08c
-}
-
-.profile-links a[href*=dribbble]:before {
-  content: "\26BE";
-  color: #d055bf
-}
-
-#following-this-user {
-  pointer-events: none
-}
-
-#follow-this-user {
-  font-size: 1.2em;
-  border-color: #359ef9
-}
-
-#follow-this-user:after {
-  content: "\1f448"
-}
-
-.links-and-stats {
-  background: rgb(20, 20, 21);
-}
-
-.profile-name h1 {
-  text-shadow: 0 6px 9px rgba(0, 0, 0, 0.48)
-}
-
-.profile-avatar {
-  bottom: -10px;
-  width: 150px;
-  height: 150px;
-  border: 0px solid #1E1E1E;
-  background: rgba(2, 2, 2, 0.49);
-  box-shadow: 0 19px 19px -10px rgba(0, 0, 0, 0.63)
-}
-
-.profile-username, .upsell, .profile-location, .primary-pro {
-  opacity: 0;
-}
-
-.upsell, #pen-as-header-question {
-  display: none
-}
-
-.profile-nav-1 a {
-  font-size: 1.2rem;
-}
-
-.profile-bio, .profile-nav-1 a.active, .profile-nav-1 a:hover {
-  color: rgba(20, 20, 21, 0.59) !important;
-  font-size: 1.2rem
-}
-
-.meta .pen-title {
-  font-family: 'Droid Serif', serif;
-  text-align: center
-}
-
-.pagination-button {
-  background-color: #2f2f31;
-  border-color: #2f2f31;
-  transition: all 0.2s
-}
-
-.pagination-button:hover {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2)
-}
-
-.single-project .stats, .single-pen .stats {
-  text-align: center;
-  width: 100%
-}
-
-.stats svg {
-  fill: #bda26b;
-}
-
-.stats svg, .loves .icon-heart {
-  fill: rgba(47, 47, 49, 0) !important;
-  stroke: #ba6 !important;
-  stroke-width: 0.1em !important;
-}
-
-.loves .icon-heart {
-  stroke-width: 0.5em !important;
-}
-
-.comments svg {
-  stroke-width: 0.35em !important;
-}
-
-.single-stat.loves.loved-1 svg {
-  stroke: #fff !important
-}
-
-.single-pen:hover h3:after {
-  width: 40%;
-  transition: all 0.2s
-}
-
-.pen-actions {
-  border: 0px !important
-}
-
-.meta {
-  box-shadow: none !important
-}
-
-.singlecard {
-  margin-top: 40px;
 }
