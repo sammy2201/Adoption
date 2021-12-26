@@ -50,11 +50,21 @@ body {
   height: 100vh;
 }
 
-.form {
+.form2 {
   background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
   height:  900px;
+  padding: 20px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 6%;
+}
+.form1 {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height:  770px;
   padding: 20px;
   width: 80%;
   margin-left: 10%;
