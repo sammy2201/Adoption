@@ -143,7 +143,11 @@ const postSchema = new mongoose.Schema({
       default: 0
     },
     name: [Array]
-  }
+  },
+  comments: {
+    content: [String],
+    name: [String]
+  },
 
 });
 
@@ -359,6 +363,34 @@ app.post("/", function(req, res) {
 
   res.redirect("/");
 });
+
+
+app.post("/comments", function(req, res) {
+  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
+  const nameofcommenter = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const poster = req.body.button.split('*').pop();
+
+   Post.findById(id, function(err, docs) {
+     if (err) {
+       console.log(err);
+     } else {
+       Post.findByIdAndUpdate(id, {
+         $push: {
+           'comments.content': req.body.content,
+           "comments.name": nameofcommenter
+         }
+      }, function(err, docs) {
+        if (err) {
+          console.log(err)
+        } else {}
+      });
+    }
+  });
+
+  res.redirect("/");
+});
+
+
 
 app.post("/login", function(req, res) {
   const user = new User({

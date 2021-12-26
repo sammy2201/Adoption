@@ -96,6 +96,23 @@
             </form>
             <%}%>
             <h6 class="name">Likes  <%=item.likes.num%></h6>
+            <div class="comments">
+              <h4>Reviews</h4>
+              <%for(i=0;i<item.comments.name.length;i++){ %>
+                <h5 class="name"><%=item.comments.name[i]%> :</h5>
+                <p class="name"><%=item.comments.content[i]%></p>
+              <%}%>
+
+              <form class="" action="/comments" method="post">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Add comment</label>
+                  <textarea class="form-control" name="content" rows="2" autocomplete="off"></textarea>
+                </div>
+                <button type="submit" class="btnfos btnfos-1" value="<%=item._id%>+<%=user%>*<%=item.username%>" name="button">
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

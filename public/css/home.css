@@ -56,6 +56,11 @@ h1{
    margin-left: 10%
  }
 
+ .comments{
+   height: 200px;
+   overflow: auto;
+ }
+
 .like{
   background-color: white;
   border: 0
