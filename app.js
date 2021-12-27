@@ -205,6 +205,7 @@ app.get("/", function(req, res) {
       Post.find(function(err, founditems) {
         Comment.find(function(err, foundcomments) {
           res.render("homelogin", {
+            founduser: founduser,
             items: founditems,
             user: req.user.name,
             comments: foundcomments
@@ -218,6 +219,23 @@ app.get("/", function(req, res) {
         items: founditems,
       });
     });
+  }
+});
+
+app.get("/myacceptedlist", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+        Requestreply.find(function(err, founditems) {
+          res.render("myacceptedlist", {
+            items: founditems,
+            user: req.user.name,
+          });
+        });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
   }
 });
 
@@ -681,21 +699,32 @@ app.post("/review", function(req, res) {
 });
 
 app.post("/acceptorreject", function(req, res) {
-  console.log(req.body.button)
-  const id = req.body.button.substr(0, req.body.button.indexOf('&'));
+  const id = req.body.button.substr(0, req.body.button.indexOf('@'));
+  const orphanagename = req.body.button.substring(req.body.button.indexOf('@') + 1, req.body.button.indexOf('&'));
   const requestername = req.body.button.substring(req.body.button.indexOf('&') + 1, req.body.button.indexOf('+'));
   const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
   const status = req.body.button.split('*').pop();
-  console.log(id);
-  console.log(requestername);
-  console.log(childname);
-  console.log(status);
 
-  if(status=="notok"){
-    console.log("hi")
+  if (status == "notok") {
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
   }
-
-
+  if (status == "ok") {
+    const someconstant = new Requestreply({
+      childname: childname,
+      requestername: requestername,
+      orphanagename: orphanagename,
+    });
+    someconstant.save();
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
+  }
   res.redirect("/studentdetails");
 });
 

@@ -37,8 +37,10 @@
       </li>
     </ul>
   </div>
-</nav <hr>
+</nav>
+
 <h1>Adoption</h1>
+
 
 <!-- ////////////////////////////////////carousel///////////////////////// -->
 <div class="containerr">
@@ -67,7 +69,11 @@
     <div class="transition"></div>
   </div>
 </a>
-
+<%founduser.forEach(function(item){ %>
+<%if(item.typeOfUser==="user" & user===item.name){ %>
+<a href="/myacceptedlist"><button type="submit" class="btn  btnadopt" name="button">My List</button></a>
+<%}%>
+<%})%>
 <!-- ////////////////////////////////////posts///////////////////////// -->
 <div class="postsoverflow">
   <div class="post" id="posts" class="md-lg-3 md-sm-12">
