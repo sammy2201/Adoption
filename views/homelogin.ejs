@@ -35,6 +35,15 @@
       <li>
         <a href="/posts"><button type="submit" class="btn  btnadopt" name="button">Add Post</button></a>
       </li>
+      <li>
+        <%founduser.forEach(function(item){ %>
+        <%if(item.typeOfUser==="user" & user===item.name){ %>
+        <a href="/myacceptedlist">
+          <button type="submit" class="btn btnadopt2" name="button">My List<i class="fas fa-user-plus " style="color:black"></i></button>
+        </a>
+        <%}%>
+        <%})%>
+      </li>
     </ul>
   </div>
 </nav>
@@ -69,11 +78,7 @@
     <div class="transition"></div>
   </div>
 </a>
-<%founduser.forEach(function(item){ %>
-<%if(item.typeOfUser==="user" & user===item.name){ %>
-<a href="/myacceptedlist"><button type="submit" class="btn  btnadopt" name="button">My List</button></a>
-<%}%>
-<%})%>
+
 <!-- ////////////////////////////////////posts///////////////////////// -->
 <div class="postsoverflow">
   <div class="post" id="posts" class="md-lg-3 md-sm-12">

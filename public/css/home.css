@@ -27,7 +27,8 @@ h1{
 }
 
 .btnadopt{
-  margin-left: 800px;
+  margin-left: 670px;
+  margin-right: 25px;
   background-color: #533535;
   color: white;
 }
@@ -36,6 +37,17 @@ h1{
   background-color: white;
   color: black;
 }
+.btnadopt2{
+  margin-right: 25px;
+  background-color: #533535;
+  color: white;
+}
+
+.btnadopt2:hover{
+  background-color: white;
+  color: black;
+}
+
 .postimage{
   width: 300px;
   height: 300px
@@ -150,10 +162,10 @@ h1{
 }
 /* //////////////////////////////////////////////////////////////////////// */
 .btn11 {
-  top: 40px;
+  top: 50px;
   padding: 20px 90px;
   margin: 0 10px;
-  display: inline-block;
+  display: table-column;
   text-decoration: none;
   font-family: "proxima-nova", sans-serif;
   font-weight: 500;
@@ -172,7 +184,8 @@ h1{
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   background: transparent !important;
-  margin-bottom: 100px ;
+  margin-bottom: 50px ;
+
 }
 
 .btn11:hover {
@@ -233,5 +246,7 @@ h1{
 .botton {
   margin-left: 40%;
 }
-
+.fas{
+  margin-left: 4px;
+}
 /* ////////////////////////////////////////////////////////////////////////// */
