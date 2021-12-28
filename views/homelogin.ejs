@@ -39,7 +39,7 @@
         <%founduser.forEach(function(item){ %>
         <%if(item.typeOfUser==="user" & user===item.name){ %>
         <a href="/myacceptedlist">
-          <button type="submit" class="btn btnadopt2" name="button">My List<i class="fas fa-user-plus " style="color:black"></i></button>
+          <button type="submit" class="btn btnadopt2" name="button">My List</button>
         </a>
         <%}%>
         <%})%>
@@ -84,6 +84,12 @@
   <div class="post" id="posts" class="md-lg-3 md-sm-12">
     <%items.forEach(function(item){ %>
     <div class="postbox">
+
+      <%if(user==item.username){%>
+      <form  action="/deletepost" method="post">
+      <button type="submit" name="button" class="btn" value="<%=item._id%>">Delete</button>
+      </form>
+      <%}%>
       <h3><%=item.username%></h3>
       <div class="container">
         <div class="row">
@@ -127,6 +133,11 @@
               <div class="commentdiv">
                 <h5 class="commentcontent"><%=comment.name%> : </h5>
                 <p class="commentcontent"><%=comment.content%></p>
+                <%if(user==comment.name){%>
+                <form  action="/deletecomment" method="post">
+                <button type="submit" name="button" class="btn" value="<%=comment._id%>">Delete</button>
+                </form>
+                <%}%>
               </div>
               <%}%>
               <%}) %>

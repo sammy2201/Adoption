@@ -728,7 +728,36 @@ app.post("/acceptorreject", function(req, res) {
   res.redirect("/studentdetails");
 });
 
+app.post("/deletereview", function(req, res) {
+  const id = req.body.button.substring(0, req.body.button.indexOf('&'));
+  const route = req.body.button.split('&').pop();
+  Review.findByIdAndDelete(id, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/" + route);
+});
 
+app.post("/deletepost", function(req, res) {
+  const id = req.body.button
+  Post.findByIdAndDelete(id, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/");
+});
+
+app.post("/deletecomment", function(req, res) {
+  const id = req.body.button;
+  Comment.findByIdAndDelete(id, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/");
+});
 
 app.post("/request", function(req, res) {
   const nameofrequester = req.body.button.substring(0, req.body.button.indexOf('*'));
