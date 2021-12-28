@@ -1,0 +1,23 @@
+<%- include("header") -%>
+<link rel="stylesheet" href="css/myacceptedlist.css">
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
+    <a class="navbar-brand" href="/">Orphanage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <h1>Accepted List</h1>
+
+  <%items.forEach(function(item){ %>
+  <%if(user===item.requestername){%>
+  <div class="list">
+    <h3> child : <%=item.childname%></h3>
+    <h3>from : <%=item.orphanagename%></h3>
+  </div>
+  <%}%>
+  <%}) %>

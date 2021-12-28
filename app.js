@@ -85,10 +85,26 @@ const orphanageSchema = new mongoose.Schema({
     },
   },
   description: String,
-  reviews: {
-    content: [String],
-    name: [String]
-  },
+});
+
+const reviewSchema = new mongoose.Schema({
+  name: String,
+  content: String,
+  orphanagename: String,
+});
+
+const requestSchema = new mongoose.Schema({
+  childname: String,
+  requestername: String,
+  orphanagename: String,
+  individualname: String
+});
+
+const requestreplySchema = new mongoose.Schema({
+  childname: String,
+  requestername: String,
+  orphanagename: String,
+  individualname: String
 });
 
 const childSchema = new mongoose.Schema({
@@ -108,7 +124,7 @@ const childSchema = new mongoose.Schema({
 });
 
 const individualSchema = new mongoose.Schema({
-  name:{
+  name: {
     type: String,
     unique: true,
   },
@@ -144,11 +160,13 @@ const postSchema = new mongoose.Schema({
     },
     name: [Array]
   },
-  comments: {
-    content: [String],
-    name: [String]
-  },
+});
 
+const commentSchema = new mongoose.Schema({
+  name: String,
+  content: String,
+  nameofposter: String,
+  idofposter: String
 });
 
 //////////////////////////////////////////////////////////////////
@@ -160,7 +178,10 @@ const Orphanage = new mongoose.model("Orphanage", orphanageSchema);
 const Child = new mongoose.model("Child", childSchema);
 const Individual = new mongoose.model("Individual", individualSchema);
 const Post = new mongoose.model("Post", postSchema);
-
+const Request = new mongoose.model("Request", requestSchema);
+const Review = new mongoose.model("Review", reviewSchema);
+const Comment = new mongoose.model("Comment", commentSchema);
+const Requestreply = new mongoose.model("Requestreply", requestreplySchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -182,9 +203,13 @@ app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
     User.find(function(err, founduser) {
       Post.find(function(err, founditems) {
-        res.render("homelogin", {
-          items: founditems,
-          user: req.user.name
+        Comment.find(function(err, foundcomments) {
+          res.render("homelogin", {
+            founduser: founduser,
+            items: founditems,
+            user: req.user.name,
+            comments: foundcomments
+          });
         });
       });
     });
@@ -194,6 +219,23 @@ app.get("/", function(req, res) {
         items: founditems,
       });
     });
+  }
+});
+
+app.get("/myacceptedlist", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+        Requestreply.find(function(err, founditems) {
+          res.render("myacceptedlist", {
+            items: founditems,
+            user: req.user.name,
+          });
+        });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
   }
 });
 
@@ -273,10 +315,13 @@ app.get("/studentdetails", function(req, res) {
     if (req.user.typeOfUser == "admin") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
-          res.render("studentdetails", {
-            items: founditems,
-            check: req.user.name,
-            childitems: foundchilditems,
+          Request.find(function(err, foundrequests) {
+            res.render("studentdetails", {
+              items: founditems,
+              check: req.user.name,
+              childitems: foundchilditems,
+              requestsgot: foundrequests
+            });
           });
         });
       });
@@ -319,11 +364,14 @@ app.get("/:costumName", function(req, res) {
     if (req.user.typeOfUser == "user") {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
-          res.render("childrendetailsforuser", {
-            items: founditems,
-            check: pathnamwithspace,
-            childitems: foundchilditems,
-            user: req.user.name
+          Review.find(function(err, foundreviews) {
+            res.render("childrendetailsforuser", {
+              items: founditems,
+              check: pathnamwithspace,
+              childitems: foundchilditems,
+              user: req.user.name,
+              recivedreviews: foundreviews,
+            });
           });
         });
       });
@@ -366,30 +414,18 @@ app.post("/", function(req, res) {
 
 
 app.post("/comments", function(req, res) {
-  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofcommenter = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
-  const poster = req.body.button.split('*').pop();
-
-   Post.findById(id, function(err, docs) {
-     if (err) {
-       console.log(err);
-     } else {
-       Post.findByIdAndUpdate(id, {
-         $push: {
-           'comments.content': req.body.content,
-           "comments.name": nameofcommenter
-         }
-      }, function(err, docs) {
-        if (err) {
-          console.log(err)
-        } else {}
-      });
-    }
+  const nameofcommenter = req.body.button.substring(0, req.body.button.indexOf('*'));
+  const id = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('+'));
+  const poster = req.body.button.split('+').pop();
+  const someconstant = new Comment({
+    name: nameofcommenter,
+    content: req.body.content,
+    nameofposter: poster,
+    idofposter: id
   });
-
+  someconstant.save();
   res.redirect("/");
 });
-
 
 
 app.post("/login", function(req, res) {
@@ -650,27 +686,60 @@ app.post("/studentdetailsstars", function(req, res) {
 });
 
 app.post("/review", function(req, res) {
-  console.log(req.body.button)
-  const id = req.body.button.substr(0, req.body.button.indexOf('+'));
-  const nameofliker = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const nameofreviewwriter = req.body.button.substring(0, req.body.button.indexOf('*'));
   const route = req.body.button.split('*').pop();
 
-  Orphanage.findById(id, function(err, docs) {
-    if (err) {
-      console.log(err);
-    } else {
-      Orphanage.findByIdAndUpdate(id, {
-        $push: {
-          'reviews.content': req.body.content,
-          "reviews.name": nameofliker
-        }
-      }, function(err, docs) {
-        if (err) {
-          console.log(err)
-        } else {}
-      });
-    }
+  const someconstant = new Review({
+    name: nameofreviewwriter,
+    content: req.body.content,
+    orphanagename: route,
   });
+  someconstant.save();
+  res.redirect("/" + route);
+});
+
+app.post("/acceptorreject", function(req, res) {
+  const id = req.body.button.substr(0, req.body.button.indexOf('@'));
+  const orphanagename = req.body.button.substring(req.body.button.indexOf('@') + 1, req.body.button.indexOf('&'));
+  const requestername = req.body.button.substring(req.body.button.indexOf('&') + 1, req.body.button.indexOf('+'));
+  const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const status = req.body.button.split('*').pop();
+
+  if (status == "notok") {
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
+  }
+  if (status == "ok") {
+    const someconstant = new Requestreply({
+      childname: childname,
+      requestername: requestername,
+      orphanagename: orphanagename,
+    });
+    someconstant.save();
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
+  }
+  res.redirect("/studentdetails");
+});
+
+
+
+app.post("/request", function(req, res) {
+  const nameofrequester = req.body.button.substring(0, req.body.button.indexOf('*'));
+  const nameofchild = req.body.button.substring(req.body.button.indexOf('*') + 1, req.body.button.indexOf('&'));
+  const route = req.body.button.split('&').pop();
+  const someconstant = new Request({
+    childname: nameofchild,
+    requestername: nameofrequester,
+    orphanagename: route,
+  });
+  someconstant.save();
   res.redirect("/" + route);
 });
 

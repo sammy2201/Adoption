@@ -78,7 +78,7 @@
       <%})%>
     </div>
   </div>
-
+  <!-- ////////////////////////////////description/////////////////////////// -->
   <h4 class="Childrenhed animate__animated animate__zoomInDown">Description</h4>
   <div class="descriptionbox">
     <%items.forEach(function(item){ %>
@@ -88,6 +88,33 @@
     <%})%>
   </div>
 
+
+
+  <!-- //////////////////////////////////request//////////////////////////////// -->
+
+
+  <div class="requests">
+    <h3>requests</h3>
+    <%items.forEach(function(mainitem){ %>
+    <%requestsgot.forEach(function(request){ %>
+    <%if(check===mainitem.adminname){%>
+    <%if(request.orphanagename===mainitem.name){%>
+    <div class="requestlist">
+      <h6><%=request.requestername%></h6>
+      <p>requested for :<%=request.childname%></p>
+    </div>
+    <form class="" action="/acceptorreject" method="post">
+      <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+      <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
+    </form>
+    <%}%>
+    <%}%>
+    <%})%>
+    <%})%>
+  </div>
+
+
+  <!-- ////////////////////////////////children/////////////////////////// -->
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
   <hr>
   <div class="container reveal fade-left">
@@ -142,6 +169,8 @@
   </div>
 
 
+
+  <!-- ///////////////////////////////student add details/////////////////////////////////// -->
   <div class="btn11 botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     <span>Add student details</span>
     <div class="transition"></div>

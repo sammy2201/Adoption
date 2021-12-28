@@ -1,0 +1,24 @@
+body{
+  background-color: #F6F5EE
+}
+
+.navbar {
+  background-color: #EAD8B6;
+  color: black
+}
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+.list{
+  background-color: #EAD8B6;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1%
+}

@@ -33,12 +33,14 @@
         <a class="nav-link" href="#posts">Posts</a>
       </li>
       <li>
-      <a href="/posts"><button type="submit" class="btn  btnadopt" name="button">Add Post</button></a>
+        <a href="/posts"><button type="submit" class="btn  btnadopt" name="button">Add Post</button></a>
       </li>
     </ul>
   </div>
-</nav <hr>
+</nav>
+
 <h1>Adoption</h1>
+
 
 <!-- ////////////////////////////////////carousel///////////////////////// -->
 <div class="containerr">
@@ -67,7 +69,11 @@
     <div class="transition"></div>
   </div>
 </a>
-
+<%founduser.forEach(function(item){ %>
+<%if(item.typeOfUser==="user" & user===item.name){ %>
+<a href="/myacceptedlist"><button type="submit" class="btn  btnadopt" name="button">My List</button></a>
+<%}%>
+<%})%>
 <!-- ////////////////////////////////////posts///////////////////////// -->
 <div class="postsoverflow">
   <div class="post" id="posts" class="md-lg-3 md-sm-12">
@@ -107,36 +113,40 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" name="content" placeholder="Add comment"" aria-label=" Recipient's username" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>+<%=user%>*<%=item.username%>" name="button">Submit</button>
+                    <button class="btn btn-outline-secondary" type="submit" value="<%=user%>*<%=item._id%>+<%=item.username%>" name="button">Submit</button>
                   </div>
                 </div>
               </form>
-              <%for(i=0;i<item.comments.name.length;i++){ %>
-              <h5 class="commentcontent"><%=item.comments.name[i]%> : <%=item.comments.content[i]%></h5>
-              <p class=""></p>
+              <%comments.forEach(function(comment){ %>
+              <%if(comment.idofposter==item._id){ %>
+              <div class="commentdiv">
+                <h5 class="commentcontent"><%=comment.name%> : </h5>
+                <p class="commentcontent"><%=comment.content%></p>
+              </div>
               <%}%>
+              <%}) %>
             </div>
           </div>
         </div>
       </div>
     </div>
     <%}) %>
-            </div>
-          </div>
+  </div>
+</div>
 
-          <script>
-            $(document).ready(function() {
-              $('.postsoverflow,.postsoverflow').animate({
-                scrollTop: 100000000000000000000000000000000000
-              }, 0.000000000000000000001);
-              return false;
-            });
+<script>
+  $(document).ready(function() {
+    $('.postsoverflow,.postsoverflow').animate({
+      scrollTop: 100000000000000000000000000000000000
+    }, 0.000000000000000000001);
+    return false;
+  });
 
-            function yourFunction() {
-              var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
-              var your_form = document.getElementById('your_form');
-              your_form.action = action_src;
-            }
-          </script>
+  function yourFunction() {
+    var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
+    var your_form = document.getElementById('your_form');
+    your_form.action = action_src;
+  }
+</script>
 
-          <%- include("footer") -%>
+<%- include("footer") -%>
