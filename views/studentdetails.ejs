@@ -93,20 +93,32 @@
   <!-- //////////////////////////////////request//////////////////////////////// -->
 
 
+
+
+  <!-- ////////////// -->
   <div class="requests">
     <h3>requests</h3>
     <%items.forEach(function(mainitem){ %>
     <%requestsgot.forEach(function(request){ %>
     <%if(check===mainitem.adminname){%>
     <%if(request.orphanagename===mainitem.name){%>
-    <div class="requestlist">
-      <h6><%=request.requestername%></h6>
-      <p>requested for :<%=request.childname%></p>
+    <div class="containerrev">
+      <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
+        <div class="card d-flex position-relative flex-column">
+          <div class='imgContainer'>
+            <h6><%=request.requestername%></h6>
+            <p>requested for :<%=request.childname%></p>
+          </div>
+          <div class="content">
+            <form class="" action="/acceptorreject" method="post">
+              <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+              <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <form class="" action="/acceptorreject" method="post">
-      <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
-      <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
-    </form>
+
     <%}%>
     <%}%>
     <%})%>

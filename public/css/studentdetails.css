@@ -879,3 +879,70 @@ ul {
 .btn11c{
   margin-left: 38%
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* * {
+    font-family: 'Poppins', sans-serif
+} */
+
+
+.container .card {
+    max-width: 330px;
+    height: 115px;
+  margin-top: 50px;
+  margin-left: 10px;
+
+    padding: 20px 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: 0.3s ease-in-out
+}
+
+.container .card:hover {
+  height: 200px
+}
+
+.container .card .imgContainer {
+  color: white;
+   position: relative;
+   width: 220px;
+   height: 100px;
+   top: -50px;
+   left: 1px;
+   z-index: 1;
+   background-color: #8E806A;
+   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2)
+}
+
+.container .card .imgContainer img {
+   max-width: 100%;
+   border-radius: 4px
+}
+
+.container .card .content {
+   position: relative;
+   margin-top: -140px;
+   padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out
+
+}
+
+.container .card:hover .content {
+    visibility: visible;
+    opacity: 1;
+    margin-top: -40px;
+    transition-delay: 0.3s
+}
+
+@media (max-width: 330px) {
+    .container .card .imgContainer {
+        left: -2px
+    }
+}
+
+.containerrev{
+  display: inline-grid;
+}
