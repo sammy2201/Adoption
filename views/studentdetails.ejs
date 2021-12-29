@@ -129,56 +129,59 @@
   <!-- ////////////////////////////////children/////////////////////////// -->
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
   <hr>
-  <div class="container reveal fade-left">
-    <%childitems.forEach(function(item){ %>
-    <%items.forEach(function(mainitem){ %>
-    <%if(check===mainitem.adminname){%>
-    <%if(mainitem.name===item.orphanage){%>
-    <!-- flip-card-container -->
-    <div class="flip-card-container" style="--hue: 170">
-      <div class="flip-card">
-        <div class="card-front">
-          <figure>
-            <div class="img-bg"></div>
-            <img src="images/cardbg.jpg" alt="Image 2">
-            <figcaption><%=item.name%></figcaption>
-          </figure>
+  <div class="container reveal scroll fade-left" style ="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
+            <!-- various of text here that can makes it go out the border-->
+            <%childitems.forEach(function(item){ %>
+            <%items.forEach(function(mainitem){ %>
+            <%if(check===mainitem.adminname){%>
+            <%if(mainitem.name===item.orphanage){%>
+            <!-- flip-card-container -->
+            <div class="flip-card-container" style="--hue: 170">
+              <div class="flip-card">
+                <div class="card-front">
+                  <figure>
+                    <div class="img-bg"></div>
+                    <img src="images/cardbg.jpg" alt="Image 2">
+                    <figcaption><%=item.name%></figcaption>
+                  </figure>
 
-          <ul>
-            <p>Age : <%=item.age%></p>
-            <p>Gender : <%=item.gender%></p>
-            <p>Hobies : <%=item.hobies%></p>
-            <p>Studies : <%=item.studies%></p>
-            <p>Guardian : <%=item.guardian%></p>
-            <p>Intrested In : <%=item.intrestedin%></p>
-          </ul>
+                  <ul>
+                    <p>Age : <%=item.age%></p>
+                    <p>Gender : <%=item.gender%></p>
+                    <p>Hobies : <%=item.hobies%></p>
+                    <p>Studies : <%=item.studies%></p>
+                    <p>Guardian : <%=item.guardian%></p>
+                    <p>Intrested In : <%=item.intrestedin%></p>
+                  </ul>
+                </div>
+
+                <div class="card-back">
+                  <figure>
+                    <div class="img-bg"></div>
+                    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+                                                   <%=item.img.data.toString('base64')%>">
+                  </figure>
+
+                  <div class="design-container">
+                    <span class="design design--1"></span>
+                    <span class="design design--2"></span>
+                    <span class="design design--3"></span>
+                    <span class="design design--4"></span>
+                    <span class="design design--5"></span>
+                    <span class="design design--6"></span>
+                    <span class="design design--7"></span>
+                    <span class="design design--8"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%}%>
+            <%}%>
+            <%}) %>
+            <%})%>
         </div>
 
-        <div class="card-back">
-          <figure>
-            <div class="img-bg"></div>
-            <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
-                                           <%=item.img.data.toString('base64')%>">
-          </figure>
 
-          <div class="design-container">
-            <span class="design design--1"></span>
-            <span class="design design--2"></span>
-            <span class="design design--3"></span>
-            <span class="design design--4"></span>
-            <span class="design design--5"></span>
-            <span class="design design--6"></span>
-            <span class="design design--7"></span>
-            <span class="design design--8"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <%}%>
-    <%}%>
-    <%}) %>
-    <%})%>
-  </div>
 
 
 
