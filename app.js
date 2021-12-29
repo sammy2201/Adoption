@@ -356,6 +356,23 @@ app.get("/posts", function(req, res) {
   }
 });
 
+app.get("/individual/:name", function(req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.typeOfUser == "user") {
+      Individual.find(function(err, founditems) {
+        res.render("recentlostforuser", {
+          items: founditems,
+          check: req.user.name,
+        });
+      });
+    } else {
+      console.log("problem");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
 
 app.get("/:costumName", function(req, res) {
   if (req.isAuthenticated()) {
@@ -376,7 +393,7 @@ app.get("/:costumName", function(req, res) {
         });
       });
     } else {
-      console.log("problem");
+      console.log("problemforcust");
     }
   } else {
     res.redirect("/login");

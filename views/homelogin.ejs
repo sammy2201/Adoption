@@ -86,10 +86,20 @@
     <div class="postbox">
 
       <%if(user==item.username){%>
-      <form  action="/deletepost" method="post">
-      <button type="submit" name="button" class="btn" value="<%=item._id%>">Delete</button>
+      <form action="/deletepost" method="post">
+        <button type="submit" name="button" class="btn" value="<%=item._id%>">Delete</button>
       </form>
       <%}%>
+
+      <%founduser.forEach(function(userp){ %>
+      <%if(userp.typeOfUser=="recentlost"){%>
+      <%if(userp.name==item.username){%>
+      <a href="/individual/<%=item.username%>">
+        <h3><%=item.username%></h3>
+      </a>
+      <%}%>
+      <%}%>
+      <%})%>
       <h3><%=item.username%></h3>
       <div class="container">
         <div class="row">
@@ -134,35 +144,35 @@
                 <h5 class="commentcontent"><%=comment.name%> : </h5>
                 <p class="commentcontent"><%=comment.content%></p>
                 <%if(user==comment.name){%>
-                <form  action="/deletecomment" method="post">
-                <button type="submit" name="button" class="btn" value="<%=comment._id%>">Delete</button>
+                <form action="/deletecomment" method="post">
+                  <button type="submit" name="button" class="btn" value="<%=comment._id%>">Delete</button>
                 </form>
                 <%}%>
               </div>
               <%}%>
-              <%}) %>
+                <%}) %>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <%}) %>
     </div>
-    <%}) %>
   </div>
-</div>
 
-<script>
-  $(document).ready(function() {
-    $('.postsoverflow,.postsoverflow').animate({
-      scrollTop: 100000000000000000000000000000000000
-    }, 0.000000000000000000001);
-    return false;
-  });
+  <script>
+    $(document).ready(function() {
+      $('.postsoverflow,.postsoverflow').animate({
+        scrollTop: 100000000000000000000000000000000000
+      }, 0.000000000000000000001);
+      return false;
+    });
 
-  function yourFunction() {
-    var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
-    var your_form = document.getElementById('your_form');
-    your_form.action = action_src;
-  }
-</script>
+    function yourFunction() {
+      var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
+      var your_form = document.getElementById('your_form');
+      your_form.action = action_src;
+    }
+  </script>
 
-<%- include("footer") -%>
+  <%- include("footer") -%>

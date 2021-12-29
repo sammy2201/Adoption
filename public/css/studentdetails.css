@@ -617,6 +617,7 @@ background-color: #9B0000
   margin: 25px;
   display:inline-grid;
   perspective: 1000px;
+  margin-left: 100px
 }
 
 /* .flip-card */
