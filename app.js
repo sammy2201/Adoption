@@ -342,7 +342,7 @@ app.get("/adoption", function(req, res) {
         Orphanage.find(function(err, founditems) {
           res.render("adopt", {
             items: founditems,
-            users:founduser
+            users: founduser
           });
         });
       });
@@ -380,6 +380,10 @@ app.get("/individual/:name", function(req, res) {
   } else {
     res.redirect("/login");
   }
+});
+
+app.get("/chat/with/:name", function(req, res) {
+  res.redirect("/login");
 });
 
 

@@ -15,7 +15,7 @@
 
   <%items.forEach(function(item){ %>
   <%if(user===item.requestername){%>
-    <div class="containerrev">
+  <div class="containerrev">
     <div class="container d-flex align-items-center justify-content-center position-relative flex-wrap">
       <div class="card d-flex position-relative flex-column">
         <div class='imgContainer'>
@@ -27,12 +27,16 @@
           <%}%>
           </div>
         <div class="content">
-          <h2><button class="btn" type="submit" name="button">chat</button></h2>
+          <form class="" action="index.html" method="post">
+
+          </form>
+          <a href="/chat/with/<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+
           <p>for further enquries chat with us ..</p>
         </div>
       </div>
     </div>
   </div>
   <%}%>
-    <%}) %>
-    <!-- /////////////// -->
+          <%}) %>
+          <!-- /////////////// -->

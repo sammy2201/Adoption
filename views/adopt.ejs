@@ -1,30 +1,47 @@
 <%- include("header") -%>
 <link rel="stylesheet" href="css/adopt.css">
 <script>
+  // JavaScript code
   function search_animal() {
     let input = document.getElementById('searchbar').value
-    input=input.toLowerCase();
+    input = input.toLowerCase();
     let x = document.getElementsByClassName('searchname');
 
     for (i = 0; i < x.length; i++) {
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-            // x[i].style.display="none";
-            let y=document.getElementsByClassName(x[i]);
-            y.style.display="none";
-
-
+      var node = x[i].getElementsByClassName("2");
+      for (var j = 0; j < node.length; j++) {
+        if (!node[j].innerHTML.toLowerCase().includes(input)) {
+          x[i].style.display = "none";
+        } else {
+          x[i].style.display = "list-item";
         }
-        else {
-            x[i].style.display="list-item";
-        }
+      }
     }
-}
+  }
+
+
+  function search_individual() {
+    let input = document.getElementById('searchindi').value
+    input = input.toLowerCase();
+    let x = document.getElementsByClassName('searchindividual');
+
+    for (i = 0; i < x.length; i++) {
+      var node = x[i].getElementsByClassName("1");
+      for (var j = 0; j < node.length; j++) {
+        if (!node[j].innerHTML.toLowerCase().includes(input)) {
+          x[i].style.display = "none";
+        } else {
+          x[i].style.display = "list-item";
+        }
+      }
+    }
+  }
 </script>
 </head>
 
 <body>
 
-   <!-- /////////////////////////////// -->
+  <!-- /////////////////////////////// -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="btn-2">
       <a href="/"><span>Orphanage</span></a>
@@ -42,14 +59,20 @@
   <h2>Orphanages</h2>
 
   <div class="orphanagelist">
+    <!-- /////////search////////////// -->
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-search"></i></div>
+      </div>
+      <input id="searchbar" class="form-control" onkeyup="search_animal()" type="text" name="search" placeholder="Search Orphanages.." autocomplete="off">
+    </div>
 
-    <input id="searchbar" onkeyup="search_animal()" type="text"
-        name="search" placeholder="Search animals..">
+    <!-- //////////////////////////////////////// -->
     <%items.forEach(function(item){ %>
-    <div class="blog-card spring-fever">
+    <div class="blog-card spring-fever <%=item.name%> searchname">
       <div class="title-content">
         <a href="/<%=item.name%>">
-          <h3 class="searchname"> <%=item.name%></h3>
+          <h3 class="2"><%=item.name%></h3>
         </a>
       </div>
       <div class="card-info">
@@ -68,15 +91,23 @@
     <%})%>
   </div>
 
-<!-- /////////////////recent lost/////////////////// -->
+  <!-- /////////////////recent lost/////////////////// -->
   <h2>Children recently Effected</h2>
+
+  <!-- /////////search////////////// -->
   <div class="orphanagelist">
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-search"></i></div>
+      </div>
+      <input id="searchindi" class="form-control" onkeyup="search_individual()" type="text" name="search" placeholder="Search Children.." autocomplete="off">
+    </div>
     <%users.forEach(function(user){ %>
     <%if(user.typeOfUser === "recentlost"){%>
-    <div class="blog-card spring-fever recentlostdiv <%=user.name%>">
+    <div class="blog-card spring-fever recentlostdiv searchindividual">
       <div class="title-content">
         <a href="/individual/<%=user.name%>">
-          <h3> <%=user.name%></h3>
+          <h3 class="1"> <%=user.name%></h3>
         </a>
       </div>
       <!-- <div class="utility-info">
