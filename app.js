@@ -359,13 +359,13 @@ app.get("/posts", function(req, res) {
 app.get("/individual/:name", function(req, res) {
   const pathname = req._parsedOriginalUrl.pathname.slice(12)
   const pathnamwithspace = replaceAll(pathname, '%20', ' ')
-  console.log(pathnamwithspace);
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
       Individual.find(function(err, founditems) {
         res.render("recentlostforuser", {
           items: founditems,
           check: pathnamwithspace,
+          user: req.user.name,
         });
       });
     } else {
@@ -790,6 +790,18 @@ app.post("/request", function(req, res) {
   });
   someconstant.save();
   res.redirect("/" + route);
+});
+
+app.post("/requestindividual", function(req, res) {
+  const nameofrequester = req.body.button.substring(0, req.body.button.indexOf('*'));
+  const route = req.body.button.split('*').pop();
+  const someconstant = new Request({
+    childname: route,
+    requestername: nameofrequester,
+    individualname: "individual"
+  });
+  someconstant.save();
+  res.redirect("/individual/" + route);
 });
 
 

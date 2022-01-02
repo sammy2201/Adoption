@@ -16,6 +16,10 @@
   </nav>
   <!------ Include the above in your HEAD tag ---------->
 
+  <form class="" action="/requestindividual" method="post">
+    <button type="submit" name="button" class="btn" value="<%=user%>*<%=check%>">Request</button>
+  </form>
+
   <div class="container emp-profile">
     <%items.forEach(function(item){ %>
     <%if(check===item.name){%>
