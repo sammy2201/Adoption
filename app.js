@@ -273,9 +273,12 @@ app.get("/recentlost", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "recentlost") {
       Individual.find(function(err, founditems) {
-        res.render("recentlost", {
-          items: founditems,
-          check: req.user.name,
+        Request.find(function(err, foundrequests) {
+          res.render("recentlost", {
+            items: founditems,
+            check: req.user.name,
+            requestsgot: foundrequests
+          });
         });
       });
     } else {

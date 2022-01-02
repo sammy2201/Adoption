@@ -224,3 +224,30 @@
              <%}%>
              <%}) %>
      </div>
+
+
+     <!-- /////////////////////Request//////////////////////////// -->
+     <div class="requests">
+       <h3>requests</h3>
+       <%requestsgot.forEach(function(request){ %>
+       <%if(check===request.childname){%>
+       <%if(request.individualname==="individual"){%>
+       <div class="containerrev">
+         <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
+           <div class="card d-flex position-relative flex-column">
+             <div class='imgContainer'>
+               <h3><%=request.requestername%></h3>
+             </div>
+             <div class="content">
+               <form class="" action="/acceptorrejectindividual" method="post">
+                 <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+                 <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.orphanagename%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+       <%}%>
+       <%}%>
+       <%})%>
+     </div>
