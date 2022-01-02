@@ -338,9 +338,12 @@ app.get("/studentdetails", function(req, res) {
 app.get("/adoption", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
-      Orphanage.find(function(err, founditems) {
-        res.render("adopt", {
-          items: founditems,
+      User.find(function(err, founduser) {
+        Orphanage.find(function(err, founditems) {
+          res.render("adopt", {
+            items: founditems,
+            users:founduser
+          });
         });
       });
     } else {

@@ -4,6 +4,7 @@
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="btn-2">
       <a href="/"><span>Orphanage</span></a>
@@ -18,25 +19,52 @@
 
   <!-- //////////////////////////////////// -->
 
+  <h2>Orphanages</h2>
 
-  <%items.forEach(function(item){ %>
-  <div class="blog-card spring-fever">
-    <div class="title-content">
-      <a href="/<%=item.name%>">
-        <h3> <%=item.name%></h3>
-      </a>
-    </div>
-    <div class="card-info">
-      <%=item.description+"........"%>
-      <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
-    </div>
-    <!-- <div class="utility-info">
-      <ul class="utility-list">
-        <li><span class="licon icon-like"></span><a href="#">2</a></li>
-        <li><span class="licon icon-tag"></span><a href="#">Photos</a>
-      </ul>
-    </div> -->
-    <div class="gradient-overlay"></div>
-    <div class="color-overlay"></div>
-  </div><!-- /.blog-card -->
-  <%}) %>
+  <div class="orphanagelist">
+    <%items.forEach(function(item){ %>
+    <div class="blog-card spring-fever">
+      <div class="title-content">
+        <a href="/<%=item.name%>">
+          <h3> <%=item.name%></h3>
+        </a>
+      </div>
+      <div class="card-info">
+        <%=item.description+"........"%>
+        <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
+      </div>
+      <!-- <div class="utility-info">
+        <ul class="utility-list">
+          <li><span class="licon icon-like"></span><a href="#">2</a></li>
+          <li><span class="licon icon-tag"></span><a href="#">Photos</a>
+        </ul>
+      </div> -->
+      <div class="gradient-overlay"></div>
+      <div class="color-overlay"></div>
+    </div><!-- /.blog-card -->
+    <%})%>
+  </div>
+
+<!-- /////////////////recent lost/////////////////// -->
+  <h2>Children recently Effected</h2>
+  <div class="orphanagelist">
+    <%users.forEach(function(user){ %>
+    <%if(user.typeOfUser === "recentlost"){%>
+    <div class="blog-card spring-fever recentlostdiv">
+      <div class="title-content">
+        <a href="/individual/<%=user.name%>">
+          <h3> <%=user.name%></h3>
+        </a>
+      </div>
+      <!-- <div class="utility-info">
+        <ul class="utility-list">
+          <li><span class="licon icon-like"></span><a href="#">2</a></li>
+          <li><span class="licon icon-tag"></span><a href="#">Photos</a>
+        </ul>
+      </div> -->
+      <div class="gradient-overlay"></div>
+      <div class="color-overlay"></div>
+    </div><!-- /.blog-card -->
+    <%}%>
+    <%})%>
+  </div>
