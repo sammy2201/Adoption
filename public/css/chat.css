@@ -1,0 +1,58 @@
+body {
+  /* background-image: -webkit-linear-gradient(50deg, #E4CDA7 50%, #F6F5EE 50%); */
+  background-color: #F6F5EE;
+}
+
+.titlebelow {
+  width: 50%;
+  margin-left: 8%;
+  size: 2px;
+}
+
+.navbar {
+  background-color: #EAD8B6;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+.navbarbutton {
+  margin-left: 65%
+}
+
+h5 {
+  display: inline-grid;
+}
+
+p {
+  display: inline-grid;
+}
+
+.time {
+  opacity: 0.6;
+  text-align: center;
+}
+
+.chatbox {
+  width: 500px;
+  height: 400px;
+  overflow: auto;
+  border-radius: 0;
+  background-color: white;
+  margin-top: 100px;
+  margin-left: 30%;
+}
+
+.chatbox::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.submitcard {
+  margin-left: 35%;
+  width: 500px;
+}

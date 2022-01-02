@@ -169,6 +169,14 @@ const commentSchema = new mongoose.Schema({
   idofposter: String
 });
 
+
+const chatSchema = new mongoose.Schema({
+  groupname: String,
+  name: String,
+  time: String,
+  chat: String,
+});
+
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
 
@@ -182,6 +190,7 @@ const Request = new mongoose.model("Request", requestSchema);
 const Review = new mongoose.model("Review", reviewSchema);
 const Comment = new mongoose.model("Comment", commentSchema);
 const Requestreply = new mongoose.model("Requestreply", requestreplySchema);
+const Chat = new mongoose.model("Chat", chatSchema);
 /////////////////////////passport//////////////////////////////
 
 passport.use(User.createStrategy());
@@ -383,7 +392,19 @@ app.get("/individual/:name", function(req, res) {
 });
 
 app.get("/chat/with/:name", function(req, res) {
-  res.redirect("/login");
+  const pathname = req._parsedOriginalUrl.pathname.slice(11)
+  const pathnamwithspace = replaceAll(pathname, '%20', ' ')
+  if (req.isAuthenticated()) {
+    Chat.find(function(err, founditems) {
+      res.render("chat", {
+        newChat: founditems,
+        check: pathnamwithspace,
+        user: req.user.name,
+      });
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 
@@ -860,6 +881,26 @@ app.post("/posts", upload.single('image'), function(req, res) {
   });
   someconstant.save();
   res.redirect("/");
+});
+
+
+app.post("/chat", upload.single('image'), function(req, res) {
+  const chat = req.body.chat;
+  const groupname = req.body.button;
+  const nameOfUser = req.user.name;
+  const date_ob = new Date();
+  const hours = date_ob.getHours();
+  const minutes = date_ob.getMinutes();
+  const currentTime = hours + ":" + minutes;
+
+  const someconstant = new Chat({
+    groupname: groupname,
+    name:nameOfUser ,
+    time: currentTime,
+    chat: chat,
+  });
+  someconstant.save();
+  res.redirect("/chat/with/"+groupname);
 });
 
 /////////////////////////////listen///////////////////////////////

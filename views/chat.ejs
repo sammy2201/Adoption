@@ -1,0 +1,50 @@
+<%- include("header") -%>
+<link rel="stylesheet" href="/css/chat.css">
+<script>
+  $(document).ready(function() {
+    $('html,.chatbox').animate({
+      scrollTop: 100000000000000000000000000000000000
+    }, 0.000000000000000000001);
+    return false;
+  });
+  function yourFunction() {
+    var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
+    var your_form = document.getElementById('your_form');
+    your_form.action = action_src;
+  }
+</script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
+    <a class="navbar-brand" href="/">Orphanage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+
+
+
+  <div class="">
+
+    <div class="chatbox ">
+      <% newChat.forEach(function(item){ %>
+      <%if(check===item.groupname){%>
+      <p class='chat time'><%=  item.time  %></p>
+      <div class="msg">
+        <h5 class='chat'><%=  item.name  %>:</h5>
+        <p class='chat'><%=  item.chat  %></p>
+      </div>
+      <%}%>
+      <%})%>
+    </div>
+    <div class="card submitcard">
+      <form class="form-inline chatlabel " action="/chat" method="post">
+        <input class=" downbox " type="text " name="chat" value="" placeholder="Type" autocomplete="off" autofocus>
+        <button class=" addbutton btn " type="submit" name="button" value="<%=check%>">+</button>
+      </form>
+    </div>
+
+  </div>
