@@ -225,12 +225,12 @@ app.get("/", function(req, res) {
 app.get("/myacceptedlist", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
-        Requestreply.find(function(err, founditems) {
-          res.render("myacceptedlist", {
-            items: founditems,
-            user: req.user.name,
-          });
+      Requestreply.find(function(err, founditems) {
+        res.render("myacceptedlist", {
+          items: founditems,
+          user: req.user.name,
         });
+      });
     } else {
       console.log("problem");
     }
@@ -357,12 +357,15 @@ app.get("/posts", function(req, res) {
 });
 
 app.get("/individual/:name", function(req, res) {
+  const pathname = req._parsedOriginalUrl.pathname.slice(12)
+  const pathnamwithspace = replaceAll(pathname, '%20', ' ')
+  console.log(pathnamwithspace);
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "user") {
       Individual.find(function(err, founditems) {
         res.render("recentlostforuser", {
           items: founditems,
-          check: req.user.name,
+          check: pathnamwithspace,
         });
       });
     } else {
