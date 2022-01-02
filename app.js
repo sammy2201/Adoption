@@ -751,6 +751,39 @@ app.post("/acceptorreject", function(req, res) {
   res.redirect("/studentdetails");
 });
 
+
+
+app.post("/acceptorrejectindividual", function(req, res) {
+  const id = req.body.button.substr(0, req.body.button.indexOf('@'));
+  const orphanagename = req.body.button.substring(req.body.button.indexOf('@') + 1, req.body.button.indexOf('&'));
+  const requestername = req.body.button.substring(req.body.button.indexOf('&') + 1, req.body.button.indexOf('+'));
+  const childname = req.body.button.substring(req.body.button.indexOf('+') + 1, req.body.button.indexOf('*'));
+  const status = req.body.button.split('*').pop();
+
+  if (status == "notok") {
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
+  }
+  if (status == "ok") {
+    const someconstant = new Requestreply({
+      childname: childname,
+      requestername: requestername,
+      orphanagename: orphanagename,
+    });
+    someconstant.save();
+    Request.findByIdAndDelete(id, function(err, docs) {
+      if (err) {
+        console.log(err)
+      } else {}
+    });
+  }
+  res.redirect("/recentlost");
+});
+
+
 app.post("/deletereview", function(req, res) {
   const id = req.body.button.substring(0, req.body.button.indexOf('&'));
   const route = req.body.button.split('&').pop();
