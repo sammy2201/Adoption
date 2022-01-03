@@ -9,7 +9,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="/">Orphanage</a>
+    <a class="navbar-brand" href="/">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,236 +18,255 @@
     </div>
   </nav>
 
+  <%const array=[ ]%>
+  <%const groupname=" "%>
+  <% chat.forEach(function(chatitem){ %>
+  <%if(chatitem.groupname=== check){ %>
+  <%if(array.includes(chatitem.name) === false & chatitem.name!==check){ %>
+  <%array.push(chatitem.name)%>
+  <%} %>
+  <%} %>
+  <%}) %>
 
-<!------ Include the above in your HEAD tag ---------->
+  <div class="">
+    <h4>chat with</h4>
+    <% array.forEach(function(item){ %>
+        <h4 class="listItem"><%=item%></h4>
+            <a href="/chat/with/<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+    <%}) %>
+  </div>
 
-<div class="container emp-profile">
-  <%items.forEach(function(item){ %>
-  <%if(check===item.name){%>
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                          <img src="data:image/<%=item.img.contentType%>;base64,
+
+
+  <!------ Include the above in your HEAD tag ---------->
+
+  <div class="container emp-profile">
+    <%items.forEach(function(item){ %>
+    <%if(check===item.name){%>
+    <form method="post">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img src="data:image/<%=item.img.contentType%>;base64,
                                                              <%=item.img.data.toString('base64')%>">
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file" />
+            </div>
+          </div>
 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                     <%=item.name%>
-                                    </h5>
-                                    <h6>
-                                      ready for adoption
-                                    </h6>
-                                    <p class="proile-rating"> <span></span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                      <!-- <div class="col-md-2">
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>
+              <%=item.name%>
+            </h5>
+            <h6>
+              ready for adoption
+            </h6>
+            <p class="proile-rating"> <span></span></p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="col-md-2">
                           <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                       </div> -->
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="profile-work">
-                              <p>HOBBIES</p>
-                              <a href=""><%=item.hobies%></a><br/>
-                              <a href=""><%=item.hobies%></a><br/>
-                              <a href=""><%=item.hobies%></a>
-                              <p>INTRESTED IN</p>
-                              <a href=""><%=item.intrestedin%></a><br/>
-                              <a href=""><%=item.intrestedin%></a><br/>
-                              <a href=""><%=item.intrestedin%></a><br/>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-work">
+            <p>HOBBIES</p>
+            <a href=""><%=item.hobies%></a><br />
+            <a href=""><%=item.hobies%></a><br />
+            <a href=""><%=item.hobies%></a>
+            <p>INTRESTED IN</p>
+            <a href=""><%=item.intrestedin%></a><br />
+            <a href=""><%=item.intrestedin%></a><br />
+            <a href=""><%=item.intrestedin%></a><br />
 
-                          </div>
-                      </div>
-                      <div class="col-md-8">
-                          <div class="tab-content profile-tab" id="myTabContent">
-                              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><%=item.name%></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Age</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p><%=item.age%></p>
-                                                    </div>
-                                                </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><%=item.mail%></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                              <label>Phone</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <p><%=item.phonenum%></p>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                    <label>Address</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p><%=item.address%></p>
-                                                        </div>
-                                                    </div>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <label>State</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <p><%=item.state%></p>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                    <label>City</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p> <%=item.city%></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                          <label>Pincode</label>
-                                                              </div>
-                                                              <div class="col-md-6">
-                                                                  <p><%=item.pincode%></p>
-                                                              </div>
-                                                          </div>
-                                                      <div class="row">
-                                                              <div class="col-md-6">
-                                                                <label>Gender</label>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <p><%=item.gender%></p>
-                                                                    </div>
-                                                                </div>
-                                                          <div class="row">
-                                                                  <div class="col-md-6">
-                                                                    <label>Studies</label>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                              <p><%=item.studies%></p>
-                                                                        </div>
-                                                          </div>
-                                                          <div class="row">
-                                                                  <div class="col-md-6">
-                                                                    <label>Date of birth</label>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <p><%=item.dob%></p>
-                                                                        </div>
-                                                                    </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Name</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.name%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Age</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.age%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.mail%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Phone</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.phonenum%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Address</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.address%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>State</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.state%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>City</label>
+                </div>
+                <div class="col-md-6">
+                  <p> <%=item.city%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Pincode</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.pincode%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Gender</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.gender%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Studies</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.studies%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Date of birth</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=item.dob%></p>
+                </div>
+              </div>
 
-                                  </div>
-                                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <label>Experience</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <p>Expert</p>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <label>Hourly Rate</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                          </div>
-                             <div class="row">
-                                 <div class="col-md-12">
-                                     <label>Your Bio</label><br/>
-                                     <p>Your detail description</p>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-           </form>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Experience</label>
+                </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Hourly Rate</label>
+                </div>
+                <div class="col-md-6">
+                  <p>10$/hr</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Total Projects</label>
+                </div>
+                <div class="col-md-6">
+                  <p>230</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>English Level</label>
+                </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Availability</label>
+                </div>
+                <div class="col-md-6">
+                  <p>6 months</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Your Bio</label><br />
+                  <p>Your detail description</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
 
-             <%}%>
+    <%}%>
              <%}) %>
-     </div>
+  </div>
 
 
-     <!-- /////////////////////Request//////////////////////////// -->
-     <div class="requests">
-       <h3>requests</h3>
-       <%requestsgot.forEach(function(request){ %>
-       <%if(check===request.childname){%>
-       <%if(request.individualname==="individual"){%>
-       <div class="containerrev">
-         <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
-           <div class="card d-flex position-relative flex-column">
-             <div class='imgContainer'>
-               <h3><%=request.requestername%></h3>
-             </div>
-             <div class="content">
-               <form class="" action="/acceptorrejectindividual" method="post">
-                 <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
-                 <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
-               </form>
-             </div>
-           </div>
-         </div>
-       </div>
+  <!-- /////////////////////Request//////////////////////////// -->
+  <div class="requests">
+    <h3>requests</h3>
+    <%requestsgot.forEach(function(request){ %>
+    <%if(check===request.childname){%>
+    <%if(request.individualname==="individual"){%>
+    <div class="containerrev">
+      <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
+        <div class="card d-flex position-relative flex-column">
+          <div class='imgContainer'>
+            <h3><%=request.requestername%></h3>
+          </div>
+          <div class="content">
+            <form class="" action="/acceptorrejectindividual" method="post">
+              <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+              <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%}%>
        <%}%>
-       <%}%>
-       <%})%>
-     </div>
+    <%})%>
+  </div>

@@ -281,12 +281,15 @@ app.get("/logout", function(req, res) {
 app.get("/recentlost", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "recentlost") {
-      Individual.find(function(err, founditems) {
-        Request.find(function(err, foundrequests) {
-          res.render("recentlost", {
-            items: founditems,
-            check: req.user.name,
-            requestsgot: foundrequests
+      Chat.find(function(err, foundchat) {
+        Individual.find(function(err, founditems) {
+          Request.find(function(err, foundrequests) {
+            res.render("recentlost", {
+              items: founditems,
+              check: req.user.name,
+              requestsgot: foundrequests,
+              chat: foundchat
+            });
           });
         });
       });
@@ -895,12 +898,12 @@ app.post("/chat", upload.single('image'), function(req, res) {
 
   const someconstant = new Chat({
     groupname: groupname,
-    name:nameOfUser ,
+    name: nameOfUser,
     time: currentTime,
     chat: chat,
   });
   someconstant.save();
-  res.redirect("/chat/with/"+groupname);
+  res.redirect("/chat/with/" + groupname);
 });
 
 /////////////////////////////listen///////////////////////////////

@@ -7,6 +7,7 @@
     }, 0.000000000000000000001);
     return false;
   });
+
   function yourFunction() {
     var action_src = "https://groupcht.herokuapp.com/" + document.getElementsByName("keywords")[0].value;
     var your_form = document.getElementById('your_form');
@@ -28,21 +29,34 @@
 
 
   <div class="">
+    <div class="chatname">
 
+      <%if(check===user){%>
+      <%}else{%>
+      <h1>chat with :<%= check %></h1>
+      <%}%>
+
+    </div>
     <div class="chatbox ">
       <% newChat.forEach(function(item){ %>
       <%if(check===item.groupname){%>
       <p class='chat time'><%=  item.time  %></p>
+      <%if(user===item.name){%>
+      <div class="msg right">
+        <p class='chat'><%=  item.chat  %></p>
+      </div>
+      <%}else{%>
       <div class="msg">
         <h5 class='chat'><%=  item.name  %>:</h5>
         <p class='chat'><%=  item.chat  %></p>
       </div>
       <%}%>
+      <%}%>
       <%})%>
     </div>
     <div class="card submitcard">
       <form class="form-inline chatlabel " action="/chat" method="post">
-        <input class=" downbox " type="text " name="chat" value="" placeholder="Type" autocomplete="off" autofocus>
+        <input class=" downbox " type="text " name="chat" value="" placeholder="Type" autocomplete="off" autofocus required>
         <button class=" addbutton btn " type="submit" name="button" value="<%=check%>">+</button>
       </form>
     </div>
