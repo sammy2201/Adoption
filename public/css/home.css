@@ -250,3 +250,40 @@ h1{
   margin-left: 4px;
 }
 /* ////////////////////////////////////////////////////////////////////////// */
+.btndelete{
+  background-color: white;
+  margin-left: 90%;
+  border: 0px;
+}
+.btndelete:hover{
+  color: red;
+}
+.btncomment{
+  background-color: white;
+  border: 0px;
+}
+.btncomment:hover{
+  color: red;
+}
+
+#onhover{
+                visibility: hidden;
+                  margin-left: 89%;
+                  text-shadow: 2px;
+                  font-family: cursive;
+
+
+            }
+#postdelete:hover ~ #onhover{
+                visibility: visible;
+            }
+#onhover2{
+                  visibility: hidden;
+                 text-shadow: 2px;
+                 font-family: cursive;
+                 font-size: 0.7rem;
+
+  }
+#commentdelete:hover ~ #onhover2{
+                      visibility: visible;
+}

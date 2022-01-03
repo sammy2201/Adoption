@@ -786,3 +786,21 @@ ul {
 .containerrev{
   display: inline-grid;
 }
+.btnreivew{
+  background-color: white;
+  border: 0px;
+  margin-left: 90%;
+}
+.btnreivew:hover{
+  color: red;
+}
+#onhover{
+                  visibility: hidden;
+                 text-shadow: 2px;
+                 font-family: cursive;
+                 margin-left: 89%;
+                 font-size: 0.7rem;
+                   }
+#reviewdelete:hover ~ #onhover{
+                      visibility: visible;
+}

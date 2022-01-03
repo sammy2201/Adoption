@@ -230,11 +230,15 @@
     <%if(review.orphanagename===item.name){%>
     <h6><%=review.name+" :"%></h6>
     <%if(user===review.name){%>
-    <form  action="/deletereview" method="post">
-    <button type="submit" name="button" class="btn" value="<%=review._id%>&<%=check%>">Delete</button>
-    </form>
+
     <%}%>
     <p><%=review.content%></p>
+    <form  action="/deletereview" method="post">
+      <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
+      <div id="onhover">
+        delete review
+      </div>
+    </form>
     <%}%>
     <%}%>
     <%})%>

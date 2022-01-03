@@ -87,7 +87,11 @@
 
       <%if(user==item.username){%>
       <form action="/deletepost" method="post">
-        <button type="submit" name="button" class="btn" value="<%=item._id%>">Delete</button>
+        <!-- <i class="fas fa-trash"></i> -->
+        <button id="postdelete" type="submit" name="button" class="btndelete" value="<%=item._id%>"><i class="fas fa-trash fa-2x"></i></button>
+        <div id="onhover">
+          delete post
+        </div>
       </form>
       <%}%>
 
@@ -145,7 +149,10 @@
                 <p class="commentcontent"><%=comment.content%></p>
                 <%if(user==comment.name){%>
                 <form action="/deletecomment" method="post">
-                  <button type="submit" name="button" class="btn" value="<%=comment._id%>">Delete</button>
+                  <button id="commentdelete" type="submit" name="button" class="btncomment" value="<%=comment._id%>"><i class="fas fa-trash"></i></button>
+                  <div id="onhover2">
+                    delete comment
+                  </div>
                 </form>
                 <%}%>
               </div>
