@@ -791,6 +791,9 @@ ul {
   border: 0px;
   margin-left: 90%;
 }
+.btnreivew:focus{
+  outline: none;
+}
 .btnreivew:hover{
   color: red;
 }

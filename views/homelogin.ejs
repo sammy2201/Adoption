@@ -144,12 +144,12 @@
               </form>
               <%comments.forEach(function(comment){ %>
               <%if(comment.idofposter==item._id){ %>
-              <div class="commentdiv">
+              <div class="commentdiv"
                 <h5 class="commentcontent"><%=comment.name%> : </h5>
                 <p class="commentcontent"><%=comment.content%></p>
                 <%if(user==comment.name){%>
                 <form action="/deletecomment" method="post">
-                  <button id="commentdelete" type="submit" name="button" class="btncomment" value="<%=comment._id%>"><i class="fas fa-trash"></i></button>
+                  <button id="commentdelete" type="submit" name="button" class="btncomment" value="<%=comment._id%>"><i class="fas fa-trash f"></i></button>
                   <div id="onhover2">
                     delete comment
                   </div>
