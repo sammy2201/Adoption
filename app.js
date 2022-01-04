@@ -172,7 +172,8 @@ const commentSchema = new mongoose.Schema({
 
 const chatSchema = new mongoose.Schema({
   groupname: String,
-  name: String,
+  sendername: String,
+  recevername: String,
   time: String,
   chat: String,
 });
@@ -397,12 +398,14 @@ app.get("/individual/:name", function(req, res) {
 app.get("/chat/with/:name", function(req, res) {
   const pathname = req._parsedOriginalUrl.pathname.slice(11)
   const pathnamwithspace = replaceAll(pathname, '%20', ' ')
+  const check = pathnamwithspace.split('+').pop();
   if (req.isAuthenticated()) {
     Chat.find(function(err, founditems) {
       res.render("chat", {
         newChat: founditems,
-        check: pathnamwithspace,
+        check: check,
         user: req.user.name,
+        groupname: pathnamwithspace
       });
     });
   } else {
@@ -895,14 +898,28 @@ app.post("/chat", upload.single('image'), function(req, res) {
   const hours = date_ob.getHours();
   const minutes = date_ob.getMinutes();
   const currentTime = hours + ":" + minutes;
+  const recevername = groupname.split('+').pop();
+  const recevername2 = groupname.substring(0, groupname.indexOf('+'))
+  if (nameOfUser === recevername) {
+    const someconstant = new Chat({
+      groupname: groupname,
+      sendername: nameOfUser,
+      recevername: recevername2,
+      time: currentTime,
+      chat: chat,
+    });
+    someconstant.save();
+  } else {
+    const someconstant = new Chat({
+      groupname: groupname,
+      sendername: nameOfUser,
+      recevername: recevername,
+      time: currentTime,
+      chat: chat,
+    });
+    someconstant.save();
+  }
 
-  const someconstant = new Chat({
-    groupname: groupname,
-    name: nameOfUser,
-    time: currentTime,
-    chat: chat,
-  });
-  someconstant.save();
   res.redirect("/chat/with/" + groupname);
 });
 

@@ -20,10 +20,11 @@
 
   <%const array=[ ]%>
   <%const groupname=" "%>
+  <%=check%>
   <% chat.forEach(function(chatitem){ %>
-  <%if(chatitem.groupname=== check){ %>
-  <%if(array.includes(chatitem.name) === false & chatitem.name!==check){ %>
-  <%array.push(chatitem.name)%>
+  <%if(chatitem.recevername=== check){ %>
+  <%if(array.includes(chatitem.recevername) === false & chatitem.sendername!==check){ %>
+  <%array.push(chatitem.sendername)%>
   <%} %>
   <%} %>
   <%}) %>
@@ -32,7 +33,7 @@
     <h4>chat with</h4>
     <% array.forEach(function(item){ %>
         <h4 class="listItem"><%=item%></h4>
-            <a href="/chat/with/<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+            <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
     <%}) %>
   </div>
 
