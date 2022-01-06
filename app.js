@@ -329,14 +329,17 @@ app.get("/orphanagedetails", function(req, res) {
 app.get("/studentdetails", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "admin") {
-      Orphanage.find(function(err, founditems) {
-        Child.find(function(err, foundchilditems) {
-          Request.find(function(err, foundrequests) {
-            res.render("studentdetails", {
-              items: founditems,
-              check: req.user.name,
-              childitems: foundchilditems,
-              requestsgot: foundrequests
+      Chat.find(function(err, foundchat) {
+        Orphanage.find(function(err, founditems) {
+          Child.find(function(err, foundchilditems) {
+            Request.find(function(err, foundrequests) {
+              res.render("studentdetails", {
+                items: founditems,
+                check: req.user.name,
+                childitems: foundchilditems,
+                requestsgot: foundrequests,
+                chat: foundchat
+              });
             });
           });
         });

@@ -23,7 +23,7 @@
   <%=check%>
   <% chat.forEach(function(chatitem){ %>
   <%if(chatitem.recevername=== check){ %>
-  <%if(array.includes(chatitem.recevername) === false & chatitem.sendername!==check){ %>
+  <%if(array.includes(chatitem.sendername) === false){ %>
   <%array.push(chatitem.sendername)%>
   <%} %>
   <%} %>
