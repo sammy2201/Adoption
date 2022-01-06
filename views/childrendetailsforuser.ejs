@@ -189,114 +189,124 @@
             <p>Intrested In : <%=item.intrestedin%></p>
           </ul>
         </div>
-
+        <%requestsgot.forEach(function(reqitem){ %>
         <div class="card-back">
           <figure>
             <div class="img-bg"></div>
             <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
                                            <%=item.img.data.toString('base64')%>">
           </figure>
-
+          <%var id1=""%>
+          <%var id2=""%>
+          <%if(user===reqitem.requestername){%>
+          <%id1=reqitem._id%>
+          <%}%>
+          <%if(item.name===reqitem.childname){%>
+          <% id2=reqitem._id%>
+          <%}%>
+          <%if(id1===id2){%>
           <form action="/request" method="post">
             <button class="flipbtn" type="submit" value="<%=user%>*<%=item.name%>&<%=check%>" name="button">Request to View</button>
           </form>
-
-
-          <div class="design-container">
-            <span class="design design--1"></span>
-            <span class="design design--2"></span>
-            <span class="design design--3"></span>
-            <span class="design design--4"></span>
-            <span class="design design--5"></span>
-            <span class="design design--6"></span>
-            <span class="design design--7"></span>
-            <span class="design design--8"></span>
+          <%}else{%>
+            <form action="/request" method="post">
+              <button class="flipbtn" type="button" name="button">Under review View</button>
+            </form>
+          <%}%>
           </div>
+          <%})%>
+
+
+
+
+
+
+
+
         </div>
       </div>
-    </div>
-    <%}%>
-    <%}%>
-    <%}) %>
-    <%})%>
-  </div>
-
-  <!-- /////////////////////////////////////////reviews///////////////////////////// -->
-  <h4 class="Childrenhed animate__animated animate__zoomInDown">Reviews</h4>
-  <div class="reviews">
-    <%items.forEach(function(item){ %>
-    <%recivedreviews.forEach(function(review){ %>
-    <%if(check===item.name){%>
-    <%if(review.orphanagename===item.name){%>
-    <h6><%=review.name+" :"%></h6>
-    <%if(user===review.name){%>
-
-    <%}%>
-    <p><%=review.content%></p>
-    <form  action="/deletereview" method="post">
-      <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
-      <div id="onhover">
-        delete review
-      </div>
-    </form>
-    <%}%>
-    <%}%>
-    <%})%>
-    <%})%>
-  </div>
-
-
-  <!-- /////////////////////////////////add reviews///////////////////////////////////// -->
-  <div class="btn11 btn11c botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    <span>Add Review</span>
-    <div class="transition"></div>
-  </div>
-
-  <div class="collapse" id="collapseExample">
-    <div class="">
-      <%items.forEach(function(item){ %>
-      <%if(check===item.name){%>
-      <div class="card adddetailsbox">
-        <h1>Add Review</h1>
-        <form action="/review" method="POST">
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">Review</label>
-            <textarea class="form-control" name="content" rows="3" autocomplete="off"></textarea>
-          </div>
-          <button type="submit" class="btnfos btnfos-1" value="<%=user%>*<%=check%>" name="button"> <svg>
-              <rect x="0" y="0" fill="none" width="100%" height="100%" />
-            </svg>Submit</button>
-        </form>
-      </div>
       <%}%>
+    <%}%>
+      <%}) %>
       <%})%>
     </div>
-  </div>
-  <script type="text/javascript">
-    function reveal() {
-      var reveals = document.querySelectorAll(".reveal");
 
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150;
+    <!-- /////////////////////////////////////////reviews///////////////////////////// -->
+    <h4 class="Childrenhed animate__animated animate__zoomInDown">Reviews</h4>
+    <div class="reviews">
+      <%items.forEach(function(item){ %>
+      <%recivedreviews.forEach(function(review){ %>
+      <%if(check===item.name){%>
+      <%if(review.orphanagename===item.name){%>
+      <h6><%=review.name+" :"%></h6>
+      <%if(user===review.name){%>
 
-        if (elementTop < windowHeight - elementVisible) {
-          reveals[i].classList.add("active");
-        } else {
-          reveals[i].classList.remove("active");
+      <%}%>
+    <p><%=review.content%></p>
+      <form action="/deletereview" method="post">
+        <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
+        <div id="onhover">
+          delete review
+        </div>
+      </form>
+      <%}%>
+    <%}%>
+      <%})%>
+      <%})%>
+    </div>
+
+
+    <!-- /////////////////////////////////add reviews///////////////////////////////////// -->
+    <div class="btn11 btn11c botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <span>Add Review</span>
+      <div class="transition"></div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="">
+        <%items.forEach(function(item){ %>
+        <%if(check===item.name){%>
+        <div class="card adddetailsbox">
+          <h1>Add Review</h1>
+          <form action="/review" method="POST">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Review</label>
+              <textarea class="form-control" name="content" rows="3" autocomplete="off"></textarea>
+            </div>
+            <button type="submit" class="btnfos btnfos-1" value="<%=user%>*<%=check%>" name="button"> <svg>
+                <rect x="0" y="0" fill="none" width="100%" height="100%" />
+              </svg>Submit</button>
+          </form>
+        </div>
+        <%}%>
+      <%})%>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+          var windowHeight = window.innerHeight;
+          var elementTop = reveals[i].getBoundingClientRect().top;
+          var elementVisible = 150;
+
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+          } else {
+            reveals[i].classList.remove("active");
+          }
         }
       }
-    }
 
-    window.addEventListener("scroll", reveal);
+      window.addEventListener("scroll", reveal);
 
-    $(document).ready(function() {
-      $('.reviews,.reviews').animate({
-        scrollTop: 100000000000000000000000000000000000
-      }, 0.000000000000000000001);
-      return false;
-    });
-  </script>
+      $(document).ready(function() {
+        $('.reviews,.reviews').animate({
+          scrollTop: 100000000000000000000000000000000000
+        }, 0.000000000000000000001);
+        return false;
+      });
+    </script>
 
-  <%- include("footer") -%>
+    <%- include("footer") -%>

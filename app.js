@@ -209,6 +209,19 @@ function replaceAll(str, match, replacement) {
 
 ///////////////////////////get////////////////////////////////////
 
+
+Request.find({}, function(err, founditems) {
+  if (founditems.length === 0) {
+    const someconstant = new Request({
+      childname: " & & &",
+      requestername: "& & & ",
+      orphanagename: "& & & ",
+    });
+    someconstant.save();
+  }
+});
+
+
 app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
     User.find(function(err, founduser) {
@@ -425,12 +438,15 @@ app.get("/:costumName", function(req, res) {
       Orphanage.find(function(err, founditems) {
         Child.find(function(err, foundchilditems) {
           Review.find(function(err, foundreviews) {
-            res.render("childrendetailsforuser", {
-              items: founditems,
-              check: pathnamwithspace,
-              childitems: foundchilditems,
-              user: req.user.name,
-              recivedreviews: foundreviews,
+            Request.find(function(err, foundrequests) {
+              res.render("childrendetailsforuser", {
+                items: founditems,
+                check: pathnamwithspace,
+                childitems: foundchilditems,
+                user: req.user.name,
+                recivedreviews: foundreviews,
+                requestsgot: foundrequests,
+              });
             });
           });
         });
