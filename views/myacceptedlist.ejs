@@ -27,12 +27,13 @@
           <%}%>
           </div>
         <div class="content">
-          <form class="" action="index.html" method="post">
-
-          </form>
-          <a href="/chat/with/<%=user%>+<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-
-          <p>for further enquries chat with us ..</p>
+          <%if(item.orphanagename==="individual"){%>
+            <a href="/chat/with/<%=user%>+<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+            <p>for further enquries chat with us ..</p>
+          <%}else{%>
+            <a href="/chat/with/<%=user%>+<%=item.orphanagename%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+            <p>for further enquries chat with us ..</p>
+          <%}%>
         </div>
       </div>
     </div>

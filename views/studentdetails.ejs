@@ -47,24 +47,33 @@
     <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
     </div>
   </nav>
+
+
   <%const array=[ ]%>
   <%const groupname=" "%>
   <%=check%>
-  <% chat.forEach(function(chatitem){ %>
-  <%if(chatitem.recevername=== check){ %>
+  <%chat.forEach(function(chatitem){ %>
+  <%items.forEach(function(item){ %>
+  <%if(item.adminname=== check){ %>
   <%if(array.includes(chatitem.sendername) === false){ %>
   <%array.push(chatitem.sendername)%>
   <%} %>
   <%} %>
   <%}) %>
+  <%}) %>
 
+  <%items.forEach(function(orphanitem){ %>
   <div class="">
+    <%if(orphanitem.adminname=== check){ %>
     <h4>chat with</h4>
     <% array.forEach(function(item){ %>
-        <h4 class="listItem"><%=item%></h4>
-            <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+    <h4 class="listItem"><%=item%></h4>
+    <a href="/chat/with/<%=item%>+<%=orphanitem.name%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
     <%}) %>
+    <%} %>
   </div>
+    <%}) %>
+
   <!-- ////////////////////////////////////////////////////////////////////// -->
   <%items.forEach(function(item){ %>
   <%if(check===item.adminname){%>
@@ -141,57 +150,57 @@
   <!-- ////////////////////////////////children/////////////////////////// -->
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
   <hr>
-  <div class="container reveal scroll fade-left" style ="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
-            <!-- various of text here that can makes it go out the border-->
-            <%childitems.forEach(function(item){ %>
-            <%items.forEach(function(mainitem){ %>
-            <%if(check===mainitem.adminname){%>
-            <%if(mainitem.name===item.orphanage){%>
-            <!-- flip-card-container -->
-            <div class="flip-card-container" style="--hue: 170">
-              <div class="flip-card">
-                <div class="card-front">
-                  <figure>
-                    <div class="img-bg"></div>
-                    <img src="images/cardbg.jpg" alt="Image 2">
-                    <figcaption><%=item.name%></figcaption>
-                  </figure>
+  <div class="container reveal scroll fade-left" style="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
+    <!-- various of text here that can makes it go out the border-->
+    <%childitems.forEach(function(item){ %>
+    <%items.forEach(function(mainitem){ %>
+    <%if(check===mainitem.adminname){%>
+    <%if(mainitem.name===item.orphanage){%>
+    <!-- flip-card-container -->
+    <div class="flip-card-container" style="--hue: 170">
+      <div class="flip-card">
+        <div class="card-front">
+          <figure>
+            <div class="img-bg"></div>
+            <img src="images/cardbg.jpg" alt="Image 2">
+            <figcaption><%=item.name%></figcaption>
+          </figure>
 
-                  <ul>
-                    <p>Age : <%=item.age%></p>
-                    <p>Gender : <%=item.gender%></p>
-                    <p>Hobies : <%=item.hobies%></p>
-                    <p>Studies : <%=item.studies%></p>
-                    <p>Guardian : <%=item.guardian%></p>
-                    <p>Intrested In : <%=item.intrestedin%></p>
-                  </ul>
-                </div>
-
-                <div class="card-back">
-                  <figure>
-                    <div class="img-bg"></div>
-                    <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
-                                                   <%=item.img.data.toString('base64')%>">
-                  </figure>
-
-                  <div class="design-container">
-                    <span class="design design--1"></span>
-                    <span class="design design--2"></span>
-                    <span class="design design--3"></span>
-                    <span class="design design--4"></span>
-                    <span class="design design--5"></span>
-                    <span class="design design--6"></span>
-                    <span class="design design--7"></span>
-                    <span class="design design--8"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <%}%>
-            <%}%>
-            <%}) %>
-            <%})%>
+          <ul>
+            <p>Age : <%=item.age%></p>
+            <p>Gender : <%=item.gender%></p>
+            <p>Hobies : <%=item.hobies%></p>
+            <p>Studies : <%=item.studies%></p>
+            <p>Guardian : <%=item.guardian%></p>
+            <p>Intrested In : <%=item.intrestedin%></p>
+          </ul>
         </div>
+
+        <div class="card-back">
+          <figure>
+            <div class="img-bg"></div>
+            <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
+                                                   <%=item.img.data.toString('base64')%>">
+          </figure>
+
+          <div class="design-container">
+            <span class="design design--1"></span>
+            <span class="design design--2"></span>
+            <span class="design design--3"></span>
+            <span class="design design--4"></span>
+            <span class="design design--5"></span>
+            <span class="design design--6"></span>
+            <span class="design design--7"></span>
+            <span class="design design--8"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%}%>
+            <%}%>
+    <%}) %>
+    <%})%>
+  </div>
 
 
 

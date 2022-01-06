@@ -196,7 +196,7 @@
             <img class="childimage" src="data:image/<%=item.img.contentType%>;base64,
                                            <%=item.img.data.toString('base64')%>">
           </figure>
-          <%var id1=""%>
+          <%var id1="&"%>
           <%var id2=""%>
           <%if(user===reqitem.requestername){%>
           <%id1=reqitem._id%>
@@ -204,7 +204,7 @@
           <%if(item.name===reqitem.childname){%>
           <% id2=reqitem._id%>
           <%}%>
-          <%if(id1===id2){%>
+          <%if(id1!==id2){%>
           <form action="/request" method="post">
             <button class="flipbtn" type="submit" value="<%=user%>*<%=item.name%>&<%=check%>" name="button">Request to View</button>
           </form>

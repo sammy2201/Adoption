@@ -339,6 +339,30 @@ app.get("/orphanagedetails", function(req, res) {
   }
 });
 
+// <%const array=[ ]%>
+// <%const groupname=" "%>
+// <%=check%>
+// <% chat.forEach(function(chatitem){ %>
+//   <% items.forEach(function(orphanitem){ %>
+//     <%if(orphanitem.adminname=== check){ %>
+//       <%var x=orphanitem.adminname %>
+//       <%if(x=== check){ %>
+//         <%if(array.includes(chatitem.sendername) === false){ %>
+//           <%array.push(chatitem.sendername)%>
+//         <%}%>
+//       <%}%>
+//     <%}%>
+//   <%})%>
+// <%})%>
+//
+//
+// <div class="">
+//   <h4>chat with</h4>
+//   <% array.forEach(function(item){ %>
+//   <h4 class="listItem"><%=item%></h4>
+//   <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+//   <%}) %>
+// </div>
 app.get("/studentdetails", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "admin") {
