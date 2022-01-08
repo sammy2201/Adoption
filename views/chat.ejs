@@ -26,21 +26,26 @@
   </nav>
 
   <div class="">
-    <div class="chatname">
-      <%if(check===user){%>
-      <h3>Chat with <%= groupname.substring(0,groupname.indexOf('+')) %></h3>
-      <%}else{%>
-      <h3>Chat with <%= check %></h3>
-      <%}%>
-    </div>
+
 
       <%var x=""%>
       <% foundorphan.forEach(function(item){ %>
-        <%if(actualuser===item.adminname){%>
-          <% x=item.name %>
-        <%}%>
+      <%if(actualuser===item.adminname){%>
+      <% x=item.name %>
+      <%}%>
       <%})%>
 
+  <!-- ////////////////////////////heading/////////////////////////////// -->
+
+
+      <div class="chatname">
+        <%if(check===x ||check===actualuser){%>
+        <h3>Chat with <%= groupname.substring(0,groupname.indexOf('+')) %></h3>
+        <%}else{%>
+        <h3>Chat with <%= check %></h3>
+        <%}%>
+      </div>
+  <!-- //////////////////////////body///////////////////////////////// -->
       <div class="chatbox ">
         <% newChat.forEach(function(item){ %>
         <%if(groupname===item.groupname){%>
@@ -55,13 +60,11 @@
         </div>
         <p class='chat time timeleft'><%=  item.time  %></p>
         <%}%>
-        <%}%>
+      <%}%>
         <%})%>
       </div>
     </div>
-
-
-
+  <!-- //////////////////////////input///////////////////////////////// -->
     <div class="submitcard ">
       <div class="card-footer">
         <form class="form-inline chatlabel " action="/chat" method="post">
@@ -72,7 +75,7 @@
             <%}else{%>
             <button class=" input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=user%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
             <%}%>
-         </div>
-       </form>
-   </div>
+       </div>
+     </form>
  </div>
+</div>
