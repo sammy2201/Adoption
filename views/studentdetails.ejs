@@ -55,9 +55,11 @@
   <%chat.forEach(function(chatitem){ %>
   <%items.forEach(function(item){ %>
   <%if(item.adminname=== check){ %>
-  <%if(array.includes(chatitem.sendername) === false){ %>
+  <%founduser.forEach(function(useritem){ %>
+  <%if(array.includes(chatitem.sendername) === false && chatitem.sendername===useritem.name && item.name==chatitem.recevername){ %>
   <%array.push(chatitem.sendername)%>
   <%} %>
+  <%}) %>
   <%} %>
   <%}) %>
   <%}) %>
@@ -72,7 +74,7 @@
     <%}) %>
     <%} %>
   </div>
-    <%}) %>
+  <%}) %>
 
   <!-- ////////////////////////////////////////////////////////////////////// -->
   <%items.forEach(function(item){ %>

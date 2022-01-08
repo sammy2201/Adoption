@@ -339,30 +339,7 @@ app.get("/orphanagedetails", function(req, res) {
   }
 });
 
-// <%const array=[ ]%>
-// <%const groupname=" "%>
-// <%=check%>
-// <% chat.forEach(function(chatitem){ %>
-//   <% items.forEach(function(orphanitem){ %>
-//     <%if(orphanitem.adminname=== check){ %>
-//       <%var x=orphanitem.adminname %>
-//       <%if(x=== check){ %>
-//         <%if(array.includes(chatitem.sendername) === false){ %>
-//           <%array.push(chatitem.sendername)%>
-//         <%}%>
-//       <%}%>
-//     <%}%>
-//   <%})%>
-// <%})%>
-//
-//
-// <div class="">
-//   <h4>chat with</h4>
-//   <% array.forEach(function(item){ %>
-//   <h4 class="listItem"><%=item%></h4>
-//   <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-//   <%}) %>
-// </div>
+
 app.get("/studentdetails", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.user.typeOfUser == "admin") {
@@ -370,12 +347,15 @@ app.get("/studentdetails", function(req, res) {
         Orphanage.find(function(err, founditems) {
           Child.find(function(err, foundchilditems) {
             Request.find(function(err, foundrequests) {
-              res.render("studentdetails", {
-                items: founditems,
-                check: req.user.name,
-                childitems: foundchilditems,
-                requestsgot: foundrequests,
-                chat: foundchat
+              User.find(function(err, founduser) {
+                res.render("studentdetails", {
+                  items: founditems,
+                  check: req.user.name,
+                  childitems: foundchilditems,
+                  requestsgot: foundrequests,
+                  chat: foundchat,
+                  founduser:founduser
+                });
               });
             });
           });
@@ -439,13 +419,18 @@ app.get("/chat/with/:name", function(req, res) {
   const pathname = req._parsedOriginalUrl.pathname.slice(11)
   const pathnamwithspace = replaceAll(pathname, '%20', ' ')
   const check = pathnamwithspace.split('+').pop();
+  const thisuser = pathnamwithspace.substr(0, pathnamwithspace.indexOf('+'));
   if (req.isAuthenticated()) {
     Chat.find(function(err, founditems) {
-      res.render("chat", {
-        newChat: founditems,
-        check: check,
-        user: req.user.name,
-        groupname: pathnamwithspace
+      Orphanage.find(function(err, foundorphan) {
+        res.render("chat", {
+          newChat: founditems,
+          check: check,
+          user: thisuser,
+          groupname: pathnamwithspace,
+          foundorphan: foundorphan,
+          actualuser: req.user.name
+        });
       });
     });
   } else {
@@ -942,26 +927,48 @@ app.post("/chat", upload.single('image'), function(req, res) {
   const minutes = date_ob.getMinutes();
   const currentTime = hours + ":" + minutes;
   const recevername = groupname.split('+').pop();
-  const recevername2 = groupname.substring(0, groupname.indexOf('+'))
-  if (nameOfUser === recevername) {
-    const someconstant = new Chat({
-      groupname: groupname,
-      sendername: nameOfUser,
-      recevername: recevername2,
-      time: currentTime,
-      chat: chat,
-    });
-    someconstant.save();
-  } else {
-    const someconstant = new Chat({
-      groupname: groupname,
-      sendername: nameOfUser,
-      recevername: recevername,
-      time: currentTime,
-      chat: chat,
-    });
-    someconstant.save();
-  }
+  const recevername2 = groupname.substring(0, groupname.indexOf('+'));
+
+  Orphanage.find({
+    adminname: nameOfUser
+  }, function(err, founduser) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (founduser[0] != undefined) {
+        const someconstant = new Chat({
+          groupname: groupname,
+          sendername: founduser[0].name,
+          recevername: recevername2,
+          time: currentTime,
+          chat: chat,
+        });
+        someconstant.save();
+      } else {
+        if (nameOfUser === recevername) {
+          const someconstant = new Chat({
+            groupname: groupname,
+            sendername: nameOfUser,
+            recevername: recevername2,
+            time: currentTime,
+            chat: chat,
+          });
+          someconstant.save();
+        } else {
+          const someconstant = new Chat({
+            groupname: groupname,
+            sendername: nameOfUser,
+            recevername: recevername,
+            time: currentTime,
+            chat: chat,
+          });
+          someconstant.save();
+        }
+      }
+    }
+  });
+
+
 
   res.redirect("/chat/with/" + groupname);
 });

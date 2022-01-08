@@ -25,9 +25,6 @@
     </button>
   </nav>
 
-
-
-
   <div class="">
     <div class="chatname">
       <%if(check===user){%>
@@ -36,37 +33,46 @@
       <h3>Chat with <%= check %></h3>
       <%}%>
     </div>
-    <div class="chatbox ">
-      <% newChat.forEach(function(item){ %>
-      <%if(groupname===item.groupname){%>
 
-      <%if(user===item.sendername){%>
-      <div class="msg right d-flex">
-        <p class='chat'><%=  item.chat  %></p>
-      </div>
-      <p class='chat time timeright'><%=  item.time  %></p>
-      <%}else{%>
-      <div class="msg">
-        <p class='chat'><%=  item.chat  %></p>
-      </div>
-      <p class='chat time timeleft'><%=  item.time  %></p>
-
-      <%}%>
-      <%}%>
+      <%var x=""%>
+      <% foundorphan.forEach(function(item){ %>
+        <%if(actualuser===item.adminname){%>
+          <% x=item.name %>
+        <%}%>
       <%})%>
-    </div>
-  </div>
-  <div class="submitcard ">
-    <div class="card-footer">
-      <form class="form-inline chatlabel " action="/chat" method="post">
-        <div class="input-group">
-          <input size="50" class="form-control type_msg md-12" name="chat" placeholder="Type your message..." autocomplete="off" required autofocus>
-          <%if(user===check){%>
-          <button class="input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=groupname.substring(0,groupname.indexOf('+'))%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
-          <%}else{%>
-          <button class=" input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=user%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
-          <%}%>
+
+      <div class="chatbox ">
+        <% newChat.forEach(function(item){ %>
+        <%if(groupname===item.groupname){%>
+        <%if(actualuser===item.sendername || x===item.sendername){%>
+        <div class="msg right d-flex">
+          <p class='chat'><%=  item.chat  %></p>
         </div>
-      </form>
+        <p class='chat time timeright'><%=  item.time  %></p>
+        <%}else{%>
+        <div class="msg">
+          <p class='chat'><%=  item.chat  %></p>
+        </div>
+        <p class='chat time timeleft'><%=  item.time  %></p>
+        <%}%>
+        <%}%>
+        <%})%>
+      </div>
     </div>
-  </div>
+
+
+
+    <div class="submitcard ">
+      <div class="card-footer">
+        <form class="form-inline chatlabel " action="/chat" method="post">
+          <div class="input-group">
+            <input size="50" class="form-control type_msg md-12" name="chat" placeholder="Type your message..." autocomplete="off" required autofocus>
+            <%if(user===check){%>
+            <button class="input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=groupname.substring(0,groupname.indexOf('+'))%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
+            <%}else{%>
+            <button class=" input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=user%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
+            <%}%>
+         </div>
+       </form>
+   </div>
+ </div>
