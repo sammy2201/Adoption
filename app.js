@@ -354,7 +354,7 @@ app.get("/studentdetails", function(req, res) {
                   childitems: foundchilditems,
                   requestsgot: foundrequests,
                   chat: foundchat,
-                  founduser:founduser
+                  founduser: founduser
                 });
               });
             });
@@ -717,6 +717,20 @@ app.post("/recentlostdetails", upload.single('image'), function(req, res) {
   res.redirect("/recentlost");
 });
 
+app.post("/updaterecentlostimage", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/recentlost");
+});
 
 app.post("/studentdetails", upload.single('image'), function(req, res) {
   const someconstant = new Child({

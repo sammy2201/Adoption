@@ -1,7 +1,12 @@
 body {
-  /* background-image: -webkit-linear-gradient(50deg, #E4CDA7 50%, #F6F5EE 50%); */
-  background-color: #F6F5EE;
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
   text-align: center;
+}
+
+.navbar {
+  background-color: #2a2a72;
+  background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
 
 .titlebelow {
@@ -32,72 +37,6 @@ a, a:link, a:visited {
   color: gray;
 }
 
-/* /////////////////////////////////////////////////////// */
-.btn-2 {
-  width: 500px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px
-}
-
-.btn-2 a {
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  position: relative;
-  display: inline-block;
-}
-
-span {
-  position: relative;
-  z-index: 3;
-}
-
-.btn-2 a:hover::before {
-  transform: scaleY(0);
-}
-
-.btn-2 a:hover::after {
-  transform: scaleX(0);
-}
-
-.btn-2 a {
-  color: white;
-  transition: all 0.5s ease-in-out;
-}
-
-.btn-2 a:hover {
-  color: #000000;
-  transition: all 0.5s ease-in-out;
-}
-
-.btn-2 a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  transition: all 0.5s ease-in-out;
-  transform: scaleY(1);
-  color: white
-}
-
-.btn-2 a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #483434;
-  transition: all 0.5s ease-in-out;
-  transform: scaleX(1);
-}
-
 /* ////////////////////////////////////////////////////////// */
 .orphanagelist {
   overflow-y: scroll;
@@ -105,7 +44,8 @@ span {
   height: 800px;
   overflow: auto;
   border-radius: 0;
-  border: solid;
+  border: solid 1px;
+  border-color: #2a2a72;
   margin-left: 20%;
   margin-bottom: 120px
 }
@@ -141,7 +81,8 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
   background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), center no-repeat;
-  background-color: #1A5F7A
+  background-color: #63a4ff;
+  background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
 }
 
 .blog-card a {
@@ -170,7 +111,8 @@ body {
 }
 
 .blog-card:hover {
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(https://images.pexels.com/photos/866351/pexels-photo-866351.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) center no-repeat;
+  background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
 }
 
 .blog-card:hover .card-info {
@@ -419,8 +361,9 @@ h3:after {
     font-size: 0.8em
   }
 }
+
 /* /////////////// */
-.input-group{
-  position:absolute;
+.input-group {
+  position: absolute;
   width: 59.7%
 }

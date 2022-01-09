@@ -8,7 +8,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="/">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,8 +32,8 @@
   <div class="">
     <h4>chat with</h4>
     <% array.forEach(function(item){ %>
-        <h4 class="listItem"><%=item%></h4>
-            <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+    <h4 class="listItem"><%=item%></h4>
+    <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
     <%}) %>
   </div>
 
@@ -44,19 +44,21 @@
   <div class="container emp-profile">
     <%items.forEach(function(item){ %>
     <%if(check===item.name){%>
-    <form method="post">
+
+    <form action="/updaterecentlostimage" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-4">
           <div class="profile-img">
             <img src="data:image/<%=item.img.contentType%>;base64,
                                                              <%=item.img.data.toString('base64')%>">
-            <div class="file btn btn-lg btn-primary">
-              Change Photo
-              <input type="file" name="file" />
-            </div>
           </div>
-
+          <div class="fileimg">
+          <input class="file" type="file" name="image">
+          </div>
+          <button type="submit" class="btn btn-primary" name="button" value="<%=item._id%>">update photo</button>
         </div>
+
+
         <div class="col-md-6">
           <div class="profile-head">
             <h5>

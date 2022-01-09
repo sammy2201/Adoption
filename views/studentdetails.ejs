@@ -38,7 +38,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-ligh">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-ligh">
     <a class="navbar-brand" href="/" style="border:0">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -130,7 +130,7 @@
         <div class="card d-flex position-relative flex-column">
           <div class='imgContainer'>
             <h6><%=request.requestername%></h6>
-            <p>requested for :<%=request.childname%></p>
+            <p>requested for <%=request.childname%></p>
           </div>
           <div class="content">
             <form class="" action="/acceptorreject" method="post">
