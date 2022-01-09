@@ -1,7 +1,8 @@
-body{
+body {
   background-color: #F6F5EE;
 }
-h1{
+
+h1 {
   text-align: center;
   margin-top: 20px
 }
@@ -17,149 +18,174 @@ h1{
   box-shadow: 0 8px 6px -6px #999;
 }
 
-.drop{
+.drop {
   background-color: #EDEDED;
   border-radius: 20px;
 }
-.d-block{
+
+.d-block {
   height: 400px;
   width: 100px;
 }
 
-.btnadopt{
+.btnadopt {
   margin-left: 670px;
   margin-right: 25px;
   background-color: #533535;
   color: white;
 }
 
-.btnadopt:hover{
+.btnadopt:hover {
   background-color: white;
   color: black;
 }
-.btnadopt2{
+
+.btnadopt2 {
   margin-right: 25px;
   background-color: #533535;
   color: white;
 }
 
-.btnadopt2:hover{
+.btnadopt2:hover {
   background-color: white;
   color: black;
 }
 
-.postimage{
+.postimage {
   width: 300px;
   height: 300px
 }
-.postbox{
+
+.postbox {
   background-color: white;
   margin-top: 2%;
   padding: 2%;
 }
 
- body {
-   margin: 0;
-   font-family: sans-serif;
- }
- .postsoverflow {
-   width: 80%;
-   height: 900px;
-   overflow: auto;
-   border-radius: 0;
-   margin-left: 10%
- }
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
 
- .comments{
-   height: 200px;
-   overflow: auto;
- }
-.commentsheading{
+.postsoverflow {
+  width: 80%;
+  height: 900px;
+  overflow: auto;
+  border-radius: 0;
+  margin-left: 10%
+}
+
+.comments {
+  height: 200px;
+  overflow: auto;
+}
+
+.commentsheading {
   text-align: center;
 }
- .commentcontent{
-   display:inline-grid;
- }
 
-.like{
+.commentcontent {
+  display: inline-grid;
+}
+
+.like {
   background-color: white;
   border: 0
 }
-.like:hover{
+
+.like:hover {
   background-color: white;
   border: 0
 }
 
 /* /////////////////////////////////////////////////////// */
- .containerr {
-   position: relative;
-   width: 320px;
-   margin: 100px auto 0 auto;
-   perspective: 1000px;
-   display: block;
- }
+.containerr {
+  position: relative;
+  width: 320px;
+  margin: 100px auto 0 auto;
+  perspective: 1000px;
+  display: block;
+}
 
- .carousel {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   transform-style: preserve-3d;
-   animation: rotate360 60s infinite forwards linear;
+.carousel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate360 60s infinite forwards linear;
+}
 
- }
- .carousel__face {
-   position: absolute;
-   width: 300px;
-   height: 187px;
-   top: 20px;
-   left: 10px;
-   right: 10px;
-   background-size: cover;
-   box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.2);
-   display: flex;
- }
+.carousel__face {
+  position: absolute;
+  width: 300px;
+  height: 187px;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  display: flex;
+}
 
+.carousel__face:nth-child(1) {
+  background-image: url("https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?cs=srgb&dl=pexels-artem-beliaikin-1153976.jpg&fm=jpg");
+  transform: rotateY(0deg) translateZ(430px);
+}
 
- .carousel__face:nth-child(1) {
-   background-image: url("https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?cs=srgb&dl=pexels-artem-beliaikin-1153976.jpg&fm=jpg");
-   transform: rotateY(  0deg) translateZ(430px); }
- .carousel__face:nth-child(2) {
-   background-image: url("https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?cs=srgb&dl=pexels-hitesh-choudhary-1739842.jpg&fm=jpg");
-     transform: rotateY( 40deg) translateZ(430px); }
- .carousel__face:nth-child(3) {
-   background-image: url("https://images.pexels.com/photos/1344275/pexels-photo-1344275.jpeg?cs=srgb&dl=pexels-denniz-futalan-1344275.jpg&fm=jpg");
-   transform: rotateY( 80deg) translateZ(430px); }
- .carousel__face:nth-child(4) {
-   background-image: url("https://images.pexels.com/photos/6083918/pexels-photo-6083918.jpeg?cs=srgb&dl=pexels-tehmasip-khan-6083918.jpg&fm=jpg");
-   transform: rotateY(120deg) translateZ(430px); }
- .carousel__face:nth-child(5) {
-   background-image: url("https://images.pexels.com/photos/7979798/pexels-photo-7979798.jpeg?cs=srgb&dl=pexels-kindel-media-7979798.jpg&fm=jpg");
-  transform: rotateY(160deg) translateZ(430px); }
- .carousel__face:nth-child(6) {
-   background-image: url("https://images.pexels.com/photos/5391282/pexels-photo-5391282.jpeg?cs=srgb&dl=pexels-mumtahina-tanni-5391282.jpg&fm=jpg");
-  transform: rotateY(200deg) translateZ(430px); }
- .carousel__face:nth-child(7) {
-   background-image: url("https://images.pexels.com/photos/7978523/pexels-photo-7978523.jpeg?cs=srgb&dl=pexels-kindel-media-7978523.jpg&fm=jpg");
-  transform: rotateY(240deg) translateZ(430px); }
- .carousel__face:nth-child(8) {
-   background-image: url("https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?cs=srgb&dl=pexels-naomi-shi-1001914.jpg&fm=jpg");
-   transform: rotateY(280deg) translateZ(430px); }
- .carousel__face:nth-child(9) {
-   background-image: url("https://images.pexels.com/photos/4473318/pexels-photo-4473318.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4473318.jpg&fm=jpg");
-   transform: rotateY(320deg) translateZ(430px); }
+.carousel__face:nth-child(2) {
+  background-image: url("https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?cs=srgb&dl=pexels-hitesh-choudhary-1739842.jpg&fm=jpg");
+  transform: rotateY(40deg) translateZ(430px);
+}
 
- @keyframes rotate360 {
-   from {
-     transform: rotateY(0deg);
-   }
-   to {
-     transform: rotateY(-360deg);
-   }
- }
+.carousel__face:nth-child(3) {
+  background-image: url("https://images.pexels.com/photos/1344275/pexels-photo-1344275.jpeg?cs=srgb&dl=pexels-denniz-futalan-1344275.jpg&fm=jpg");
+  transform: rotateY(80deg) translateZ(430px);
+}
 
-.buttonbox{
+.carousel__face:nth-child(4) {
+  background-image: url("https://images.pexels.com/photos/6083918/pexels-photo-6083918.jpeg?cs=srgb&dl=pexels-tehmasip-khan-6083918.jpg&fm=jpg");
+  transform: rotateY(120deg) translateZ(430px);
+}
+
+.carousel__face:nth-child(5) {
+  background-image: url("https://images.pexels.com/photos/7979798/pexels-photo-7979798.jpeg?cs=srgb&dl=pexels-kindel-media-7979798.jpg&fm=jpg");
+  transform: rotateY(160deg) translateZ(430px);
+}
+
+.carousel__face:nth-child(6) {
+  background-image: url("https://images.pexels.com/photos/5391282/pexels-photo-5391282.jpeg?cs=srgb&dl=pexels-mumtahina-tanni-5391282.jpg&fm=jpg");
+  transform: rotateY(200deg) translateZ(430px);
+}
+
+.carousel__face:nth-child(7) {
+  background-image: url("https://images.pexels.com/photos/7978523/pexels-photo-7978523.jpeg?cs=srgb&dl=pexels-kindel-media-7978523.jpg&fm=jpg");
+  transform: rotateY(240deg) translateZ(430px);
+}
+
+.carousel__face:nth-child(8) {
+  background-image: url("https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?cs=srgb&dl=pexels-naomi-shi-1001914.jpg&fm=jpg");
+  transform: rotateY(280deg) translateZ(430px);
+}
+
+.carousel__face:nth-child(9) {
+  background-image: url("https://images.pexels.com/photos/4473318/pexels-photo-4473318.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4473318.jpg&fm=jpg");
+  transform: rotateY(320deg) translateZ(430px);
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+.buttonbox {
   margin-top: 500px
 }
+
 /* //////////////////////////////////////////////////////////////////////// */
 .btn11 {
   top: 50px;
@@ -184,8 +210,7 @@ h1{
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   background: transparent !important;
-  margin-bottom: 50px ;
-
+  margin-bottom: 50px;
 }
 
 .btn11:hover {
@@ -246,57 +271,87 @@ h1{
 .botton {
   margin-left: 40%;
 }
-.fas{
+
+.fas {
   margin-left: 4px;
 }
+
 /* ////////////////////////////////////////////////////////////////////////// */
-.btndelete{
+.btndelete {
   background-color: white;
   margin-left: 90%;
   border: 0px;
-
 }
-.btndelete:focus{
+
+.btndelete:focus {
   outline: none;
 }
-.btndelete:hover{
+
+.btndelete:hover {
   color: red;
 }
-.btncomment{
+
+.btncomment {
   background-color: white;
   border: 0px;
   outline: none;
 }
-.btncomment:focus{
+
+.btncomment:focus {
   outline: none;
 }
-.btncomment:hover{
+
+.btncomment:hover {
   color: red;
 }
 
-#onhover{
-                visibility: hidden;
-                  margin-left: 89%;
-                  text-shadow: 2px;
-                  font-family: cursive;
-
-
-            }
-#postdelete:hover ~ #onhover{
-                visibility: visible;
-            }
-#onhover2{
-                  visibility: hidden;
-                 text-shadow: 2px;
-                 font-family: cursive;
-                 font-size: 0.7rem;
-
-  }
-#commentdelete:hover ~ #onhover2{
-                      visibility: visible;
+#onhover {
+  visibility: hidden;
+  margin-left: 89%;
+  text-shadow: 2px;
+  font-family: cursive;
 }
+
+#postdelete:hover~#onhover {
+  visibility: visible;
+}
+
+#onhover2 {
+  visibility: hidden;
+  text-shadow: 2px;
+  font-family: cursive;
+  font-size: 0.7rem;
+}
+
+#commentdelete:hover~#onhover2 {
+  visibility: visible;
+}
+
 .comments::-webkit-scrollbar {
   /* WebKit */
   width: 0;
   height: 0;
+}
+
+/* /////////////////////////////////// */
+
+.postsoverflow::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.postsoverflow::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F6F5EE;
+}
+
+.postsoverflow::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      color-stop(0.44, rgb(135, 100, 69)),
+      color-stop(0.72, rgb(238, 195, 115)),
+      color-stop(0.86, rgb(135, 100, 69)));
 }

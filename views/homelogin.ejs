@@ -94,17 +94,20 @@
         </div>
       </form>
       <%}%>
-
+      <%var x=""%>
       <%founduser.forEach(function(userp){ %>
       <%if(userp.typeOfUser=="recentlost"){%>
       <%if(userp.name==item.username){%>
       <a href="/individual/<%=item.username%>">
         <h3><%=item.username%></h3>
       </a>
+      <%x=1%>
       <%}%>
       <%}%>
       <%})%>
+      <%if(x!=1){%>
       <h3><%=item.username%></h3>
+      <%}%>
       <div class="container">
         <div class="row">
           <div class="col-md">
