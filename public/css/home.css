@@ -355,3 +355,7 @@ body {
       color-stop(0.72, rgb(238, 195, 115)),
       color-stop(0.86, rgb(135, 100, 69)));
 }
+
+.like:focus {
+  outline: none;
+}

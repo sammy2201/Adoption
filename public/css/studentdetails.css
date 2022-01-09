@@ -155,7 +155,9 @@ background-color: #9B0000
   height: 300px;
   overflow: auto;
 }
-
+.reviewcontent{
+  display: inline-grid;
+}
 
 
 
@@ -787,9 +789,11 @@ ul {
   display: inline-grid;
 }
 .btnreivew{
+  display: inline-grid;
   background-color: white;
   border: 0px;
   margin-left: 90%;
+
 }
 .btnreivew:focus{
   outline: none;
@@ -806,4 +810,10 @@ ul {
                    }
 #reviewdelete:hover ~ #onhover{
                       visibility: visible;
+}
+.formclass{
+  height: fit-content;
+}
+.sodi{
+  margin-bottom: 0px;
 }

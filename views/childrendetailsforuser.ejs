@@ -242,7 +242,7 @@
       <%if(user===review.name){%>
 
       <%}%>
-    <p><%=review.content%></p>
+    <p class="sodi"><%=review.content%></p>
       <form action="/deletereview" method="post">
         <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
         <div id="onhover">
