@@ -354,3 +354,17 @@ body {
 .like:focus {
   outline: none;
 }
+
+article {
+
+    background-color: #36096d;
+    background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+h1 {
+  font-size: 10vmin;
+  line-height: 1.1;
+}
