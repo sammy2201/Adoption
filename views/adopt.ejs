@@ -43,7 +43,7 @@
 
   <!-- /////////////////////////////// -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" href="/">Orphanage</a>
+    <a class="navbar-brand" href="/">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -58,12 +58,12 @@
 
   <div class="orphanagelist">
     <!-- /////////search////////////// -->
-    <div class="input-group mb-2 mr-sm-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-search"></i></div>
-      </div>
-      <input id="searchbar" class="form-control" onkeyup="search_animal()" type="text" name="search" placeholder="Search Orphanages.." autocomplete="off">
-    </div>
+
+    <form action="">
+      <input id="searchbar" onkeyup="search_animal()" type="text" name="search" placeholder="Search Orphanages.." autocomplete="off" required>
+      <i class="fa fa-search"></i>
+      <a class="searcha" href="javascript:void(0)" id="clear-btn">Clear</a>
+    </form>
 
     <!-- //////////////////////////////////////// -->
     <%items.forEach(function(item){ %>
@@ -77,12 +77,6 @@
         <%=item.description+"........"%>
         <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
       </div>
-      <!-- <div class="utility-info">
-        <ul class="utility-list">
-          <li><span class="licon icon-like"></span><a href="#">2</a></li>
-          <li><span class="licon icon-tag"></span><a href="#">Photos</a>
-        </ul>
-      </div> -->
       <div class="gradient-overlay"></div>
       <div class="color-overlay"></div>
     </div><!-- /.blog-card -->
@@ -93,13 +87,14 @@
   <h2>Children recently Effected</h2>
 
   <!-- /////////search////////////// -->
+
   <div class="orphanagelist">
-    <div class="input-group mb-2 mr-sm-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-search"></i></div>
-      </div>
-      <input id="searchindi" class="form-control" onkeyup="search_individual()" type="text" name="search" placeholder="Search Children.." autocomplete="off">
-    </div>
+    <form action="">
+      <input id="searchindi" onkeyup="search_individual()" type="text" name="search" placeholder="Search Children.." autocomplete="off" required>
+      <i class="fa fa-search"></i>
+      <a class="searcha" href="javascript:void(0)" id="clear-btn">Clear</a>
+    </form>
+
     <%users.forEach(function(user){ %>
     <%if(user.typeOfUser === "recentlost"){%>
     <div class="blog-card spring-fever recentlostdiv searchindividual">
@@ -108,12 +103,7 @@
           <h3 class="1"> <%=user.name%></h3>
         </a>
       </div>
-      <!-- <div class="utility-info">
-        <ul class="utility-list">
-          <li><span class="licon icon-like"></span><a href="#">2</a></li>
-          <li><span class="licon icon-tag"></span><a href="#">Photos</a>
-        </ul>
-      </div> -->
+
       <div class="gradient-overlay"></div>
       <div class="color-overlay"></div>
     </div><!-- /.blog-card -->

@@ -114,7 +114,7 @@
     </div>
     <!-- ////////////////////////////////////likes and description///////////////////////// -->
     <div class="col-md-7">
-      <h5 class="name"> <%=item.discription%></h5>
+      <h5 class="name fonthome"> <%=item.discription%></h5>
       <%var likedornot = 0%>
       <%loop1 : for (var liker in item.likes.name) { %>
       <%if(user==item.likes.name[liker]){%>
@@ -139,7 +139,7 @@
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="content" placeholder="Add comment"" aria-label=" Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit" value="<%=user%>*<%=item._id%>+<%=item.username%>" name="button">Submit</button>
+              <button class="btn btn-outline-secondary" type="submit" value="<%=user%>*<%=item._id%>+<%=item.username%>" name="button">+</button>
             </div>
           </div>
         </form>

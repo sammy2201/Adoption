@@ -27,6 +27,10 @@ body {
   text-transform: uppercase;
 }
 
+.fonthome{
+  font-family: "Gill Sans", sans-serif
+}
+
 .row {
   width: 100%;
 }
