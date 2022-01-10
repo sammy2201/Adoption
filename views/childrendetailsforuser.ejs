@@ -164,7 +164,7 @@
   <!-- /////////////////////////////////child details///////////////////////////////////// -->
   <h1 class="Childrenhed animate__animated animate__zoomInDown">Children</h1>
   <hr>
- <div class="container reveal scroll fade-left" style="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
+  <div class="container reveal scroll fade-left" style="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
 
     <%childitems.forEach(function(item){ %>
     <%items.forEach(function(mainitem){ %>
@@ -209,9 +209,9 @@
             <button class="flipbtn" type="submit" value="<%=user%>*<%=item.name%>&<%=check%>" name="button">Request to View</button>
           </form>
           <%}else{%>
-            <form action="/request" method="post">
-              <button class="flipbtn" type="button" name="button">Under review View</button>
-            </form>
+          <form action="/request" method="post">
+            <button class="flipbtn" type="button" name="button">Under review View</button>
+          </form>
           <%}%>
           </div>
           <%})%>
@@ -228,25 +228,33 @@
     <!-- /////////////////////////////////////////reviews///////////////////////////// -->
     <h4 class="Childrenhed animate__animated animate__zoomInDown">Reviews</h4>
     <div class="reviews">
-      <%items.forEach(function(item){ %>
-      <%recivedreviews.forEach(function(review){ %>
-      <%if(check===item.name){%>
-      <%if(review.orphanagename===item.name){%>
-      <h6><%=review.name+" :"%></h6>
-      <%if(user===review.name){%>
-
-      <%}%>
-    <p class="sodi"><%=review.content%></p>
-      <form action="/deletereview" method="post">
-        <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
-        <div id="onhover">
-          delete review
+      <div class="container1 mt-5">
+        <%items.forEach(function(item){ %>
+        <%recivedreviews.forEach(function(review){ %>
+        <%if(check===item.name){%>
+        <%if(review.orphanagename===item.name){%>
+        <div class="card p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="user d-flex flex-row align-items-center">
+              <span><small class="font-weight-bold text-primary"><%=review.name+" :"%></small>
+                <small class="font-weight-bold"><%=review.content%></small>
+              </span>
+            </div>
+            <small>
+              <form action="/deletereview" method="post">
+                <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
+              </form>
+            </small>
+          </div>
         </div>
-      </form>
-      <%}%>
-    <%}%>
-      <%})%>
-      <%})%>
+        <%}%>
+        <%}%>
+        <%})%>
+        <%})%>
+
+
+
+      </div>
     </div>
 
 
