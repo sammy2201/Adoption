@@ -214,3 +214,11 @@ body {
   height: 400px;
   overflow: auto;
 }
+ .mr-left{
+  margin-left: 75%;
+  margin-right: 2%;
+}
+.imagebox{
+  margin-top: 15px;
+  margin-left: 25px;
+}

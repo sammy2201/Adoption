@@ -13,49 +13,44 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
-    <div class="collapse navbar-collapse mr-right" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse mr-left" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#request">requests</a>
+        </li>
+      </ul>
     </div>
+    <a class="btn btn-light logout  navbarbutton" href="/logout" role="button">Log Out</a>
+
   </nav>
-
-  <%const array=[ ]%>
-  <%const groupname=" "%>
-  <%=check%>
-  <% chat.forEach(function(chatitem){ %>
-  <%if(chatitem.recevername=== check){ %>
-  <%if(array.includes(chatitem.sendername) === false){ %>
-  <%array.push(chatitem.sendername)%>
-  <%} %>
-  <%} %>
-  <%}) %>
-
-  <div class="">
-    <h4>chat with</h4>
-    <% array.forEach(function(item){ %>
-    <h4 class="listItem"><%=item%></h4>
-    <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-    <%}) %>
-  </div>
-
-
-
   <!------ Include the above in your HEAD tag ---------->
 
   <div class="container emp-profile">
     <%items.forEach(function(item){ %>
     <%if(check===item.name){%>
 
-    <form action="/updaterecentlostimage" method="post" enctype="multipart/form-data">
+
       <div class="row">
         <div class="col-md-4">
           <div class="profile-img">
             <img src="data:image/<%=item.img.contentType%>;base64,
                                                              <%=item.img.data.toString('base64')%>">
           </div>
-          <div class="fileimg">
-          <input class="file" type="file" name="image">
-          </div>
-          <button type="submit" class="btn btn-primary" name="button" value="<%=item._id%>">update photo</button>
+
+          <form action="/updaterecentlostimage" method="post" enctype="multipart/form-data">
+            <div class="container imagebox">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="fileimg">
+                  <input class="file" type="file" name="image">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary" name="button" value="<%=item._id%>">update photo</button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
 
 
@@ -74,6 +69,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chats" role="tab" aria-controls="profile" aria-selected="false">chats</a>
               </li>
             </ul>
           </div>
@@ -238,18 +236,39 @@
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="chats" role="tabpanel" aria-labelledby="profile-tab">
+
+              <%const array=[ ]%>
+              <%const groupname=" "%>
+              <%=check%>
+              <% chat.forEach(function(chatitem){ %>
+              <%if(chatitem.recevername=== check){ %>
+              <%if(array.includes(chatitem.sendername) === false){ %>
+              <%array.push(chatitem.sendername)%>
+              <%} %>
+              <%} %>
+              <%}) %>
+
+              <div class="">
+                <p>chat request from </p>
+                <% array.forEach(function(item){ %>
+                <h6 class="listItem"><%=item%></h6>
+                <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" name="button" value=""><i class="fas fa-envelope-square fa-2x"></i></button></a>
+                <%}) %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </form>
+
 
     <%}%>
-             <%}) %>
+   <%}) %>
   </div>
 
 
   <!-- /////////////////////Request//////////////////////////// -->
-  <div class="requests">
+  <div id="request" class="requests">
     <h3>requests</h3>
     <%requestsgot.forEach(function(request){ %>
     <%if(check===request.childname){%>
