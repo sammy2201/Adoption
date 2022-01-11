@@ -27,6 +27,7 @@ body {
   text-transform: uppercase;
 }
 
+
 .fonthome {
   font-family: "Gill Sans", sans-serif
 }
@@ -139,6 +140,13 @@ div.studentbox p {
   height: 400px;
   overflow: auto;
 }
+
+.requests::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
 
 .requestlist {
   background-color: #EED6C4;
@@ -941,8 +949,13 @@ ul {
   text-align: center;
   width: 300px;
   height: 500px;
-  
+  overflow: auto;
+}
 
+.chat-popup::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 /* Set a style for the submit/send button */
@@ -957,6 +970,7 @@ ul {
   position: absolute;
   right: 0;
   bottom: 0;
+
 }
 
 /* Add a red background color to the cancel button */
