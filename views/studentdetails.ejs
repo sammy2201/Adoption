@@ -64,12 +64,14 @@
   <%}) %>
 
   <%items.forEach(function(orphanitem){ %>
-  <div class="">
+  <div class="chatbox">
     <%if(orphanitem.adminname=== check){ %>
-    <h4>chat request from </h4>
+    <h5>Chat With </h5>
     <% array.forEach(function(item){ %>
-    <h4 class="listItem"><%=item%></h4>
-    <a href="/chat/with/<%=item%>+<%=orphanitem.name%>"><button class="btn" type="submit" name="button" value=""><i class="fas fa-sms fa-2x"></i></button></a>
+    <div class="chat">
+      <h4 class="listItem"><%=item%></h4>
+      <a class="chatatag" href="/chat/with/<%=item%>+<%=orphanitem.name%>">Chat</a>
+    </div>
     <%}) %>
     <%} %>
   </div>

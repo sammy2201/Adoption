@@ -209,7 +209,7 @@ body {
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   background: transparent !important;
-  margin-bottom: 50px;
+  margin-bottom: 100px
 }
 
 .btn11:hover {
@@ -356,9 +356,8 @@ body {
 }
 
 article {
-
-    background-color: #36096d;
-    background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+  background-color: #36096d;
+  background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -371,28 +370,36 @@ h1 {
 
 /* ///////////////////////////////////////////// */
 .card {
-    border: none;
-    box-shadow: 5px 6px 6px 2px #e9ecef;
-    border-radius: 4px;
-    margin-top: 20px;
+  border: none;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 4px;
+  margin-top: 20px;
 }
 
 .badge {
-    padding: 7px;
-    padding-right: 9px;
-    padding-left: 16px;
-    box-shadow: 5px 6px 6px 2px #e9ecef
+  padding: 7px;
+  padding-right: 9px;
+  padding-left: 16px;
+  box-shadow: 5px 6px 6px 2px #e9ecef
 }
 
 .reply {
-    margin-left: 12px
+  margin-left: 12px
 }
 
 .reply small {
-    color: #b7b4b4
+  color: #b7b4b4
 }
 
 .reply small:hover {
-    color: green;
-    cursor: pointer
+  color: green;
+  cursor: pointer
+}
+
+.fas {
+  cursor: pointer;
+}
+
+.iconify {
+  cursor: pointer;
 }
