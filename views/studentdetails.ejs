@@ -82,28 +82,31 @@
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
-  <div class="row">
-    <div class="col-md-6 orphanageimagebox ">
-      <%items.forEach(function(item){ %>
-      <%if(check===item.adminname){%>
-      <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
-                                     <%=item.img.data.toString('base64')%>">
-      <%}%>
-    <%})%>
-    </div>
-    <div class="col-md-6 box">
-      <%items.forEach(function(item){ %>
-      <%if(check===item.adminname){%>
-      <p>Orphanage address : <%=item.address%></p>
-      <p>Phone number : <%=item.phonenum%></p>
-      <p>State : <%=item.state%></p>
-      <p>City : <%=item.city%></p>
-      <p>Pincode : <%=item.pincode%></p>
-      <p>Mail : <%=item.mail%></p>
-      <%}%>
+  <div class="top">
+    <div class="row">
+      <div class="col-md-6 orphanageimagebox ">
+        <%items.forEach(function(item){ %>
+        <%if(check===item.adminname){%>
+        <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
+                                       <%=item.img.data.toString('base64')%>">
+        <%}%>
       <%})%>
+      </div>
+      <div class="col-md-6 box">
+        <%items.forEach(function(item){ %>
+        <%if(check===item.adminname){%>
+        <p>Orphanage address : <%=item.address%></p>
+        <p>Phone number : <%=item.phonenum%></p>
+        <p>State : <%=item.state%></p>
+        <p>City : <%=item.city%></p>
+        <p>Pincode : <%=item.pincode%></p>
+        <p>Mail : <%=item.mail%></p>
+        <%}%>
+        <%})%>
+      </div>
     </div>
   </div>
+
   <!-- ////////////////////////////////description/////////////////////////// -->
   <h4 class="Childrenhed animate__animated animate__zoomInDown">Description</h4>
   <div class="descriptionbox">

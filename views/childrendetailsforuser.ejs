@@ -20,136 +20,139 @@
   <%}%>
   <%}) %>
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
+  <div class="top">
+    <div class="row">
+      <div class="col-md-6 orphanageimagebox">
+        <%items.forEach(function(item){ %>
+        <%if(check===item.name){%>
+        <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
+                                       <%=item.img.data.toString('base64')%>">
+        <%}%>
+      <%})%>
+      </div>
+      <div class="col-md-6 box">
+        <%items.forEach(function(item){ %>
+        <%if(check===item.name){%>
+        <p>Orphanage address : <%=item.address%></p>
+        <p>Phone number : <%=item.phonenum%></p>
+        <p>State : <%=item.state%></p>
+        <p>City : <%=item.city%></p>
+        <p>Pincode : <%=item.pincode%></p>
+        <p>Mail : <%=item.mail%></p>
+        <%}%>
+        <%}) %>
+        <div class="stardiv">
+          <%items.forEach(function(item){ %>
+          <%if(check===item.name){%>
 
-  <div class="row">
-    <div class="col-md-6 orphanageimagebox">
-      <%items.forEach(function(item){ %>
-      <%if(check===item.name){%>
-      <img class="orphanageimage" src="data:image/<%=item.img.contentType%>;base64,
-                                     <%=item.img.data.toString('base64')%>">
-      <%}%>
-    <%})%>
+          <%var likedornot = 0%>
+          <%loop1 : for (var liker in item.stars.name) { %>
+          <%loop2 : if(user==item.stars.name[liker]){%>
+          <%if(item.stars.final>4.5){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>4){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>3.5){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>3){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>2.5){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>2){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>1.5){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>1){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>0.5){%>
+          <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}else if(item.stars.final>0){%>
+          <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
+          <%}%>
+
+          <%likedornot = 1%>
+          <% break loop1 %>
+          <%}else{%>
+          <%}%>
+          <%}%>
+          <%if(likedornot == 0){%>
+          <form action=" /studentdetailsstars" method="POST" class="starform">
+            <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&1" name="button">
+              <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
+            </button>
+          </form>
+          <form action="/studentdetailsstars" method="POST" class="starform">
+            <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&2" name="button">
+              <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
+            </button>
+          </form>
+          <form action="/studentdetailsstars" method="POST" class="starform">
+            <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&3" name="button">
+              <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
+            </button>
+          </form>
+          <form action="/studentdetailsstars" method="POST" class="starform">
+            <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&4" name="button">
+              <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
+            </button>
+          </form>
+          <form action="/studentdetailsstars" method="POST" class="starform">
+            <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&5" name="button">
+              <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
+            </button>
+          </form>
+          <h5>Rating <%=item.stars.final.toFixed(1)%></h5>
+          <%}%>
+          <%}%>
+          <%}) %>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 box">
-      <%items.forEach(function(item){ %>
-      <%if(check===item.name){%>
-      <p>Orphanage address : <%=item.address%></p>
-      <p>Phone number : <%=item.phonenum%></p>
-      <p>State : <%=item.state%></p>
-      <p>City : <%=item.city%></p>
-      <p>Pincode : <%=item.pincode%></p>
-      <p>Mail : <%=item.mail%></p>
-      <%}%>
-      <%}) %>
-    </div>
+
+    <!-- /////////////////////////////stars///////////////////////////////////////// -->
+
   </div>
 
-  <!-- /////////////////////////////stars///////////////////////////////////////// -->
-  <div class="stardiv">
-    <%items.forEach(function(item){ %>
-    <%if(check===item.name){%>
-
-    <%var likedornot = 0%>
-    <%loop1 : for (var liker in item.stars.name) { %>
-    <%loop2 : if(user==item.stars.name[liker]){%>
-    <%if(item.stars.final>4.5){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>4){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>3.5){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>3){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>2.5){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>2){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>1.5){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>1){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>0.5){%>
-    <span class="iconify" data-icon="ant-design:star-filled" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}else if(item.stars.final>0){%>
-    <span class="iconify" data-icon="dashicons:star-half" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;"></span>
-    <%}%>
-
-    <%likedornot = 1%>
-    <% break loop1 %>
-    <%}else{%>
-    <%}%>
-    <%}%>
-    <%if(likedornot == 0){%>
-    <form action=" /studentdetailsstars" method="POST" class="starform">
-      <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&1" name="button">
-        <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
-      </button>
-    </form>
-    <form action="/studentdetailsstars" method="POST" class="starform">
-      <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&2" name="button">
-        <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
-      </button>
-    </form>
-    <form action="/studentdetailsstars" method="POST" class="starform">
-      <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&3" name="button">
-        <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
-      </button>
-    </form>
-    <form action="/studentdetailsstars" method="POST" class="starform">
-      <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&4" name="button">
-        <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
-      </button>
-    </form>
-    <form action="/studentdetailsstars" method="POST" class="starform">
-      <button class="star" type="submit" value="<%=item._id%>+<%=user%>*<%=check%>&5" name="button">
-        <span class="iconify" data-icon="bi:star" style="color: black; font-size: 30px;" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'"></span>
-      </button>
-    </form>
-    <h5>Rating <%=item.stars.final.toFixed(1)%></h5>
-    <%}%>
-    <%}%>
-    <%}) %>
-  </div>
 
 
   <!-- //////////////////////////description//////////////////////////////////////////// -->
