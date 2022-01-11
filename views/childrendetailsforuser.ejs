@@ -244,9 +244,11 @@
               </span>
             </div>
             <small>
+              <%if(user===review.name){%>
               <form action="/deletereview" method="post">
                 <button id="reviewdelete" type="submit" name="button" class="btnreivew" value="<%=review._id%>&<%=check%>"><i class="fas fa-trash"></i></button>
               </form>
+              <%}%>
             </small>
           </div>
         </div>
