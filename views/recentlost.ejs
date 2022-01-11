@@ -72,7 +72,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" id="request-tab" data-toggle="tab" href="#requests" role="tab" aria-controls="profile" aria-selected="false">requests</a>
+                <a class="nav-link" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="profile" aria-selected="false">requests</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chats" role="tab" aria-controls="profile" aria-selected="false">chats</a>
@@ -193,6 +193,8 @@
 
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="container reveal scroll fade-left" style="width:90%px; height:90%px; border:0px; overflow-x:visible; overflow-y:hidden; white-space:nowrap;">
+
               <div class="row">
                 <div class="col-md-6">
                   <label>Experience</label>
@@ -240,6 +242,33 @@
                 </div>
               </div>
             </div>
+            </div>
+            <div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="requests">
+                <%requestsgot.forEach(function(request){ %>
+                <%if(check===request.childname){%>
+                <%if(request.individualname==="individual"){%>
+                <div class="containerrev">
+                  <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
+                    <div class="card d-flex position-relative flex-column">
+                      <div class='imgContainer'>
+                        <h3><%=request.requestername%></h3>
+                      </div>
+                      <div class="content">
+                        <form class="" action="/acceptorrejectindividual" method="post">
+                          <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
+                          <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%}%>
+                   <%}%>
+                <%})%>
+              </div>
+
+            </div>
             <div class="tab-pane fade" id="chats" role="tabpanel" aria-labelledby="profile-tab">
 
               <%const array=[ ]%>
@@ -273,27 +302,3 @@
 
 
   <!-- /////////////////////Request//////////////////////////// -->
-  <div id="request" class="requests">
-    <h3>requests</h3>
-    <%requestsgot.forEach(function(request){ %>
-    <%if(check===request.childname){%>
-    <%if(request.individualname==="individual"){%>
-    <div class="containerrev">
-      <div class="container  d-flex align-items-center justify-content-center position-relative flex-wrap">
-        <div class="card d-flex position-relative flex-column">
-          <div class='imgContainer'>
-            <h3><%=request.requestername%></h3>
-          </div>
-          <div class="content">
-            <form class="" action="/acceptorrejectindividual" method="post">
-              <button type="submit" class="btn btn-success" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*ok"><i class="fas fa-user-check"></i></button>
-              <button type="submit" class="btn btn-danger" name="button" value="<%=request._id%>@<%=request.individualname%>&<%=request.requestername%>+<%=request.childname%>*notok"><i class="fas fa-times"></i></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <%}%>
-       <%}%>
-    <%})%>
-  </div>
