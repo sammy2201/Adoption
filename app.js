@@ -137,6 +137,11 @@ const individualSchema = new mongoose.Schema({
   pincode: Number,
   gender: String,
   hobies: String,
+  hobies2: String,
+  momname: String,
+  dadname: String,
+  occupation: String,
+  Achievements: String,
   intrestedin: String,
   studies: String,
   dob: String,
@@ -144,6 +149,7 @@ const individualSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
+
 });
 
 const postSchema = new mongoose.Schema({
@@ -707,6 +713,11 @@ app.post("/recentlostdetails", upload.single('image'), function(req, res) {
     hobies: req.body.hobies,
     intrestedin: req.body.intrestedin,
     studies: req.body.studies,
+    hobies2: req.body.hobies2,
+    momname: req.body.mothername,
+    dadname: req.body.fathername,
+    occupation: req.body.occupation,
+    Achievements: req.body.Achievements,
     dob: req.body.dob,
     img: {
       data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),

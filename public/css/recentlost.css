@@ -144,67 +144,6 @@ body {
 }
 
 /* //////////////////////////////////////////////////// */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
-/* * {
-    font-family: 'Poppins', sans-serif
-} */
-.container .card {
-  max-width: 330px;
-  height: 115px;
-  margin-top: 50px;
-  margin-left: 10px;
-  padding: 20px 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-  transition: 0.3s ease-in-out
-}
-
-.container .card:hover {
-  height: 200px
-}
-
-.container .card .imgContainer {
-  color: white;
-  position: relative;
-  width: 220px;
-  height: 100px;
-  top: -50px;
-  left: 1px;
-  z-index: 1;
-  background-color: #04293A;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.container .card .content {
-  position: relative;
-  margin-top: -140px;
-  padding: 10px 15px;
-  text-align: center;
-  color: #111;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.3s ease-in-out
-}
-
-.container .card:hover .content {
-  visibility: visible;
-  opacity: 1;
-  margin-top: -40px;
-  transition-delay: 0.3s
-}
-
-@media (max-width: 330px) {
-  .container .card .imgContainer {
-    left: -2px
-  }
-}
-
-.containerrev {
-  display: inline-grid;
-  text-align: center;
-}
-
 .requests {
   text-align: center;
   background-color: white;
@@ -229,14 +168,49 @@ body {
   background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
   color: white;
   display: inline-grid;
-  width: 100px;
+  width: 150px;
   text-align: center;
   padding: 1%;
   border-radius: 10px;
   margin-left: 20px
 }
 
-.reqbtn{
+.reqbox {
+  background-color: #eec0c6;
+  background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+  color: white;
+  display: inline-grid;
+  width: 200px;
+  text-align: center;
+  padding: 1%;
+  padding-bottom: 4%;
+  border-radius: 10px;
+  margin-left: 20px
+}
+
+.reqbtn {
   margin-left: 45%;
   margin-bottom: 30px
+}
+
+.tab-pane {
+  overflow: auto;
+}
+
+.tab-pane::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.btn-success1 {
+  background-color: #00b712;
+  background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+  color: white
+}
+
+.btn-danger1 {
+  color: white;
+  background-color: #42378f;
+  background-image: linear-gradient(315deg, red 0%, #f53844 34%);
 }
