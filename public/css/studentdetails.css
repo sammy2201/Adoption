@@ -57,7 +57,9 @@ body {
 }
 
 .descriptionbox {
-  padding: 2% 5% 5% 5%
+  padding: 2% 5% 5% 5%;
+  margin: 20px;
+  font-family:" Bookman, URW Bookman L", serif
 }
 
 .Childrenhed {
@@ -91,7 +93,8 @@ div.studentbox p {
   font-weight: lighter;
   background-color: white;
   margin-left: 10%;
-  margin-top: 5%
+  margin-top: 5%;
+  text-align: center;
 }
 
 .logout:hover {
@@ -107,9 +110,11 @@ div.studentbox p {
 .orphanageimage {
   height: 90%;
   width: 90%;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.Childrenhed{
+  margin-top: 100px
 }
 
 .orphanageimagebox {
@@ -169,6 +174,11 @@ margin-right: 20px
 
 .reviewcontent {
   display: inline-grid;
+}
+
+.reviewform{
+  text-align: center;
+  font-family: "Apple Chancery", cursive
 }
 
 /* //////////////////////////////////////////////////////////////////////// */
