@@ -11,7 +11,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
   </nav>
-  <h1>Accepted List</h1>
+  <article>
+    <h1>Accepted List</h1>
+  </article>
+
+
+
+  <%const array=[ ]%>
+  <%items.forEach(function(item){ %>
+  <%if(user===item.requestername){ %>
+  <%if(array.includes(item.childname) === false ){ %>
+  <%array.push(item.childname)%>
+  <%} %>
+  <%} %>
+  <%}) %>
+
+  <% array.forEach(function(arrayitem){ %>
+  <%items.forEach(function(item){ %>
+  <%if(user===item.requestername){%>
+  <%if(arrayitem===item.childname){%>
+  <h4 class="listItem"><%=arrayitem%></h4>
+  <%}%>
+  <%}%>
+  <%})%>
+
+  <%})%>
 
   <%items.forEach(function(item){ %>
   <%if(user===item.requestername){%>
@@ -28,16 +52,16 @@
           </div>
         <div class="content">
           <%if(item.orphanagename==="individual"){%>
-            <a href="/chat/with/<%=user%>+<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-            <p>for further enquries chat with us ..</p>
+          <a href="/chat/with/<%=user%>+<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+          <p>for further enquries chat with us ..</p>
           <%}else{%>
-            <a href="/chat/with/<%=user%>+<%=item.orphanagename%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-            <p>for further enquries chat with us ..</p>
+          <a href="/chat/with/<%=user%>+<%=item.orphanagename%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+          <p>for further enquries chat with us ..</p>
           <%}%>
         </div>
       </div>
     </div>
   </div>
-  <%}%>
+          <%}%>
           <%}) %>
           <!-- /////////////// -->
