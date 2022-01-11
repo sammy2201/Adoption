@@ -12,7 +12,7 @@
     </button>
   </nav>
   <article>
-    <h1>Accepted List .....</h1>
+    <h1>Accepted List</h1>
   </article>
 
 
@@ -20,48 +20,37 @@
   <%const array=[ ]%>
   <%items.forEach(function(item){ %>
   <%if(user===item.requestername){ %>
-  <%if(array.includes(item.childname) === false ){ %>
-  <%array.push(item.childname)%>
+  <%if(array.includes(item.childname+"+"+item.orphanagename) === false ){ %>
+  <%array.push(item.childname+"+"+item.orphanagename)%>
   <%} %>
   <%} %>
   <%}) %>
 
   <% array.forEach(function(arrayitem){ %>
-  <%items.forEach(function(item){ %>
-  <%if(user===item.requestername){%>
-  <%if(arrayitem===item.childname){%>
-  <h4 class="listItem"><%=arrayitem%></h4>
-  <%}%>
-  <%}%>
-  <%})%>
-
-  <%})%>
-
-  <%items.forEach(function(item){ %>
-  <%if(user===item.requestername){%>
+  <%var child= arrayitem.substring(0, arrayitem.indexOf('+'));%>
+  <%var reqfrom = arrayitem.split('+').pop()%>
   <div class="containerrev">
     <div class="container d-flex align-items-center justify-content-center position-relative flex-wrap">
       <div class="card d-flex position-relative flex-column">
         <div class='imgContainer'>
-          <%if(item.orphanagename==="individual"){%>
-          <h3> child : <%=item.childname%></h3>
+          <%if(reqfrom==="individual"){%>
+          <h3><%=child%></h3>
           <%}else{%>
-          <h3> Child : <%=item.childname%></h3>
-          <h3>From : <%=item.orphanagename%></h3>
+          <h3><%=child%></h3>
+          <h3>From : <%=reqfrom%></h3>
           <%}%>
           </div>
         <div class="content">
-          <%if(item.orphanagename==="individual"){%>
-          <a href="/chat/with/<%=user%>+<%=item.childname%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+          <%if(reqfrom==="individual"){%>
+          <a href="/chat/with/<%=user%>+<%=child%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
           <p>for further enquries chat with us ..</p>
           <%}else{%>
-          <a href="/chat/with/<%=user%>+<%=item.orphanagename%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+          <a href="/chat/with/<%=user%>+<%=reqfrom%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
           <p>for further enquries chat with us ..</p>
           <%}%>
         </div>
       </div>
     </div>
   </div>
-          <%}%>
           <%}) %>
           <!-- /////////////// -->
