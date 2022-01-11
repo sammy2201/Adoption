@@ -60,7 +60,7 @@
               <%=item.name%>
             </h5>
             <h6>
-              ready for adoption
+              Need Some Love
             </h6>
             <p class="proile-rating"> <span></span></p>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -240,7 +240,6 @@
 
               <%const array=[ ]%>
               <%const groupname=" "%>
-              <%=check%>
               <% chat.forEach(function(chatitem){ %>
               <%if(chatitem.recevername=== check){ %>
               <%if(array.includes(chatitem.sendername) === false){ %>
@@ -252,8 +251,10 @@
               <div class="">
                 <p>chat request from </p>
                 <% array.forEach(function(item){ %>
-                <h6 class="listItem"><%=item%></h6>
-                <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" name="button" value=""><i class="fas fa-envelope-square fa-2x"></i></button></a>
+                <div class="chatbox">
+                  <h6 class="listItem"><%=item%></h6>
+                  <a href="/chat/with/<%=item%>+<%=check%>"><button class="btn" name="button" value="">chat</button></a>
+                </div>
                 <%}) %>
               </div>
             </div>
