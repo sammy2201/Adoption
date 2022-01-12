@@ -4,6 +4,18 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  function openForm2() {
+    console.log("clicked");
+    document.querySelector('.bg-modal').style.display = "flex";
+    console.log("clicked");
+  }
+
+  function closeForm2() {
+    document.querySelector('.bg-modal').style.display = "none";
+    console.log("* clicked");
+  }
+</script>
 </head>
 
 <body>
@@ -24,12 +36,126 @@
 
   </nav>
   <!------ Include the above in your HEAD tag ---------->
+  <!-- ////////////////////////////////pop out////////////////////////////////////// -->
+  <%items.forEach(function(item){ %>
+  <div class="bg-modal">
+    <div class="modal-contents">
+      <button class="close" onclick="closeForm2()"><span class="iconify" data-icon="ant-design:close-outlined" style="color: black; font-size: 20px;"></span></button>
+      <h3>Upadate Your Details</h3>
+      <form action="/orphanagedetailsupdatephonenumber" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="Age" type="text" class="input form-control" name="Age" placeholder="Age " autocomplete="off" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Age</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdateemail" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="phonenumber" type="text" name="phonenumber" class="input form-control" placeholder="phone number " aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Phone Number</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdateAddress" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="Email" type="email" name="email" class="input form-control" placeholder="email " aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Email</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatecity" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="Address" type="text" class="input form-control" name="Address" placeholder="Address " aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Adress</button>
+          </div>
+        </div>
+      </form>
 
+      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="City" type="text" class="input form-control" name="city" placeholder="city " aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate City</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatestate" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <select id="State" name="state" class="input form-control" placeholder=" " aria-label=" Recipient's username" aria-describedby="basic-addon2" />
+          <option selected>State</option>
+          <option>Andhra pradesh</option>
+          <option>Arunachal pradesh</option>
+          <option>Assam</option>
+          <option>bihar</option>
+          <option>chattisgarh</option>
+          <option>goa</option>
+          <option>gujarat</option>
+          <option>haryana</option>
+          <option>himachal pradesh</option>
+          <option>jharkhand</option>
+          <option>karnataka</option>
+          <option>kerala</option>
+          <option>madhya pradesh</option>
+          <option>maharastra</option>
+          <option>manipur</option>
+          <option>meghalaya</option>
+          <option>mizoram</option>
+          <option>nagaland</option>
+          <option>odisa</option>
+          <option>punjab</option>
+          <option>rajasthan</option>
+          <option>sikkim</option>
+          <option>tamilnadu</option>
+          <option>telangana</option>
+          <option>tripura</option>
+          <option>uttarakhand</option>
+          <option>uttar pradesh</option>
+          <option>west bengal</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate State"</button>
+          </div>
+        </div>
+      </form>
+
+
+      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="pincode" type="text" name="pincode" class="input form-control" placeholder=" PinCode" aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate PinCode</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="studies" type="text" name="studies" class="input form-control" placeholder=" studies" aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Studies</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="occupation" type="text" name="occupation" class="input form-control" placeholder="occupation "  aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Occupation</button>
+          </div>
+        </div>
+      </form>
+      </div>
+  </div>
+
+  <%})%>
+  <!-- /////////////////////////////////////////////////////////////////////////// -->
   <div class="container emp-profile">
     <%items.forEach(function(item){ %>
     <%if(check===item.name){%>
-
-
+    <button class="button" onclick="openForm2()">Update <span class="iconify" data-icon="jam:write" style="font-size: 20px;"></span></button>
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
