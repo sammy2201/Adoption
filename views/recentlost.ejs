@@ -38,11 +38,12 @@
   <!------ Include the above in your HEAD tag ---------->
   <!-- ////////////////////////////////pop out////////////////////////////////////// -->
   <%items.forEach(function(item){ %>
+  <%if(check===item.name){%>
   <div class="bg-modal">
     <div class="modal-contents">
       <button class="close" onclick="closeForm2()"><span class="iconify" data-icon="ant-design:close-outlined" style="color: black; font-size: 20px;"></span></button>
       <h3>Upadate Your Details</h3>
-      <form action="/orphanagedetailsupdatephonenumber" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailsupdateage" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="Age" type="text" class="input form-control" name="Age" placeholder="Age " autocomplete="off" aria-label=" Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -50,7 +51,7 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdateemail" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailsphone" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="phonenumber" type="text" name="phonenumber" class="input form-control" placeholder="phone number " aria-label=" Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -58,7 +59,7 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdateAddress" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailsmail" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="Email" type="email" name="email" class="input form-control" placeholder="email " aria-label=" Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -66,16 +67,15 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdatecity" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailaddress" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="Address" type="text" class="input form-control" name="Address" placeholder="Address " aria-label="Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Adress</button>
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Address</button>
           </div>
         </div>
       </form>
-
-      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailscity" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="City" type="text" class="input form-control" name="city" placeholder="city " aria-label="  Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -83,7 +83,7 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdatestate" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailstate" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <select id="State" name="state" class="input form-control" placeholder=" " aria-label=" Recipient's username" aria-describedby="basic-addon2" />
           <option selected>State</option>
@@ -121,9 +121,7 @@
           </div>
         </div>
       </form>
-
-
-      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailspincode" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="pincode" type="text" name="pincode" class="input form-control" placeholder=" PinCode" aria-label="  Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -131,7 +129,7 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailstudies" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <input id="studies" type="text" name="studies" class="input form-control" placeholder=" studies" aria-label="  Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -139,17 +137,17 @@
           </div>
         </div>
       </form>
-      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+      <form action="/recentlostdetailoccupation" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
-          <input id="occupation" type="text" name="occupation" class="input form-control" placeholder="occupation "  aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <input id="occupation" type="text" name="occupation" class="input form-control" placeholder="occupation " aria-label="  Recipient's username" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Occupation</button>
           </div>
         </div>
       </form>
-      </div>
+    </div>
   </div>
-
+  <%}%>
   <%})%>
   <!-- /////////////////////////////////////////////////////////////////////////// -->
   <div class="container emp-profile">

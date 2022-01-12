@@ -709,55 +709,96 @@ app.post("/orphanagedetailsupdatename", upload.single('image'), function(req, re
       console.log(err)
     } else {}
   });
-  Child.updateMany({ orphanage:oldname }, { "$set": { orphanage:req.body.Orphanagename }},function(err, book){
-   if(err) {
-       console.log(err);
-   } else {}
-   });
-
-   Request.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
-    if(err) {
-        console.log(err);
+  Child.updateMany({
+    orphanage: oldname
+  }, {
+    "$set": {
+      orphanage: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
     } else {}
-    });
-    Review.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
-     if(err) {
-         console.log(err);
-     } else {}
-     });
-     Requestreply.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
-      if(err) {
-          console.log(err);
-      } else {}
-      });
-      Chat.updateMany({ sendername:oldname }, { "$set": {sendername:req.body.Orphanagename }},function(err, book){
-       if(err) {
-           console.log(err);
-       } else {}
-       });
-       Chat.updateMany({ recevername:oldname }, { "$set": { recevername:req.body.Orphanagename }},function(err, book){
-        if(err) {
-            console.log(err);
-        } else {}
-        });
-        Chat.find({ }, function (err, docs) {
-            if (err){
-                console.log(err);
+  });
+
+  Request.updateMany({
+    orphanagename: oldname
+  }, {
+    "$set": {
+      orphanagename: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
+    } else {}
+  });
+  Review.updateMany({
+    orphanagename: oldname
+  }, {
+    "$set": {
+      orphanagename: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
+    } else {}
+  });
+  Requestreply.updateMany({
+    orphanagename: oldname
+  }, {
+    "$set": {
+      orphanagename: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
+    } else {}
+  });
+  Chat.updateMany({
+    sendername: oldname
+  }, {
+    "$set": {
+      sendername: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
+    } else {}
+  });
+  Chat.updateMany({
+    recevername: oldname
+  }, {
+    "$set": {
+      recevername: req.body.Orphanagename
+    }
+  }, function(err, book) {
+    if (err) {
+      console.log(err);
+    } else {}
+  });
+  Chat.find({}, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      for (i = 0; i < docs.length; i++) {
+        var firstname = docs[i].groupname.substring(0, docs[i].groupname.indexOf('+'));
+        var oldname2 = docs[i].groupname.split('+').pop();
+        if (oldname2 === oldname) {
+          Chat.updateMany({
+            groupname: firstname + "+" + oldname
+          }, {
+            "$set": {
+              groupname: firstname + "+" + req.body.Orphanagename
             }
-            else{
-              for(i=0;i<docs.length;i++){
-                  var firstname = docs[i].groupname.substring(0, docs[i].groupname.indexOf('+'));
-                  var oldname2 = docs[i].groupname.split('+').pop();
-                  if(oldname2===oldname){
-                    Chat.updateMany({groupname:firstname+"+"+oldname}, { "$set": { groupname:firstname+"+"+req.body.Orphanagename }}, function (err, result) {
-                      if (err){
-                        console.log(err)
-                      }else{}
-                    });
-                  }
-              }
-            }
-        });
+          }, function(err, result) {
+            if (err) {
+              console.log(err)
+            } else {}
+          });
+        }
+      }
+    }
+  });
 
   res.redirect("/studentdetails");
 });
@@ -889,6 +930,123 @@ app.post("/updaterecentlostimage", upload.single('image'), function(req, res) {
     if (err) {
       console.log(err)
     } else {}
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailsupdateage", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    age: req.body.Age,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailsphone", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    phonenum: req.body.phonenumber,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailsmail", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    mail: req.body.email,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailaddress", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    address: req.body.Address,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailscity", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    city: req.body.city,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailstate", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    state: req.body.state,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailspincode", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    pincode: req.body.pincode,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailstudies", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    studies: req.body.studies,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
+  });
+  res.redirect("/recentlost");
+});
+app.post("/recentlostdetailoccupation", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Individual.findByIdAndUpdate(id, {
+    occupation: req.body.occupation,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("hi gug");
+    }
   });
   res.redirect("/recentlost");
 });
