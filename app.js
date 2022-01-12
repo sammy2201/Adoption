@@ -700,7 +700,8 @@ app.post("/orphanagedetails", upload.single('image'), function(req, res) {
 });
 
 app.post("/orphanagedetailsupdatename", upload.single('image'), function(req, res) {
-  id = req.body.button;
+  const id = req.body.button.substring(0, req.body.button.indexOf('+'));
+  const oldname = req.body.button.split('+').pop();
   Orphanage.findByIdAndUpdate(id, {
     name: req.body.Orphanagename,
   }, function(err, docs) {
@@ -708,6 +709,56 @@ app.post("/orphanagedetailsupdatename", upload.single('image'), function(req, re
       console.log(err)
     } else {}
   });
+  Child.updateMany({ orphanage:oldname }, { "$set": { orphanage:req.body.Orphanagename }},function(err, book){
+   if(err) {
+       console.log(err);
+   } else {}
+   });
+
+   Request.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
+    if(err) {
+        console.log(err);
+    } else {}
+    });
+    Review.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
+     if(err) {
+         console.log(err);
+     } else {}
+     });
+     Requestreply.updateMany({ orphanagename:oldname }, { "$set": { orphanagename:req.body.Orphanagename }},function(err, book){
+      if(err) {
+          console.log(err);
+      } else {}
+      });
+      Chat.updateMany({ sendername:oldname }, { "$set": {sendername:req.body.Orphanagename }},function(err, book){
+       if(err) {
+           console.log(err);
+       } else {}
+       });
+       Chat.updateMany({ recevername:oldname }, { "$set": { recevername:req.body.Orphanagename }},function(err, book){
+        if(err) {
+            console.log(err);
+        } else {}
+        });
+        Chat.find({ }, function (err, docs) {
+            if (err){
+                console.log(err);
+            }
+            else{
+              for(i=0;i<docs.length;i++){
+                  var firstname = docs[i].groupname.substring(0, docs[i].groupname.indexOf('+'));
+                  var oldname2 = docs[i].groupname.split('+').pop();
+                  if(oldname2===oldname){
+                    Chat.updateMany({groupname:firstname+"+"+oldname}, { "$set": { groupname:firstname+"+"+req.body.Orphanagename }}, function (err, result) {
+                      if (err){
+                        console.log(err)
+                      }else{}
+                    });
+                  }
+              }
+            }
+        });
+
   res.redirect("/studentdetails");
 });
 
@@ -797,13 +848,6 @@ app.post("/orphanagedetailsupdatepinimage", upload.single('image'), function(req
   });
   res.redirect("/studentdetails");
 });
-
-
-
-
-
-
-
 
 app.post("/recentlostdetails", upload.single('image'), function(req, res) {
   const someconstant = new Individual({
