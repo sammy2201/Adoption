@@ -699,6 +699,112 @@ app.post("/orphanagedetails", upload.single('image'), function(req, res) {
   res.redirect("/studentdetails");
 });
 
+app.post("/orphanagedetailsupdatename", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    name: req.body.Orphanagename,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdatephonenumber", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    phonenum: req.body.phonenumber,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdateemail", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    mail: req.body.email,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdateAddress", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    address: req.body.Address,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdatecity", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    city: req.body.city,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdatestate", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    state: req.body.state,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdatepincode", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    pincode: req.body.pincode,
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+app.post("/orphanagedetailsupdatepinimage", upload.single('image'), function(req, res) {
+  id = req.body.button;
+  Orphanage.findByIdAndUpdate(id, {
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    },
+  }, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {}
+  });
+  res.redirect("/studentdetails");
+});
+
+
+
+
+
+
+
+
 app.post("/recentlostdetails", upload.single('image'), function(req, res) {
   const someconstant = new Individual({
     name: req.body.name,

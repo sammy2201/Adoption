@@ -34,21 +34,40 @@
   });
 
   function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+    document.getElementById("myForm").style.display = "block";
+    console.log("clicked");
+  }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    console.log("clicked");
+  }
+
+  function openForm2() {
+    document.querySelector('.bg-modal').style.display = "flex";
+    console.log("clicked");
+  }
+
+  function closeForm2() {
+    document.querySelector('.bg-modal').style.display = "none";
+    console.log("* clicked");
+  }
+
+
+  document.getElementById('button').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "flex";
+    console.log("clicked");
+  });
+
+  document.querySelector('.close').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "none";
+    console.log("* clicked");
+  });
 </script>
 
 </head>
 
 <body>
-
-
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-ligh">
     <a class="navbar-brand" href="/" style="border:0">Orphanage</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,17 +98,17 @@ function closeForm() {
   <button class="open-button" onclick="openForm()">Chat</button>
   <div class="chat-popup" id="myForm">
     <%items.forEach(function(orphanitem){ %>
-      <%if(orphanitem.adminname=== check){ %>
-      <div class="chatboxheading">
-              <h5 > Chat With </h5>
-      </div>
-      <% array.forEach(function(item){ %>
-      <div class="chat">
-        <h4 class="listItem"><%=item%></h4>
-        <a class="chatatag" href="/chat/with/<%=item%>+<%=orphanitem.name%>">Chat</a>
-      </div>
-      <%}) %>
-      <%} %>
+    <%if(orphanitem.adminname=== check){ %>
+    <div class="chatboxheading">
+      <h5> Chat With </h5>
+    </div>
+    <% array.forEach(function(item){ %>
+    <div class="chat">
+      <h4 class="listItem"><%=item%></h4>
+      <a class="chatatag" href="/chat/with/<%=item%>+<%=orphanitem.name%>">Chat</a>
+    </div>
+    <%}) %>
+    <%} %>
     <%}) %>
     <form action="/action_page.php" class="form-container">
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -105,6 +124,110 @@ function closeForm() {
   <h3 class="name animate__animated animate__rubberBand"> <%=item.name%></h3>
   <%}%>
   <%}) %>
+  <!-- ////////////////////////////////pop out////////////////////////////////////// -->
+  <%items.forEach(function(item){ %>
+  <%if(check===item.adminname){%>
+  <div class="bg-modal">
+    <div class="modal-contents">
+      <button class="close" onclick="closeForm2()"><span class="iconify" data-icon="ant-design:close-outlined" style="color: black; font-size: 20px;"></span></button>
+      <h3>Upadate Your Details</h3>
+      <form action="/orphanagedetailsupdatename" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input type="text" id="Orphanagename" class="form-control" name="Orphanagename" placeholder="Orphanagename " autocomplete="off" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Name</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatephonenumber" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input type="text" id="phonenumber" name="phonenumber" class="input form-control" placeholder=" phonenumber" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Phonenumber</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdateemail" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="Email" type="email" name="email" class="input form-control" placeholder=" email" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Email</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdateAddress" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="Address" type="text" class="input form-control" name="Address" placeholder="Address" aria-label=" Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Update Address</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatecity" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="City" type="text" class="input form-control" name="city" placeholder="cityaria-label=" aria-label= "Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate City"</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatestate" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <select id="State" name="state" class="state input form-control" placeholder=" " aria-label=" Recipient's username" aria-describedby="basic-addon2" />
+          <option selected>State</option>
+          <option>Andhra pradesh</option>
+          <option>Arunachal pradesh</option>
+          <option>Assam</option>
+          <option>bihar</option>
+          <option>chattisgarh</option>
+          <option>goa</option>
+          <option>gujarat</option>
+          <option>haryana</option>
+          <option>himachal pradesh</option>
+          <option>jharkhand</option>
+          <option>karnataka</option>
+          <option>kerala</option>
+          <option>madhya pradesh</option>
+          <option>maharastra</option>
+          <option>manipur</option>
+          <option>meghalaya</option>
+          <option>mizoram</option>
+          <option>nagaland</option>
+          <option>odisa</option>
+          <option>punjab</option>
+          <option>rajasthan</option>
+          <option>sikkim</option>
+          <option>tamilnadu</option>
+          <option>telangana</option>
+          <option>tripura</option>
+          <option>uttarakhand</option>
+          <option>uttar pradesh</option>
+          <option>west bengal</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate State"</button>
+          </div>
+        </div>
+      </form>
+      <form action="/orphanagedetailsupdatepincode" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <input id="pincode" type="text" name="pincode" class="input form-control" placeholder="pincode"aria-label="  Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" value="<%=item._id%>" name="button">Upadate Pincode"</button>
+          </div>
+        </div>
+      </form>
+
+      <h6>Update Image</h6>
+      <form action="/orphanagedetailsupdatepinimage" method="POST" enctype="multipart/form-data">
+      <input class="file" type="file" name="image">
+      <button type="submit" class="btn btn-primary" name="button" value="<%=item._id%>">Update Image</button>
+      </form>
+    </div>
+  </div>
+  <%}%>
+  <%})%>
+  <!-- /////////////////////////////////////////////////////////////////////////// -->
   <hr class="titlebelow" style="height:1px;border-width:0;color:#897134;background-color:#897134;">
   <div class="top">
     <div class="row">
@@ -117,6 +240,7 @@ function closeForm() {
       <%})%>
       </div>
       <div class="col-md-6 box">
+        <button class="button" onclick="openForm2()">Update <span class="iconify" data-icon="jam:write" style="font-size: 20px;"></span></button>
         <%items.forEach(function(item){ %>
         <%if(check===item.adminname){%>
         <p>Orphanage address : <%=item.address%></p>
@@ -254,32 +378,32 @@ function closeForm() {
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Age</label>
-              <input type="text" class="form-control" name="age" placeholder="ID">
+              <input type="text" class="form-control" name="age" placeholder="Age">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label> Gender</label>
-              <input type="text" class="form-control" name="gender" placeholder="Name" required>
+              <input type="text" class="form-control" name="gender" placeholder="Gender" required>
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Hobies</label>
-              <input type="text" class="form-control" name="hobies" placeholder="ID">
+              <input type="text" class="form-control" name="hobies" placeholder="Hobies">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label> Intrested In</label>
-              <input type="text" class="form-control" name="intrestedin" placeholder="Name">
+              <input type="text" class="form-control" name="intrestedin" placeholder="Intrested In">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">studies</label>
-              <input type="text" class="form-control" name="studies" placeholder="ID">
+              <input type="text" class="form-control" name="studies" placeholder="studies">
             </div>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">guardian</label>
-            <input type="text" class="form-control" name="guardian" placeholder="ID" required>
+            <input type="text" class="form-control" name="guardian" placeholder="guardian" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Date of Birth</label>
@@ -295,5 +419,7 @@ function closeForm() {
         <%}) %>
     </div>
   </div>
+
+
 
   <%- include("footer") -%>
