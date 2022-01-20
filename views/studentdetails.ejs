@@ -310,6 +310,10 @@
     <%if(mainitem.name===item.orphanage){%>
     <!-- flip-card-container -->
     <div class="flip-card-container" style="--hue: 170">
+      <form action="/deletechild" method="post">
+        <button type="submit" name="button" class="childdelete" value="<%=item._id%>"><i class="fas fa-trash fa-2x"></i></button>
+      </form>
+
       <div class="flip-card">
         <div class="card-front">
           <figure>
@@ -360,7 +364,7 @@
 
   <!-- ///////////////////////////////student add details/////////////////////////////////// -->
   <div class="btn11 botton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    <span>Add student details</span>
+    <span>Add orphan details</span>
     <div class="transition"></div>
   </div>
 
@@ -369,7 +373,7 @@
       <%items.forEach(function(item){ %>
       <%if(check===item.adminname){%>
       <div class="card adddetailsbox">
-        <h1>Add Student Details</h1>
+        <h1>Add Orphan Details</h1>
         <form action="/studentdetails" method="POST" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">

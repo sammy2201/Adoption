@@ -124,6 +124,7 @@ const childSchema = new mongoose.Schema({
 });
 
 const individualSchema = new mongoose.Schema({
+  status:String,
   name: {
     type: String,
     unique: true,
@@ -1200,6 +1201,18 @@ app.post("/deletepost", function(req, res) {
   res.redirect("/");
 });
 
+app.post("/deletechild", function(req, res) {
+  const id = req.body.button
+  Child.findByIdAndDelete(id, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(docs);
+    }
+  });
+  res.redirect("/studentdetails");
+});
+
 app.post("/deletecomment", function(req, res) {
   const id = req.body.button;
   Comment.findByIdAndDelete(id, function(err, docs) {
@@ -1208,6 +1221,16 @@ app.post("/deletecomment", function(req, res) {
     } else {}
   });
   res.redirect("/");
+});
+
+
+app.post("/updatestatus", function(req, res) {
+  Individual.updateOne({_id:req.body.button},{status:req.body.adoptornot}, function (err, result) {
+    if (err){
+        console.log(err)
+    }else{}
+  });
+  res.redirect("/recentlost");
 });
 
 app.post("/request", function(req, res) {

@@ -833,6 +833,7 @@ ul {
   background-color: white;
   border: 0px;
   margin-left: 90%;
+  cursor: pointer;
 }
 
 .btnreivew:focus {
@@ -841,6 +842,13 @@ ul {
 
 .btnreivew:hover {
   color: red;
+}
+.childdelete{
+    cursor: pointer;
+    margin-bottom: 5px
+}
+.childdelete:hover{
+    color: red;
 }
 
 #onhover {
