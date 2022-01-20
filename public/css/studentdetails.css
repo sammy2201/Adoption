@@ -49,7 +49,10 @@ body {
 }
 
 .star {
-  background-color: #F6F5EE
+  background-color: #bdd4e7;
+background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+
+  cursor: pointer;
 }
 
 .stardiv {
@@ -631,6 +634,7 @@ a.repeat:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 /* .card-front */

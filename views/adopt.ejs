@@ -74,7 +74,8 @@
         </a>
       </div>
       <div class="card-info">
-        <%=item.description+"........"%>
+        <%var des=item.description%>
+        <%= des.substr(0,100)+"........"%>
         <a href="/<%=item.name%>">Read Article<span class="licon icon-arr icon-black"></span></a>
       </div>
       <div class="gradient-overlay"></div>
