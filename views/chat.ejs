@@ -3,7 +3,7 @@
 <script>
   $(document).ready(function() {
     $('html,.chatbox').animate({
-      scrollTop: 100000000000000000000000000000000000
+      scrollTop: 10000000000000000000000000000000000000
     }, 0.000000000000000000001);
     return false;
   });
@@ -25,56 +25,54 @@
     </button>
   </nav>
 
-  <div class="">
+  <div class="" >
 
 
-      <%var x=""%>
-      <% foundorphan.forEach(function(item){ %>
-      <%if(actualuser===item.adminname){%>
-      <% x=item.name %>
-      <%}%>
+    <%var x=""%>
+    <% foundorphan.forEach(function(item){ %>
+    <%if(actualuser===item.adminname){%>
+    <% x=item.name %>
+    <%}%>
       <%})%>
 
-  <!-- ////////////////////////////heading/////////////////////////////// -->
-
-
-      <div class="chatname">
-        <%if(check===x ||check===actualuser){%>
-        <h3>Chat with <%= groupname.substring(0,groupname.indexOf('+')) %></h3>
-        <%}else{%>
-        <h3>Chat with <%= check %></h3>
-        <%}%>
+    <!-- ////////////////////////////heading/////////////////////////////// -->
+    <div class="chatname" >
+      <%if(check===x ||check===actualuser){%>
+      <h3>Chat with <%= groupname.substring(0,groupname.indexOf('+')) %></h3>
+      <%}else{%>
+      <h3>Chat with <%= check %></h3>
+      <%}%>
       </div>
   <!-- //////////////////////////body///////////////////////////////// -->
-      <div class="chatbox ">
+      <div class="chatbox " >
         <% newChat.forEach(function(item){ %>
-        <%if(groupname===item.groupname){%>
-        <%if(actualuser===item.sendername || x===item.sendername){%>
-        <div class="msg right d-flex">
-          <p class='chat'><%=  item.chat  %></p>
-        </div>
-        <p class='chat time timeright'><%=  item.time  %></p>
-        <%}else{%>
-        <div class="msg">
-          <p class='chat'><%=  item.chat  %></p>
-        </div>
-        <p class='chat time timeleft'><%=  item.time  %></p>
-        <%}%>
-      <%}%>
-        <%})%>
+      <%if(groupname===item.groupname){%>
+      <%if(actualuser===item.sendername || x===item.sendername){%>
+      <div class="msg right d-flex">
+        <p class='chat'><%=  item.chat  %></p>
       </div>
+      <p class='chat time timeright'><%=  item.time  %></p>
+      <%}else{%>
+      <div class="msg">
+        <p class='chat'><%=  item.chat  %></p>
+      </div>
+      <p class='chat time timeleft'><%=  item.time  %></p>
+      <%}%>
+      <%}%>
+      <%})%>
     </div>
+  </div>
   <!-- //////////////////////////input///////////////////////////////// -->
-    <div class="submitcard ">
-      <div class="card-footer">
-        <form class="form-inline chatlabel " action="/chat" method="post">
-          <div class="input-group">
-            <input size="50" class="form-control type_msg md-12" name="chat" placeholder="Type your message..." autocomplete="off" required autofocus>
-            <%if(user===check){%>
-            <button class="input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=groupname.substring(0,groupname.indexOf('+'))%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
-            <%}else{%>
-            <button class=" input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=user%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
-            <%}%>
+  <div class="submitcard " onmouseover="window.location.reload();">
+    <div class="card-footer">
+      <form class="form-inline chatlabel " action="/chat" method="post">
+        <div class="input-group">
+          <input size="50" class="form-control type_msg md-12" name="chat" placeholder="Type your message..." autocomplete="off" required autofocus>
+          <%if(user===check){%>
+          <button class="input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=groupname.substring(0,groupname.indexOf('+'))%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
+          <%}else{%>
+          <button class=" input-group-text send_btn addbutton btn " type="submit" name="button" value="<%=user%>+<%=check%>"><span class=""><i class="fas fa-location-arrow"></i></span></button>
+          <%}%>
        </div>
      </form>
  </div>
