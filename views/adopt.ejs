@@ -96,15 +96,14 @@
       <a class="searcha" href="javascript:void(0)" id="clear-btn">Clear</a>
     </form>
 
-    <%users.forEach(function(user){ %>
-    <%if(user.typeOfUser === "recentlost"){%>
+    <%indi.forEach(function(ind){ %>
+    <%if(ind.status !== "adopted"){%>
     <div class="blog-card spring-fever recentlostdiv searchindividual">
       <div class="title-content">
-        <a href="/individual/<%=user.name%>">
-          <h3 class="1"> <%=user.name%></h3>
+        <a href="/individual/<%=ind.name%>">
+          <h3 class="1"> <%=ind.name%></h3>
         </a>
       </div>
-
       <div class="gradient-overlay"></div>
       <div class="color-overlay"></div>
     </div><!-- /.blog-card -->

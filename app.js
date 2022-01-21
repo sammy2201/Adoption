@@ -124,7 +124,7 @@ const childSchema = new mongoose.Schema({
 });
 
 const individualSchema = new mongoose.Schema({
-  status:String,
+  status: String,
   name: {
     type: String,
     unique: true,
@@ -380,9 +380,12 @@ app.get("/adoption", function(req, res) {
     if (req.user.typeOfUser == "user") {
       User.find(function(err, founduser) {
         Orphanage.find(function(err, founditems) {
-          res.render("adopt", {
-            items: founditems,
-            users: founduser
+          Individual.find(function(err, foundindividual) {
+            res.render("adopt", {
+              items: founditems,
+              users: founduser,
+              indi: foundindividual
+            });
           });
         });
       });
@@ -1225,10 +1228,14 @@ app.post("/deletecomment", function(req, res) {
 
 
 app.post("/updatestatus", function(req, res) {
-  Individual.updateOne({_id:req.body.button},{status:req.body.adoptornot}, function (err, result) {
-    if (err){
-        console.log(err)
-    }else{}
+  Individual.updateOne({
+    _id: req.body.button
+  }, {
+    status: req.body.adoptornot
+  }, function(err, result) {
+    if (err) {
+      console.log(err)
+    } else {}
   });
   res.redirect("/recentlost");
 });
