@@ -49,15 +49,11 @@ body {
 }
 
 .star {
-  background-color: #bdd4e7;
-background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
-
   cursor: pointer;
+  background-color: inherit;
 }
 
-.stardiv {
-  margin-left: 100px
-}
+
 
 .descriptionbox {
   padding: 2% 5% 5% 5%;
@@ -129,9 +125,9 @@ div.studentbox p {
 
 .top {
   background-color: #eec0c6;
-  background-image: linear-gradient(315deg, black 0%, #A2D2FF 44%);
+  background-image: linear-gradient(315deg, black 0%, #A2D2FF 74%);
   margin-left: 20px;
-  margin-right: 20px
+  margin-right: 20px;
 }
 
 .requests {
@@ -434,8 +430,6 @@ button {
   border: 0
 }
 
-
-
 /* ////////////////////////////////////////////////////////// */
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
@@ -494,7 +488,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 /* .card-front */
@@ -703,12 +696,14 @@ ul {
 .btnreivew:hover {
   color: red;
 }
-.childdelete{
-    cursor: pointer;
-    margin-bottom: 5px
+
+.childdelete {
+  cursor: pointer;
+  margin-bottom: 5px
 }
-.childdelete:hover{
-    color: red;
+
+.childdelete:hover {
+  color: red;
 }
 
 #onhover {

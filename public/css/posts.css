@@ -30,9 +30,7 @@ body {
 }
 
 .form {
-  background-color: #7f5a83;
-  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
-
+  background-color: #0d324d;
   border-radius: 20px;
   box-sizing: border-box;
   height: 500px;
