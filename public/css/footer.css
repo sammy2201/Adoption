@@ -1,10 +1,29 @@
-footer {
-  background-color: #2d3436;
-  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
-  ;
-  color: white;
-  height: 150px;
-  text-align: center;
-  margin-top: 5%;
-  padding: 1%
+footer{
+  background-color: #1A1A40;
+}
+
+.icon{
+  border: 0
+}
+
+.topfooter{
+  background-color: #2a2a72;
+  margin-top: 50px;
+}
+
+.iconify1{
+  margin-left: 24px;
+}
+
+.p:hover{
+  color: gray;
+  cursor: pointer;
+}
+
+.hr{
+  border: 2px white
+}
+
+.bottomfooter{
+  background-color: #000533
 }
