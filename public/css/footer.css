@@ -9,7 +9,7 @@ footer {
 }
 
 .topfooter {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .iconify1 {
@@ -28,4 +28,7 @@ footer {
 .bottomfooter {
   background-color: #000533;
   opacity: 0.7
+}
+.text-uppercase{
+  font-family: sans-serif;
 }
