@@ -1,4 +1,5 @@
 //jshint esversion:6
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -10,7 +11,8 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const animate = 'animate.css';
-
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate')
 
 const app = express();
 app.use(express.static(__dirname + "/public"));
@@ -59,7 +61,8 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   password: String,
-  typeOfUser: String
+  typeOfUser: String,
+  googleId:String
 });
 
 const orphanageSchema = new mongoose.Schema({
@@ -187,6 +190,7 @@ const chatSchema = new mongoose.Schema({
 
 //////////////////////////////////////////////////////////////////
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 //////////////////////////model//////////////////////////////////
 const User = new mongoose.model("User", userSchema);
@@ -203,8 +207,28 @@ const Chat = new mongoose.model("Chat", chatSchema);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/adoption",
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo', ////maehshallOfSOundgadicomment
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log(profile);
+    User.findOrCreate({googleId: profile.id , name:profile.displayName ,typeOfUser:"user"}, function(err, user) {
+      return cb(err, user);
+    });
+  }
+));
 ////////////////////////////replaceaLl fun/////////////////////
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
@@ -251,6 +275,20 @@ app.get("/", function(req, res) {
     });
   }
 });
+
+app.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile']
+  }));
+
+  app.get("/auth/google/adoption",
+    passport.authenticate('google', {
+      failureRedirect: '/login'
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/');
+    });
 
 app.get("/myacceptedlist", function(req, res) {
   if (req.isAuthenticated()) {
