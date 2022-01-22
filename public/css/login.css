@@ -74,3 +74,20 @@ background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
   background-color: #EAD8B6;
   color: black
 }
+
+.google{
+  background-color: white;
+  height: 60px;
+  border-radius: 10px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.iconify{
+  margin-top: 10px;
+  margin-left: 10px
+}
+.btn-block-a{
+  color: black;
+  border: 0;
+}
