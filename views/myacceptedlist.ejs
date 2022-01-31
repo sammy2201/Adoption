@@ -29,29 +29,19 @@
   <% array.forEach(function(arrayitem){ %>
   <%var child= arrayitem.substring(0, arrayitem.indexOf('+'));%>
   <%var reqfrom = arrayitem.split('+').pop()%>
-  <div class="containerrev">
-    <div class="container d-flex align-items-center justify-content-center position-relative flex-wrap">
-      <div class="card d-flex position-relative flex-column">
-        <div class='imgContainer'>
-          <%if(reqfrom==="individual"){%>
-          <h5><%=child%></h5>
-          <%}else{%>
-          <h5><%=child%></h5>
-          <h5>From : <%=reqfrom%></h5>
-          <%}%>
-          </div>
-        <div class="content">
-          <%if(reqfrom==="individual"){%>
-          <a href="/chat/with/<%=user%>+<%=child%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-          <p>for further enquries chat with us ..</p>
-          <%}else{%>
-          <a href="/chat/with/<%=user%>+<%=reqfrom%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-          <p>for further enquries chat with us ..</p>
-          <%}%>
-        </div>
-      </div>
+    <%if(reqfrom==="individual"){%>
+    <div class='containerrev'>
+    <h3 class="cname"><%=child%></h3>
+    <a class="achat" href="/chat/with/<%=user%>+<%=child%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
     </div>
-  </div>
-          <%}) %>
-          <!-- /////////////// -->
+    <%}else{%>
+    <div class='containerrev'>
+    <h3 class="cname"><%=child%></h3>
+    <p class="oname">From:<%=reqfrom%></p>
+    <a class="achat" href="/chat/with/<%=user%>+<%=reqfrom%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
+    </div>
+    <%}%>
+
+   <%}) %>
+    <!-- /////////////// -->
     <%- include("footer") -%>
