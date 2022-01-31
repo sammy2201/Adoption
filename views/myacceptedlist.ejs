@@ -29,19 +29,20 @@
   <% array.forEach(function(arrayitem){ %>
   <%var child= arrayitem.substring(0, arrayitem.indexOf('+'));%>
   <%var reqfrom = arrayitem.split('+').pop()%>
-    <%if(reqfrom==="individual"){%>
-    <div class='containerrev'>
+  <%if(reqfrom==="individual"){%>
+  <div class='containerrev'>
     <h3 class="cname"><%=child%></h3>
-    <a class="achat" href="/chat/with/<%=user%>+<%=child%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-    </div>
-    <%}else{%>
-    <div class='containerrev'>
-    <h3 class="cname"><%=child%></h3>
-    <p class="oname">From:<%=reqfrom%></p>
-    <a class="achat" href="/chat/with/<%=user%>+<%=reqfrom%>"><button class="btn" type="submit" name="button" value="">chat</button></a>
-    </div>
-    <%}%>
+  </div>
+  <a class="achat" href="/chat/with/<%=user%>+<%=child%>"><button class="btn" type="submit" name="button" value="">chat <p><span class="iconify" data-icon="fluent:chat-multiple-16-regular" style="color: white; font-size: 20px;"></span></p></button></a>
 
+  <%}else{%>
+  <div class='containerrev'>
+    <h3 class="cname"><%=child%></h3>
+    <p class="oname">From <%=reqfrom%> orphanage</p>
+  </div>
+  <a class="achat" href="/chat/with/<%=user%>+<%=reqfrom%>"><button class="btn" type="submit" name="button" value="">chat <p><span class="iconify" data-icon="fluent:chat-multiple-16-regular" style="color: white; font-size: 20px;"></span></p></button></a>
+
+  <%}%>
    <%}) %>
-    <!-- /////////////// -->
-    <%- include("footer") -%>
+  <!-- /////////////// -->
+  <%- include("footer") -%>
