@@ -7,6 +7,9 @@
   },
   "author": "sanmay",
   "license": "ISC",
+  "engines": {
+    "node": "14.18.1"
+  },
   "dependencies": {
     "animate.css": "^4.1.1",
     "body-parser": "^1.19.1",
