@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect("mongodb://localhost:27017/adoptDB", {
+mongoose.connect("mongodb+srv://aishu:18011M2201@cluster.czvok.mongodb.net/adoptDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
