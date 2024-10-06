@@ -34,10 +34,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://0.0.0.0:27017/adoptDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const uri = process.env.MONGODB_URI;
+
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB successfully!"))
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
